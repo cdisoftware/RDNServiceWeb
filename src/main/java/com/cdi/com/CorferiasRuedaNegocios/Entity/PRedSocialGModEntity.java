@@ -10,7 +10,7 @@ import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureParameter;
 import lombok.Data;
 
-@Entity
+
 @Data
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
