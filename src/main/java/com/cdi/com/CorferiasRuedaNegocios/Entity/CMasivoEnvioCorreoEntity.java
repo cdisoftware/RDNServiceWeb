@@ -40,8 +40,8 @@ public class CMasivoEnvioCorreoEntity {
     @JsonProperty("Email")
     private String Email;
 
-    @JsonProperty("html")
-    private String html;
+    @JsonProperty("Html")
+    private String Html;
 
     @JsonProperty("ImagenEnc")
     private String ImagenEnc;

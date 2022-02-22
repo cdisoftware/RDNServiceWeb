@@ -88,12 +88,12 @@ public class IndividualEnvioCorreoServiceImplementacion implements IndividualEnv
             String[] rem = new String[cuerpocorreo.size()];
             imagenencabezado = cuerpocorreo.get(0).getImagenEnc();
             asunto = cuerpocorreo.get(0).getAsunto();
-            //destinatario = cuerpocorreo.get(0).getEmail();
+            destinatario = cuerpocorreo.get(0).getEmail();
             contenido = cuerpocorreo.get(0).getHtml();
             imagenpiepagina = cuerpocorreo.get(0).getImagenPie();
 
             context.setVariable("imagenencabezado", imagenencabezado);
-            //context.setVariable("destinatario", destinatario);
+            context.setVariable("destinatario", destinatario);
             context.setVariable("asunto", asunto);
             context.setVariable("contenido", contenido);
             context.setVariable("imagenpiepagina", imagenpiepagina);
