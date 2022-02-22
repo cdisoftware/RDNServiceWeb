@@ -36,12 +36,15 @@ public class IndividualEnvioCorreoEntity {
     @JsonProperty("Email")
     private String Email;
 
-    @JsonProperty("html")
-    private String html;
+    @JsonProperty("Html")
+    private String Html;
 
     @JsonProperty("ImagenEnc")
     private String ImagenEnc;
 
     @JsonProperty("ImagenPie")
     private String ImagenPie;
+
+    @JsonProperty("EmailOpc")
+    private Integer EmailOpc;
 }

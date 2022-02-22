@@ -18,6 +18,9 @@ import lombok.Data;
 public class CusuariosEnvioCorreoEntity {
 
     @Id
+    @JsonProperty("Id")
+    private String Id;
+
     @JsonProperty("CorreoRemitente")
     private String CorreoRemitente;
 

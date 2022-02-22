@@ -94,11 +94,11 @@ public class MasivoEnvioMailServiceImplementacion implements EnvioMailService {
             for (int i = 0; i < cuerpocorreo.size(); i++) {
                 imagenencabezado = rem[i] = cuerpocorreo.get(i).getImagenEnc();
                 asunto = rem[i] = cuerpocorreo.get(i).getAsunto();
-                //destinatario = rem[i] = cuerpocorreo.get(i).getEmail();
+                destinatario = rem[i] = cuerpocorreo.get(i).getEmail();
                 contenido = rem[i] = cuerpocorreo.get(i).getHtml();
                 imagenpiepagina = rem[i] = cuerpocorreo.get(i).getImagenPie();
                 context.setVariable("imagenencabezado", imagenencabezado);
-                //context.setVariable("destinatario", destinatario);
+                context.setVariable("destinatario", destinatario);
                 context.setVariable("asunto", asunto);
                 context.setVariable("contenido", contenido);
                 context.setVariable("imagenpiepagina", imagenpiepagina);
