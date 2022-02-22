@@ -30,29 +30,29 @@ public class PSectorParticipanteEntity implements Serializable {
 
     @Id
     @JsonProperty("Consec")
-    private Integer Consec;
+    public String Consec;
 
     @JsonProperty("IdSector")
-    private Integer IdSector;
+    public Integer IdSector;
 
     @JsonProperty("IdCategoria")
-    private Integer IdCategoria;
+    public Integer IdCategoria;
 
     @JsonProperty("IdSubcategoria")
-    private Integer IdSubcategoria;
+    public Integer IdSubcategoria;
 
     @JsonProperty("Estado")
-    private Integer Estado;
+    public Integer Estado;
 
     @JsonProperty("IdParticipante")
-    private Integer IdParticipante;
+    public Integer IdParticipante;
 
     @JsonProperty("NombreSector")
-    private String NombreSector;
+    public String NombreSector;
 
     @JsonProperty("NombreCategoria")
-    private String NombreCategoria;
+    public String NombreCategoria;
 
     @JsonProperty("NombreSubcategoria")
-    private String NombreSubcategoria;
+    public String NombreSubcategoria;
 }
