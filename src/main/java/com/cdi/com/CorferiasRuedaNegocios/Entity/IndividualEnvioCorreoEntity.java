@@ -45,6 +45,4 @@ public class IndividualEnvioCorreoEntity {
     @JsonProperty("ImagenPie")
     private String ImagenPie;
 
-    @JsonProperty("EmailOpc")
-    private Integer EmailOpc;
-}
+   }
