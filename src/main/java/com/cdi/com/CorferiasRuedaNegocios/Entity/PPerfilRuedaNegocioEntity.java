@@ -13,10 +13,6 @@ import javax.persistence.NamedStoredProcedureQueries;
 import javax.persistence.NamedStoredProcedureQuery;
 import lombok.Data;
 
-/**
- *
- * @author Pedro perfil rueda negocio
- */
 @Entity
 @Data
 @NamedStoredProcedureQueries({
@@ -29,21 +25,24 @@ public class PPerfilRuedaNegocioEntity implements Serializable {
 
     @Id
     @JsonProperty("IdRuedaNegocio")
-    private Integer IdRuedaNegocio;
+    public Integer IdRuedaNegocio;
 
     @JsonProperty("NombreRDN")
-    private String NombreRDN;
+    public String NombreRDN;
 
     @JsonProperty("DescripcionRDN")
-    private String DescripcionRDN;
+    public String DescripcionRDN;
 
     @JsonProperty("Imagen")
-    private String Imagen;
+    public String Imagen;
 
     @JsonProperty("Participa")
-    private Integer Participa;
+    public Integer Participa;
 
     @JsonProperty("PerfilAsociado")
-    private Integer PerfilAsociado;
+    public Integer PerfilAsociado;
+
+    @JsonProperty("DescripcionPerfil")
+    public String DescripcionPerfil;
 
 }
