@@ -8,10 +8,6 @@ import javax.persistence.NamedStoredProcedureQueries;
 import javax.persistence.NamedStoredProcedureQuery;
 import lombok.Data;
 
-/**
- *
- * @author Pedro p Manejo de Excepciones
- */
 @Entity
 @Data
 @NamedStoredProcedureQueries({

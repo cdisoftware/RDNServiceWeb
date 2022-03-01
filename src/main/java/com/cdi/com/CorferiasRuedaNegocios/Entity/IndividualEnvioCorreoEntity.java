@@ -23,26 +23,28 @@ import lombok.Data;
 })
 public class IndividualEnvioCorreoEntity {
 
-    @JsonProperty("IdPlantilla")
-    private Integer IdPlantilla;
-
-    @JsonProperty("Asunto")
-    private String Asunto;
-
     @Id
     @JsonProperty("IdContacto")
-    private Integer IdContacto;
+    public Integer IdContacto;
+    
+    @JsonProperty("IdPlantilla")
+    public Integer IdPlantilla;
+
+    @JsonProperty("Asunto")
+    public String Asunto;
 
     @JsonProperty("Email")
-    private String Email;
+    public String Email;
 
     @JsonProperty("Html")
-    private String Html;
+    public String Html;
 
     @JsonProperty("ImagenEnc")
-    private String ImagenEnc;
+    public String ImagenEnc;
 
     @JsonProperty("ImagenPie")
-    private String ImagenPie;
+    public String ImagenPie;
 
-   }
+    //@JsonProperty("EmailOpc")
+    //private String EmailOpc;
+}

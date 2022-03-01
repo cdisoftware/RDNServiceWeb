@@ -181,8 +181,10 @@ public class MasivoEnvioMailServiceImplementacion implements EnvioMailService {
             cuerpo.setParameter("CodigoProceso", codigoproceso);
             cuerpo.getResultList();
             List<CMasivoEnvioCorreoEntity> cuerpocorreo = cuerpo.getResultList();
+            
             String[] r = new String[cuerpocorreo.size()];
             String[] ArregloDestinatarios = new String[cuerpocorreo.size()];
+            
             for (int i = 0; i < cuerpocorreo.size(); i++) {
                 destinatario = r[i] = cuerpocorreo.get(i).getEmail();
                 ArregloDestinatarios[i] = destinatario;
