@@ -3543,7 +3543,7 @@ public class Controller {
     public String GenerarLinkMeet(@RequestBody meetwherebyEntity entidad) {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        headers.setBearerAuth("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmFwcGVhci5pbiIsImF1ZCI6Imh0dHBzOi8vYXBpLmFwcGVhci5pbi92MSIsImV4cCI6OTAwNzE5OTI1NDc0MDk5MSwiaWF0IjoxNjQyNjA0Njg5LCJvcmdhbml6YXRpb25JZCI6MTQ5MzgxLCJqdGkiOiIwOWEwMjUzYy01M2E3LTRjODItYWIyOS03M2U3MjRhNTgyMzEifQ.R_2nOnZAasvdCkh1M9APK_fQidSeyDHaXXBMHTKvsXI");
+        headers.setBearerAuth("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmFwcGVhci5pbiIsImF1ZCI6Imh0dHBzOi8vYXBpLmFwcGVhci5pbi92MSIsImV4cCI6OTAwNzE5OTI1NDc0MDk5MSwiaWF0IjoxNjQ2MTQyMDYyLCJvcmdhbml6YXRpb25JZCI6MTU0NDQ4LCJqdGkiOiI4ZGFjOTFkZi1kMzY2LTQ2ZWEtODJhZi1hY2QwZmYwNWViZTgifQ.oDssm1t-9MC-xCBroXHks_3KacTtWUvTJPlpDQF_Yss");
         HttpEntity<meetwherebyEntity> entity = new HttpEntity<meetwherebyEntity>(entidad, headers);
         RestTemplate rt = new RestTemplate();
         return rt.exchange(
