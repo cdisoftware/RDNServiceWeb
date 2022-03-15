@@ -1,9 +1,9 @@
 package com.cdi.com.CorferiasRuedaNegocios.ServiceImplements;
 
+import com.cdi.com.CorferiasRuedaNegocios.Entity.CAdminSalasConfigEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.LogConsolaEntity;
-import com.cdi.com.CorferiasRuedaNegocios.Entity.PRecuperaDatosContactoEntity;
+import com.cdi.com.CorferiasRuedaNegocios.Services.CAdminSalasConfigService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.LogConsolaService;
-import com.cdi.com.CorferiasRuedaNegocios.Services.PRecuperaDatosContactoService;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PRecuperaDatosContactoServiceImplementacion implements PRecuperaDatosContactoService {
+public class CAdminSalasConfigServiceImplementacion implements CAdminSalasConfigService {
 
     @PersistenceContext
     private EntityManager repositorio;
@@ -24,23 +24,21 @@ public class PRecuperaDatosContactoServiceImplementacion implements PRecuperaDat
     private LogConsolaService service;
 
     @Override
-    public List<PRecuperaDatosContactoEntity> ConsultaRecupDatsContact(PRecuperaDatosContactoEntity entidad, Integer Bandera, Integer IdContacto) {
+    public List<CAdminSalasConfigEntity> ConsultaCAdminSalaConf(Integer Bandera, Integer IdRuedaNegocio) {
         try {
-            StoredProcedureQuery consrdtscontact = repositorio.createNamedStoredProcedureQuery("paPRecuperaDatosContacto");
-            consrdtscontact.registerStoredProcedureParameter("Bandera", Integer.class, ParameterMode.IN);
-            consrdtscontact.registerStoredProcedureParameter("Email", String.class, ParameterMode.IN);
-            consrdtscontact.registerStoredProcedureParameter("IdContacto", Integer.class, ParameterMode.IN);
+            StoredProcedureQuery consalaconf = repositorio.createNamedStoredProcedureQuery("paCAdminSalasConfig");
+            consalaconf.registerStoredProcedureParameter("Bandera", Integer.class, ParameterMode.IN);
+            consalaconf.registerStoredProcedureParameter("IdRuedaNegocio", Integer.class, ParameterMode.IN);
 
-            consrdtscontact.setParameter("Bandera", Bandera);
-            consrdtscontact.setParameter("Email", entidad.getEmail());
-            consrdtscontact.setParameter("IdContacto", IdContacto);
+            consalaconf.setParameter("Bandera", Bandera);
+            consalaconf.setParameter("IdRuedaNegocio", IdRuedaNegocio);
 
-            return consrdtscontact.getResultList();
+            return consalaconf.getResultList();
         } catch (Exception ex) {
             LogConsolaEntity entidadLog = new LogConsolaEntity();
             entidadLog.setCodigo(String.valueOf(ex.hashCode()));
             entidadLog.setMensaje(ex.getMessage());
-            entidadLog.setServicio("Servicio paPRecuperaDatosContacto consulta");
+            entidadLog.setServicio("Servicio paCAdminSalasConfig consulta");
             entidadLog.setTipo(1);
             service.InsertaLog(entidadLog);
             List list = new ArrayList();

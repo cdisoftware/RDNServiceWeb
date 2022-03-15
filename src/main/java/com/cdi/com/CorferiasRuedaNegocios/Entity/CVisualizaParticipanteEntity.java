@@ -19,183 +19,183 @@ public class CVisualizaParticipanteEntity {
 
     @Id
     @JsonProperty("Id")
-    private Integer Id;
+    public Integer Id;
 
     @JsonProperty("IdParticipante")
-    private Integer IdParticipante;
+    public Integer IdParticipante;
 
     @JsonProperty("NombreRDN")
-    private String NombreRDN;
+    public String NombreRDN;
 
     @JsonProperty("IdRuedaNegocio")
-    private Integer IdRuedaNegocio;
+    public Integer IdRuedaNegocio;
 
     @JsonProperty("Empresa")
-    private String Empresa;
+    public String Empresa;
 
     @JsonProperty("Nit")
-    private String Nit;
+    public String Nit;
 
     @JsonProperty("Pais")
-    private String Pais;
+    public String Pais;
 
     @JsonProperty("IdPais")
-    private Integer IdPais;
+    public Integer IdPais;
 
     @JsonProperty("Departamento")
-    private String Departamento;
+    public String Departamento;
 
     @JsonProperty("IdDepartamento")
-    private String IdDepartamento;
+    public String IdDepartamento;
 
     @JsonProperty("Ciudad")
-    private String Ciudad;
+    public String Ciudad;
 
     @JsonProperty("IdCiudad")
-    private String IdCiudad;
+    public String IdCiudad;
 
     @JsonProperty("DireccionEmpresa")
-    private String DireccionEmpresa;
+    public String DireccionEmpresa;
 
     @JsonProperty("TelefonoEmpresa")
-    private String TelefonoEmpresa;
+    public String TelefonoEmpresa;
 
     @JsonProperty("EmailEmpresa")
-    private String EmailEmpresa;
+    public String EmailEmpresa;
 
     @JsonProperty("PaginaWeb")
-    private String PaginaWeb;
+    public String PaginaWeb;
 
     @JsonProperty("TipoPerfil")
-    private Integer TipoPerfil;
+    public Integer TipoPerfil;
 
     @JsonProperty("NombrePerfil")
-    private String NombrePerfil;
+    public String NombrePerfil;
 
     @JsonProperty("Observaciones")
-    private String Observaciones;
+    public String Observaciones;
 
     @JsonProperty("NombreContacto")
-    private String NombreContacto;
+    public String NombreContacto;
 
     @JsonProperty("EmailContacto")
-    private String EmailContacto;
+    public String EmailContacto;
 
     @JsonProperty("TelefonoContacto")
-    private String TelefonoContacto;
+    public String TelefonoContacto;
 
     @JsonProperty("Cargo")
-    private String Cargo;
+    public String Cargo;
 
     @JsonProperty("Dependencia")
-    private String Dependencia;
+    public String Dependencia;
 
     @JsonProperty("Identificacion")
-    private String Identificacion;
+    public String Identificacion;
 
     @JsonProperty("NoIdentificacion")
-    private String NoIdentificacion;
+    public String NoIdentificacion;
 
     @JsonProperty("Idioma")
-    private String Idioma;
+    public String Idioma;
 
     @JsonProperty("NumeroEntradas")
-    private Integer NumeroEntradas;
+    public Integer NumeroEntradas;
 
     @JsonProperty("CitasSolicitadas")
-    private Integer CitasSolicitadas;
+    public Integer CitasSolicitadas;
 
     @JsonProperty("CitasAprobadas")
-    private Integer CitasAprobadas;
+    public Integer CitasAprobadas;
 
     @JsonProperty("CitasRechazadas")
-    private Integer CitasRechazadas;
+    public Integer CitasRechazadas;
 
     @JsonProperty("CitasCanceladas")
-    private Integer CitasCanceladas;
+    public Integer CitasCanceladas;
 
     @JsonProperty("Matricula")
-    private String Matricula;
+    public String Matricula;
 
     @JsonProperty("NumeroEmpleados")
-    private String NumeroEmpleados;
+    public String NumeroEmpleados;
 
     @JsonProperty("FechaConstitucion")
-    private String FechaConstitucion;
+    public String FechaConstitucion;
 
     @JsonProperty("TipoActividad")
-    private String TipoActividad;
+    public String TipoActividad;
 
     @JsonProperty("DescriActividad")
-    private Integer DescriActividad;
+    public String DescriActividad;
 
     @JsonProperty("Importa")
-    private String Importa;
+    public String Importa;
 
     @JsonProperty("Exporta")
-    private String Exporta;
+    public String Exporta;
 
     @JsonProperty("Referidos")
-    private String Referidos;
+    public String Referidos;
 
     @JsonProperty("EstadoEmpresaPart")
-    private Integer EstadoEmpresaPart;
+    public Integer EstadoEmpresaPart;
 
     @JsonProperty("Estado")
-    private String Estado;
+    public String Estado;
 
     @JsonProperty("FechaAprobacion")
-    private String FechaAprobacion;
+    public String FechaAprobacion;
 
     @JsonProperty("FechaRegistro")
-    private String FechaRegistro;
+    public String FechaRegistro;
 
     @JsonProperty("FechaActualizacion")
-    private String FechaActualizacion;
+    public String FechaActualizacion;
 
     @JsonProperty("IdSector")
-    private String IdSector;
+    public String IdSector;
 
     @JsonProperty("NombreSector")
-    private String NombreSector;
+    public String NombreSector;
 
     @JsonProperty("IdCategoria")
-    private String IdCategoria;
+    public String IdCategoria;
 
     @JsonProperty("NombreCategoria")
-    private String NombreCategoria;
+    public String NombreCategoria;
 
     @JsonProperty("IdSubcategoria")
-    private String IdSubcategoria;
+    public String IdSubcategoria;
 
     @JsonProperty("NombreSubcategoria")
-    private String NombreSubcategoria;
+    public String NombreSubcategoria;
 
     @JsonProperty("ProductosOfrece")
-    private String ProductosOfrece;
+    public String ProductosOfrece;
 
     @JsonProperty("ProductosBusca")
-    private String ProductosBusca;
+    public String ProductosBusca;
 
     @JsonProperty("FechaInicioRdn")
-    private String FechaInicioRdn;
+    public String FechaInicioRdn;
 
     @JsonProperty("FechaFinRdn")
-    private String FechaFinRdn;
+    public String FechaFinRdn;
 
     @JsonProperty("Ubicacion")
-    private String Ubicacion;
+    public String Ubicacion;
 
     @JsonProperty("CantidadEspacio")
-    private Integer CantidadEspacio;
+    public Integer CantidadEspacio;
 
     @JsonProperty("TerminosCondiciones")
-    private String TerminosCondiciones;
+    public String TerminosCondiciones;
 
     @JsonProperty("Genero")
-    private String Genero;
+    public String Genero;
 
     @JsonProperty("Contrasena")
-    private String Contrasena;
+    public String Contrasena;
 
 }

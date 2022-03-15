@@ -65,29 +65,11 @@ public class MasivoEnvioMailServiceImplementacion implements EnvioMailService {
 
         Map<String, Object> mapMessage = new HashMap<>();
         try {
-            StoredProcedureQuery rolconsola = repositorio.createNamedStoredProcedureQuery("paCEnvioRealCorreo");
-            rolconsola.registerStoredProcedureParameter("bandera", Integer.class, ParameterMode.IN);
-            rolconsola.registerStoredProcedureParameter("Idioma", String.class, ParameterMode.IN);
-            rolconsola.registerStoredProcedureParameter("IdEnvioCorreo", Integer.class, ParameterMode.IN);
-            rolconsola.setParameter("bandera", bandera);
-            rolconsola.setParameter("Idioma", Idioma);
-            rolconsola.setParameter("IdEnvioCorreo", IdEnvioCorreo);
-            rolconsola.execute();
-            codigoproceso = (Integer) rolconsola.getOutputParameterValue("Respuesta");
-        } catch (Exception e) {
-            LogConsolaEntity entidadLog = new LogConsolaEntity();
-            entidadLog.setCodigo(String.valueOf(e.hashCode()));
-            entidadLog.setMensaje(e.getMessage());
-            entidadLog.setServicio("Servicio paCEnvioRealCorreo insertar");
-            entidadLog.setTipo(1);
-            service.InsertaLog(entidadLog);
-            return JSONObject.quote("No fue posible ejecutar los datos, verifique el Log para validar la inconsistencia");
-        }
-        try {
             Context context = new Context();
             StoredProcedureQuery cuerpo = repositorio.createNamedStoredProcedureQuery("paCEnvioRealCorreo_Consulta");
             cuerpo.registerStoredProcedureParameter("CodigoProceso", Integer.class, ParameterMode.IN);
-            cuerpo.setParameter("CodigoProceso", codigoproceso);
+            codigoproceso = IdEnvioCorreo;
+            cuerpo.setParameter("CodigoProceso", IdEnvioCorreo);
             cuerpo.getResultList();
             List<CMasivoEnvioCorreoEntity> cuerpocorreo = cuerpo.getResultList();
             String[] rem = new String[cuerpocorreo.size()];
@@ -181,10 +163,10 @@ public class MasivoEnvioMailServiceImplementacion implements EnvioMailService {
             cuerpo.setParameter("CodigoProceso", codigoproceso);
             cuerpo.getResultList();
             List<CMasivoEnvioCorreoEntity> cuerpocorreo = cuerpo.getResultList();
-            
+
             String[] r = new String[cuerpocorreo.size()];
             String[] ArregloDestinatarios = new String[cuerpocorreo.size()];
-            
+
             for (int i = 0; i < cuerpocorreo.size(); i++) {
                 destinatario = r[i] = cuerpocorreo.get(i).getEmail();
                 ArregloDestinatarios[i] = destinatario;
@@ -254,7 +236,7 @@ public class MasivoEnvioMailServiceImplementacion implements EnvioMailService {
             mp2.setSubType("mixed");
             message.setContent(mp2);
             message.saveChanges();
-            
+
         } catch (IOException | MessagingException ex) {
 
             LogConsolaEntity entidadLog = new LogConsolaEntity();

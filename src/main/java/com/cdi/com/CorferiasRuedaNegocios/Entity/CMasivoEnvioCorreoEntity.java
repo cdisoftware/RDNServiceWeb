@@ -1,6 +1,7 @@
 package com.cdi.com.CorferiasRuedaNegocios.Entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedStoredProcedureQueries;
@@ -15,19 +16,16 @@ import lombok.Data;
     @NamedStoredProcedureQuery(
             name = "paCEnvioRealCorreo_Consulta",
             procedureName = "paCEnvioRealCorreo_Consulta",
-            resultClasses = CMasivoEnvioCorreoEntity.class),
-     @NamedStoredProcedureQuery(
-            name = "paCEnvioRealCorreo",
-            procedureName = "paCEnvioRealCorreo",
-            parameters = {
-                @StoredProcedureParameter(name = "Respuesta",
-                        mode = ParameterMode.OUT,
-                        type = Integer.class)
-            })
+            resultClasses = CMasivoEnvioCorreoEntity.class)
+
 })
+
 public class CMasivoEnvioCorreoEntity {
 
     @Id
+    @JsonProperty("Id")
+    private Integer Id;
+
     @JsonProperty("IdContacto")
     private Integer IdContacto;
 

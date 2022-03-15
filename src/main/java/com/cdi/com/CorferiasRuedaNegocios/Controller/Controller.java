@@ -4,6 +4,7 @@ import ch.qos.logback.core.net.ObjectWriter;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CActualizaAuditoriaEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CAdmPreguntaEstandarEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CAdmPreguntaEstandarModEntity;
+import com.cdi.com.CorferiasRuedaNegocios.Entity.CAdminSalasConfigEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CAdminSalasEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CAdminSalasModEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CAdministraLinkRdnEntity;
@@ -35,6 +36,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Entity.CDatosTableroPPEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CDefinirAuditoriaEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CUsuarioInfoConsolaEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CDptoPaisEntity;
+import com.cdi.com.CorferiasRuedaNegocios.Entity.CEnvioRealCorreoEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CEvaluacionConsEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CMasivoEnvioCorreoEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CEvaluacionEntity;
@@ -82,6 +84,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Entity.CProgramacionCorreoEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CRdnPatalogosEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CRecintoEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CRecintoModificaEntity;
+import com.cdi.com.CorferiasRuedaNegocios.Entity.CRecuperaDatosUsuarioEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CRedSocialAdmEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CRelDatosContactoEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CRelDocEnvioCorreoModEntity;
@@ -196,6 +199,7 @@ import com.cdi.com.CorferiasRuedaNegocios.ServiceImplements.FileStorageService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CActualizaAuditoriaService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CAdmPreguntaEstandarModService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CAdmPreguntaEstandarService;
+import com.cdi.com.CorferiasRuedaNegocios.Services.CAdminSalasConfigService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CAdminSalasModService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CAdminSalasService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CAdministraLinkRdnService;
@@ -275,6 +279,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Services.CProgramacionCorreoService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CRdnPatalogosService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CRecintoModificaService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CRecintoService;
+import com.cdi.com.CorferiasRuedaNegocios.Services.CRecuperaDatosUsuarioService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CRedSocialAdmService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CRelDatosContactoService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CRelDocEnvioCorreoModService;
@@ -1021,7 +1026,13 @@ public class Controller {
 
     @Autowired
     PRecuperaDatosContactoService servicePRecuperaDatosContactoService;
-    
+
+    @Autowired
+    CAdminSalasConfigService serviceCAdminSalasConfigService;
+
+    @Autowired
+    CRecuperaDatosUsuarioService serviceCRecuperaDatosUsuarioService;
+
     @GetMapping("/consultarpaises")
     public List<TtPaisEntity> ConsultarPaises() {
         return servicepaisservice.listar();
@@ -3056,12 +3067,11 @@ public class Controller {
     }
 
     @GetMapping("/consultaenviorealcorreo/{bandera}/{Idioma}/{IdEnvioCorreo}")
-    public List<CMasivoEnvioCorreoEntity> ConsultaEnvioCorreo(
+    public String ConsultaEnvioCorreo(
             @PathVariable Integer bandera,
             @PathVariable String Idioma,
             @PathVariable Integer IdEnvioCorreo) {
-        return serviceCEnvioRealCorreoService.ConsultaEnvioRealCorreo(bandera, Idioma,
-                IdEnvioCorreo);
+        return serviceCEnvioRealCorreoService.ConsultaEnvioRealCorreo(bandera, Idioma, IdEnvioCorreo);
     }
 
     @GetMapping("/consultaadministrachat/{Bandera}/{Idioma}/{RuedaNegocio}/{IdRuedaNegocio}/{TipoChat}/{IdJornada}/{IdChat}")
@@ -3580,7 +3590,7 @@ public class Controller {
         return servicePChatService.ConsultaPChat(entidad, Bandera, Idioma);
     }
 
-    @PostMapping("/insertnotificacionescontact/{IdNotificacion}")
+    @GetMapping("/insertnotificacionescontact/{IdNotificacion}")
     public String InsertNotificacionContact(
             @PathVariable Integer IdNotificacion) {
         return serviceCNotificaContactoService.InsertNotificacionContact(IdNotificacion);
@@ -3607,11 +3617,26 @@ public class Controller {
         return serviceCAdminSalasModService.ActualizaAdminSalas(entidad, Bandera);
     }
 
-    @PostMapping("/consrecupdatscontact/{Bandera}")
+    @PostMapping("/consrecupdatscontact/{Bandera}/{IdContacto}")
     public List<PRecuperaDatosContactoEntity> ConsultaRecupDatsContact(
             @RequestBody PRecuperaDatosContactoEntity entidad,
-            @PathVariable Integer Bandera) {
-        return servicePRecuperaDatosContactoService.ConsultaRecupDatsContact(entidad, Bandera);
+            @PathVariable Integer Bandera,
+            @PathVariable Integer IdContacto) {
+        return servicePRecuperaDatosContactoService.ConsultaRecupDatsContact(entidad, Bandera, IdContacto);
     }
 
+    @GetMapping("/conscadminsalaconf/{Bandera}/{IdRuedaNegocio}")
+    public List<CAdminSalasConfigEntity> ConsultaCAdminSalaConf(
+            @PathVariable Integer Bandera,
+            @PathVariable Integer IdRuedaNegocio) {
+        return serviceCAdminSalasConfigService.ConsultaCAdminSalaConf(Bandera, IdRuedaNegocio);
+    }
+
+    @PostMapping("/consrecupdatuser/{Bandera}/{IdUsuario}")
+    public List<CRecuperaDatosUsuarioEntity> ConsultaCRecDatosUser(
+            @RequestBody CRecuperaDatosUsuarioEntity entidad,
+            @PathVariable Integer Bandera,
+            @PathVariable Integer IdUsuario) {
+        return serviceCRecuperaDatosUsuarioService.ConsultaCRecDatosUser(entidad, Bandera, IdUsuario);
+    }
 }
