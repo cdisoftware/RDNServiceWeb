@@ -1,6 +1,6 @@
 package com.cdi.com.CorferiasRuedaNegocios.ServiceImplements;
 
-import com.cdi.com.CorferiasRuedaNegocios.Entity.CMasivoEnvioCorreoEntity;
+
 import com.cdi.com.CorferiasRuedaNegocios.Entity.LogConsolaEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CEnvioRealCorreoService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.LogConsolaService;
@@ -24,9 +24,7 @@ public class CEnvioRealCorreoServiceImplementacion implements CEnvioRealCorreoSe
     private LogConsolaService service;
 
     @Override
-    public List<CMasivoEnvioCorreoEntity> ConsultaEnvioRealCorreo(Integer bandera, 
-            String Idioma, Integer IdEnvioCorreo) {
-
+    public String ConsultaEnvioRealCorreo(Integer bandera, String Idioma, Integer IdEnvioCorreo) {
         try {
             StoredProcedureQuery consciudadpais = repositorio.createNamedStoredProcedureQuery("paCEnvioRealCorreo");
             consciudadpais.registerStoredProcedureParameter("bandera", Integer.class, ParameterMode.IN);
@@ -35,17 +33,16 @@ public class CEnvioRealCorreoServiceImplementacion implements CEnvioRealCorreoSe
             consciudadpais.setParameter("bandera", bandera);
             consciudadpais.setParameter("Idioma", Idioma);
             consciudadpais.setParameter("IdEnvioCorreo", IdEnvioCorreo);
-            return consciudadpais.getResultList();
+            consciudadpais.execute();
+            return JSONObject.quote((String) consciudadpais.getOutputParameterValue("Respuesta"));
         } catch (Exception ex) {
             LogConsolaEntity entidadLog = new LogConsolaEntity();
             entidadLog.setCodigo(String.valueOf(ex.hashCode()));
             entidadLog.setMensaje(ex.getMessage());
-            entidadLog.setServicio("Servicio paCEnvioRealCorreo");
+            entidadLog.setServicio("Servicio paPValidaRdnContacto");
             entidadLog.setTipo(1);
             service.InsertaLog(entidadLog);
-            List list = new ArrayList();
-            list.add(0, JSONObject.quote("No fue posible ejecutar los datos, verifique el Log para validar la inconsistencia"));
-            return list;
+            return JSONObject.quote("No fue posible ejecutar los datos, verifique el Log para validar la inconsistencia");
         }
     }
 

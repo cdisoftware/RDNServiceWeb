@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface PRecuperaDatosContactoService {
 
-    public List<PRecuperaDatosContactoEntity> ConsultaRecupDatsContact(PRecuperaDatosContactoEntity entidad, Integer Bandera);
+    public List<PRecuperaDatosContactoEntity> ConsultaRecupDatsContact(PRecuperaDatosContactoEntity entidad, Integer Bandera, Integer IdContacto);
 }
