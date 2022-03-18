@@ -18,11 +18,14 @@ import lombok.Data;
 public class PInfoContactoEntity {
 
     @Id
+    @JsonProperty("IdContacto")
+    private Integer IdContacto;
+
     @JsonProperty("NoIdentificacion")
-    private Integer NoIdentificacion;
+    private String NoIdentificacion;
 
     @JsonProperty("IdIdentificacion")
-    private Integer IdIdentificacion;
+    private String IdIdentificacion;
 
     @JsonProperty("NombreCompleto")
     private String NombreCompleto;
@@ -33,10 +36,10 @@ public class PInfoContactoEntity {
     @JsonProperty("Contrasena")
     private String Contrasena;
 
-    @JsonProperty("IdContacto")
-    private Integer IdContacto;
-
     @JsonProperty("IdParticipante")
     private Integer IdParticipante;
+
+    @JsonProperty("IdIdioma")
+    private Integer IdIdioma;
 
 }
