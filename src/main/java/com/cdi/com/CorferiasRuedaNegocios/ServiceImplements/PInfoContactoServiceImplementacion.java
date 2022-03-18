@@ -44,6 +44,7 @@ public class PInfoContactoServiceImplementacion implements PInfoContactoService 
             String Contrasena = null;
             String IdContacto = null;
             String IdParticipante = null;
+            String IdIdioma = null;
 
             String[] terminos = new String[con.size()];
             for (int i = 0; i < con.size(); i++) {
@@ -54,6 +55,7 @@ public class PInfoContactoServiceImplementacion implements PInfoContactoService 
                 Contrasena = clsEncriptacion.Desencriptar(con.get(i).getContrasena());
                 IdContacto = con.get(i).getIdContacto().toString();
                 IdParticipante = con.get(i).getIdParticipante().toString();
+                IdIdioma = con.get(i).getIdIdioma().toString();
             }
             ResFinal
                     = "[{\"NoIdentificacion\":\"" + NoIdentificacion + "\","
@@ -62,6 +64,7 @@ public class PInfoContactoServiceImplementacion implements PInfoContactoService 
                     + "\"Email\":\"" + Email + "\","
                     + "\"IdContacto\":\"" + IdContacto + "\","
                     + "\"IdParticipante\":\"" + IdParticipante + "\","
+                    + "\"IdIdioma\":\"" + IdIdioma + "\","
                     + "\"Contrasena\":\"" + Contrasena + "\"}]";
             return ResFinal;
 
