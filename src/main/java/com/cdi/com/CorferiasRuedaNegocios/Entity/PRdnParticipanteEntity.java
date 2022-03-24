@@ -41,4 +41,7 @@ public class PRdnParticipanteEntity {
     @JsonProperty("DescripcionRDN")
     private String DescripcionRDN;
 
+    @JsonProperty("IdPerfil")
+    private Integer IdPerfil;
+
 }

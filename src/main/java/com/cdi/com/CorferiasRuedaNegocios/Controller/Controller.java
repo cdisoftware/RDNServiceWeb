@@ -162,6 +162,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Entity.PSectorEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PSectorParticipanteEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PSubCategoriaSectorEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PTerminoPoliticaEntity;
+import com.cdi.com.CorferiasRuedaNegocios.Entity.PTtListaPaisEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PUbicaParticipanteEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PValidaParticipanteEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PopcionesRtaPregunta;
@@ -388,6 +389,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Services.PSectorParticipanteService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PSectorService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PSubCategoriaSectorService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PTerminoPoliticaService;
+import com.cdi.com.CorferiasRuedaNegocios.Services.PTtListaPaisService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PUbicaParticipanteService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaContactoService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaParticipanteService;
@@ -1041,6 +1043,9 @@ public class Controller {
 
     @Autowired
     PValidaPerfilPartService servicePValidaPerfilPartService;
+
+    @Autowired
+    PTtListaPaisService servicePTtListaPaisService;
 
     @GetMapping("/consultarpaises")
     public List<TtPaisEntity> ConsultarPaises() {
@@ -3662,4 +3667,10 @@ public class Controller {
             @PathVariable Integer IdRueda) {
         return servicePValidaPerfilPartService.PvalidaPerfilPart(IdParticipante, IdRueda);
     }
+
+    @GetMapping("/consptlistpais")
+    public List<PTtListaPaisEntity> ConsultaPtListPais() {
+        return servicePTtListaPaisService.ConsultaPtListPais();
+    }
+
 }
