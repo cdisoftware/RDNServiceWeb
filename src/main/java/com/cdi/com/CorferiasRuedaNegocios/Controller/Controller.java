@@ -3673,12 +3673,44 @@ public class Controller {
     public List<PTtListaPaisEntity> ConsultaPtListPais() {
         return servicePTtListaPaisService.ConsultaPtListPais();
     }
-    
-    @PostMapping("/ServIntNitXFeria/{nit}/{codferia}")
-    public String ConsultaNitXFeria(@PathVariable String nit, @PathVariable String codferia){
+
+    @PostMapping("/ServIntCodFerias/{anno}")
+    public String ConsultaCodigoFerias(@PathVariable String anno) {
         JSONObject ObjectJson = new JSONObject();
-        NitFeriaEntity NitFeriaEntity = new NitFeriaEntity();
-        try{
+        try {
+            RestTemplate rt = new RestTemplate();
+            HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            });
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+            MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
+            parameters.add("anno", anno);
+            ResponseEntity<Object> response = rt.exchange("https://esb.corferias.co/services/dsrn_ferias/rsrn_infferia?anno=" + anno, HttpMethod.POST, null, Object.class);
+            Object CodObject = response.getBody();
+            com.fasterxml.jackson.databind.ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+            String json = ow.writeValueAsString(CodObject);
+            ObjectJson = new JSONObject(json);
+            JSONObject Cod = ObjectJson.getJSONObject("infoferias");
+            if ("{}".equals(Cod.toString())) {
+                return "No hay datos por mostrar.";
+            }
+            JSONArray CodFeriasArray = Cod.getJSONArray("infferia");
+            return CodFeriasArray.toString();
+        } catch (Exception ex) {
+            return "Error:" + ex.getMessage();
+        }
+    }
+
+    @PostMapping("/ServIntNitXFeria/{nit}/{codferia}")
+    public String ConsultaNitXFeria(@PathVariable String nit, @PathVariable String codferia) {
+        JSONObject ObjectJson = new JSONObject();
+//        NitFeriaEntity NitFeriaEntity = new NitFeriaEntity();
+        try {
             RestTemplate rt = new RestTemplate();
             HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
                 @Override
@@ -3696,7 +3728,7 @@ public class Controller {
             Object NitObject = response.getBody();
             com.fasterxml.jackson.databind.ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
             String json = ow.writeValueAsString(NitObject);
-            ObjectJson = new JSONObject(json);   
+            ObjectJson = new JSONObject(json);
             JSONObject NitFeria = ObjectJson.getJSONObject("infoubi");
             if ("{}".equals(NitFeria.toString())) {
                 return "No hay datos por mostrar.";
@@ -3709,12 +3741,44 @@ public class Controller {
                 NitFeriaEntity.setNivel(NitObj.optString("nivel"));
                 NitFeriaEntity.setPabellon(NitObj.optString("pabellon"));                
             }
-            */            
+             */
             return NitFeriaArray.toString();
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
             return "Error:" + ex.getMessage();
-        }        
+        }
+    }
+
+    @PostMapping("/ServIntInfoEmpresa/{nit}")
+    public String ConsultaInfoEmpresa(@PathVariable String nit) {
+        JSONObject ObjectJson = new JSONObject();
+        try {
+            RestTemplate rt = new RestTemplate();
+            HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            });
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+            MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
+            parameters.add("nit", nit);
+            ResponseEntity<Object> response = rt.exchange("https://esb.corferias.co/services/dsrn_infoempresa/rsrn_infoempresa?nit=" + nit, HttpMethod.POST, null, Object.class);
+            Object EmpsaObject = response.getBody();
+            com.fasterxml.jackson.databind.ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+            String json = ow.writeValueAsString(EmpsaObject);
+            ObjectJson = new JSONObject(json);
+            JSONObject InfoEmpsa = ObjectJson.getJSONObject("infoempresa");
+            if ("{}".equals(InfoEmpsa.toString())) {
+                return "No hay datos por mostrar.";
+            }
+            JSONArray InfoEmprsaArray = InfoEmpsa.getJSONArray("infempr");
+
+            return InfoEmprsaArray.toString();
+        } catch (Exception ex) {
+            return "Error:" + ex.getMessage();
+        }
     }
 
 }
