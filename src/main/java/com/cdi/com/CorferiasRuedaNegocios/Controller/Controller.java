@@ -117,6 +117,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Entity.CVigenciaEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CVisualizaParticipanteEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CusuariosEnvioCorreoEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.EncriptacionEntity;
+import com.cdi.com.CorferiasRuedaNegocios.Entity.NitFeriaEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PAccesoContactoModEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PAgendaEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PAgendaModEntity;
@@ -3671,6 +3672,49 @@ public class Controller {
     @GetMapping("/consptlistpais")
     public List<PTtListaPaisEntity> ConsultaPtListPais() {
         return servicePTtListaPaisService.ConsultaPtListPais();
+    }
+    
+    @PostMapping("/ServIntNitXFeria/{nit}/{codferia}")
+    public String ConsultaNitXFeria(@PathVariable String nit, @PathVariable String codferia){
+        JSONObject ObjectJson = new JSONObject();
+        NitFeriaEntity NitFeriaEntity = new NitFeriaEntity();
+        try{
+            RestTemplate rt = new RestTemplate();
+            HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            });
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+            MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
+            parameters.add("nit", nit);
+            parameters.add("codferia", codferia);
+            ResponseEntity<Object> response = rt.exchange("https://esb.corferias.co/services/dsrn_infubi/rsrn_infubi?nit=" + nit + "&codferia=" + codferia, HttpMethod.POST, null, Object.class);
+            Object NitObject = response.getBody();
+            com.fasterxml.jackson.databind.ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+            String json = ow.writeValueAsString(NitObject);
+            ObjectJson = new JSONObject(json);   
+            JSONObject NitFeria = ObjectJson.getJSONObject("infoubi");
+            if ("{}".equals(NitFeria.toString())) {
+                return "No hay datos por mostrar.";
+            }
+            JSONArray NitFeriaArray = NitFeria.getJSONArray("infubi");
+            /*
+            for (int i = 0; i < NitFeriaArray.length(); i++) {
+                JSONObject NitObj = NitFeriaArray.getJSONObject(i);                
+                NitFeriaEntity.setStand(NitObj.optString("stand"));
+                NitFeriaEntity.setNivel(NitObj.optString("nivel"));
+                NitFeriaEntity.setPabellon(NitObj.optString("pabellon"));                
+            }
+            */            
+            return NitFeriaArray.toString();
+        }
+        catch(Exception ex){
+            return "Error:" + ex.getMessage();
+        }        
     }
 
 }
