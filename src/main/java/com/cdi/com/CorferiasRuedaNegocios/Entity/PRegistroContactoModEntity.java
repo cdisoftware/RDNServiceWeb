@@ -27,54 +27,51 @@ import lombok.Data;
                         type = String.class)
             })
 })
-public class PRegistroContactoModEntity implements Serializable {
+public class PRegistroContactoModEntity implements Serializable{
 
     @Id
     @JsonProperty("IdContacto")
-    private Integer IdContacto;
+    public Integer IdContacto;
 
     @JsonProperty("IdParticipante")
-    private Integer IdParticipante;
+    public Integer IdParticipante;
 
     @JsonProperty("NombreCompleto")
-    private String NombreCompleto;
+    public String NombreCompleto;
 
     @JsonProperty("Email")
-    private String Email;
+    public String Email;
 
     @JsonProperty("IdIdentificacion")
-    private Integer IdIdentificacion;
+    public String IdIdentificacion;
 
     @JsonProperty("NoIdentificacion")
-    private String NoIdentificacion;
+    public String NoIdentificacion;
 
     @JsonProperty("Telefono")
-    private String Telefono;
+    public String Telefono;
 
     @JsonProperty("IdGenero")
-    private Integer IdGenero;
+    public Integer IdGenero;
 
     @JsonProperty("IdIdioma")
-    private Integer IdIdioma;
-
-    @JsonProperty("Dependencia")
-    private String Dependencia;
-
-    @JsonProperty("Contrasena")
-    private String Contrasena;
-
-    @JsonProperty("Token")
-    private String Token;
-
-    @JsonProperty("Firma")
-    private String Firma;
+    public Integer IdIdioma;
 
     @JsonProperty("Cargo")
-    private String Cargo;
+    public String Cargo;
 
-    @JsonProperty("IdUsuarioC")
-    private Integer IdUsuarioC;
+    @JsonProperty("Dependencia")
+    public String Dependencia;
+
+    @JsonProperty("Contrasena")
+    public String Contrasena;
+
+    @JsonProperty("Firma")
+    public String Firma;
 
     @JsonProperty("EmailOpc")
-    private String EmailOpc;
+    public String EmailOpc;
+
+    @JsonProperty("FirmaBit")
+    public String FirmaBit;
 }

@@ -66,4 +66,7 @@ public class CEvaluacionPartEntity {
     @JsonProperty("Firma")
     private String Firma;
 
+    @JsonProperty("FirmaBit")
+    private String FirmaBit;
+
 }

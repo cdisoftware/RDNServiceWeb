@@ -32,10 +32,10 @@ public class PRegistroContactoDocEntity {
     private String Email;
 
     @JsonProperty("IdIdentificacion")
-    private Integer IdIdentificacion;
+    private String IdIdentificacion;
 
     @JsonProperty("NoIdentificacion")
-    private Integer NoIdentificacion;
+    private String NoIdentificacion;
 
     @JsonProperty("Telefono")
     private String Telefono;
@@ -63,5 +63,8 @@ public class PRegistroContactoDocEntity {
 
     @JsonProperty("AgendaAdicional")
     private Integer AgendaAdicional;
+
+    @JsonProperty("FirmaBit")
+    private String FirmaBit;
 
 }

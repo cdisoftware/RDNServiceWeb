@@ -97,9 +97,9 @@ public class PRegistroContactoServiceImplementacion implements PRegistroContacto
             entidadLog.setMensaje(ex.getMessage());
             entidadLog.setServicio("Servicio paPRegistroContacto");
             entidadLog.setTipo(1);
-            service.InsertaLog(entidadLog);            
+            service.InsertaLog(entidadLog);
             return JSONObject.quote("No fue posible ejecutar los datos, verifique el Log para validar la inconsistencia");
-            
+
         }
     }
 
@@ -113,7 +113,7 @@ public class PRegistroContactoServiceImplementacion implements PRegistroContacto
             rolconsola.registerStoredProcedureParameter("IdContacto", Integer.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("Nombres", String.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("Email", String.class, ParameterMode.IN);
-            rolconsola.registerStoredProcedureParameter("IdIdentificacion", Integer.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("IdIdentificacion", String.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("NoIdentificacion", String.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("Telefono", String.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("IdGenero", Integer.class, ParameterMode.IN);
@@ -123,6 +123,8 @@ public class PRegistroContactoServiceImplementacion implements PRegistroContacto
             rolconsola.registerStoredProcedureParameter("Contrasena", String.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("Firma", String.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("EmailOpc", String.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("FirmaBit", String.class, ParameterMode.IN);
+
             rolconsola.setParameter("Bandera", Bandera);
             rolconsola.setParameter("IdParticipante", entidad.getIdParticipante());
             rolconsola.setParameter("IdUsuario", IdUsuario);
@@ -139,9 +141,11 @@ public class PRegistroContactoServiceImplementacion implements PRegistroContacto
             rolconsola.setParameter("Contrasena", clsEncriptacion.Encriptar(entidad.getContrasena()));
             rolconsola.setParameter("Firma", entidad.getFirma());
             rolconsola.setParameter("EmailOpc", entidad.getEmailOpc());
+            rolconsola.setParameter("FirmaBit", entidad.getFirmaBit());
+
             rolconsola.execute();
             return JSONObject.quote((String) rolconsola.getOutputParameterValue("Respuesta"));
-        } catch (BadPaddingException | IllegalBlockSizeException | NoSuchPaddingException ex) {
+        } catch (Exception ex) {
             LogConsolaEntity entidadLog = new LogConsolaEntity();
             entidadLog.setCodigo(String.valueOf(ex.hashCode()));
             entidadLog.setMensaje(ex.getMessage());
@@ -162,7 +166,7 @@ public class PRegistroContactoServiceImplementacion implements PRegistroContacto
             rolconsola.registerStoredProcedureParameter("IdContacto", Integer.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("Nombres", String.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("Email", String.class, ParameterMode.IN);
-            rolconsola.registerStoredProcedureParameter("IdIdentificacion", Integer.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("IdIdentificacion", String.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("NoIdentificacion", String.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("Telefono", String.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("IdGenero", Integer.class, ParameterMode.IN);
@@ -172,6 +176,8 @@ public class PRegistroContactoServiceImplementacion implements PRegistroContacto
             rolconsola.registerStoredProcedureParameter("Contrasena", String.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("Firma", String.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("EmailOpc", String.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("FirmaBit", String.class, ParameterMode.IN);
+
             rolconsola.setParameter("Bandera", Bandera);
             rolconsola.setParameter("IdParticipante", entidad.getIdParticipante());
             rolconsola.setParameter("IdUsuario", IdUsuario);
@@ -188,9 +194,10 @@ public class PRegistroContactoServiceImplementacion implements PRegistroContacto
             rolconsola.setParameter("Contrasena", clsEncriptacion.Encriptar(entidad.getContrasena()));
             rolconsola.setParameter("Firma", entidad.getFirma());
             rolconsola.setParameter("EmailOpc", entidad.getEmailOpc());
+            rolconsola.setParameter("FirmaBit", entidad.getFirmaBit());
             rolconsola.execute();
             return JSONObject.quote((String) rolconsola.getOutputParameterValue("Respuesta"));
-        } catch (BadPaddingException | IllegalBlockSizeException | NoSuchPaddingException ex) {
+        } catch (Exception ex) {
             LogConsolaEntity entidadLog = new LogConsolaEntity();
             entidadLog.setCodigo(String.valueOf(ex.hashCode()));
             entidadLog.setMensaje(ex.getMessage());

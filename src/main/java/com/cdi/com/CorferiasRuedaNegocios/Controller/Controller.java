@@ -125,6 +125,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Entity.PAgendaSalaModEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PCategoriaSectorEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PChatEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PCitasAgendaPdfEntity;
+import com.cdi.com.CorferiasRuedaNegocios.Entity.PConsultaCamposOblEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PConsultaChatEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PConsultaContactoChatEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PEncabezaAgendaPdfEntity;
@@ -351,6 +352,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Services.PAgendaService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PCategoriaSectorService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PChatService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PCitasAgendaPdfService;
+import com.cdi.com.CorferiasRuedaNegocios.Services.PConsultaCamposOblService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PConsultaChatService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PConsultaContactoChatService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PCuentaChatService;
@@ -1047,6 +1049,9 @@ public class Controller {
 
     @Autowired
     PTtListaPaisService servicePTtListaPaisService;
+
+    @Autowired
+    PConsultaCamposOblService servicePConsultaCamposOblService;
 
     @GetMapping("/consultarpaises")
     public List<TtPaisEntity> ConsultarPaises() {
@@ -1807,14 +1812,15 @@ public class Controller {
                 IdSector, Idioma);
     }
 
-    @GetMapping("/consultapreguntarueda/{Bandera}/{IdRuedaNegocio}/{Idioma}/{IdParticipante}")
+    @GetMapping("/consultapreguntarueda/{Bandera}/{IdRuedaNegocio}/{Idioma}/{IdParticipante}/{IdperfilRueda}")
     public List<PpreguntaRuedaEntity> ConsultaPreguntaRueda(
             @PathVariable Integer Bandera,
             @PathVariable Integer IdRuedaNegocio,
             @PathVariable String Idioma,
-            @PathVariable Integer IdParticipante) {
+            @PathVariable Integer IdParticipante,
+            @PathVariable Integer IdperfilRueda) {
         return servicePpreguntaRuedaService.ConsultaPreguntaRueda(Bandera,
-                IdRuedaNegocio, Idioma, IdParticipante);
+                IdRuedaNegocio, Idioma, IdParticipante, IdperfilRueda);
     }
 
     @PostMapping("/insertarespuestaspreguntas/{Bandera}")
@@ -3583,7 +3589,7 @@ public class Controller {
     public String GenerarLinkMeet(@RequestBody meetwherebyEntity entidad) {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        headers.setBearerAuth("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmFwcGVhci5pbiIsImF1ZCI6Imh0dHBzOi8vYXBpLmFwcGVhci5pbi92MSIsImV4cCI6OTAwNzE5OTI1NDc0MDk5MSwiaWF0IjoxNjQ2MTQyMDYyLCJvcmdhbml6YXRpb25JZCI6MTU0NDQ4LCJqdGkiOiI4ZGFjOTFkZi1kMzY2LTQ2ZWEtODJhZi1hY2QwZmYwNWViZTgifQ.oDssm1t-9MC-xCBroXHks_3KacTtWUvTJPlpDQF_Yss");
+        headers.setBearerAuth("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmFwcGVhci5pbiIsImF1ZCI6Imh0dHBzOi8vYXBpLmFwcGVhci5pbi92MSIsImV4cCI6OTAwNzE5OTI1NDc0MDk5MSwiaWF0IjoxNjQ4NTA1ODY5LCJvcmdhbml6YXRpb25JZCI6MTU2NjYxLCJqdGkiOiIzMTY3M2NlNi1kNzk0LTQwNDYtODYyZi1kZmRhOGUwMzI1NGQifQ.5I2CmcAE7KY4Wyf32Orywo7S-kFNDWLmX-blanKlebE");
         HttpEntity<meetwherebyEntity> entity = new HttpEntity<meetwherebyEntity>(entidad, headers);
         RestTemplate rt = new RestTemplate();
         return rt.exchange(
@@ -3781,4 +3787,10 @@ public class Controller {
         }
     }
 
+    @GetMapping("/conspcampoblga/{Bandera}/{IdRdn}")
+    public List<PConsultaCamposOblEntity> ConsultaPCampoObl(
+            @PathVariable Integer Bandera,
+            @PathVariable Integer IdRdn) {
+        return servicePConsultaCamposOblService.ConsultaPCampoObl(Bandera, IdRdn);
+    }
 }
