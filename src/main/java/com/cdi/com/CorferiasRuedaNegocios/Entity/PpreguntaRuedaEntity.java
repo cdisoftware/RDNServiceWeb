@@ -19,36 +19,36 @@ public class PpreguntaRuedaEntity {
 
     @Id
     @JsonProperty("IdPregunta")
-    private Integer IdPregunta;
+    public Integer IdPregunta;
 
     @JsonProperty("IdRuedaNegocio")
-    private Integer IdRuedaNegocio;
+    public Integer IdRuedaNegocio;
 
     @JsonProperty("IdperfilRueda")
-    private Integer IdperfilRueda;
+    public Integer IdperfilRueda;
 
     @JsonProperty("Visible")
-    private String Visible;
+    public Integer Visible;
 
     @JsonProperty("Obliga")
-    private Integer Obliga;
+    public Integer Obliga;
 
     @JsonProperty("VisibleBusqueda")
-    private Integer VisibleBusqueda;
+    public Integer VisibleBusqueda;
 
     @JsonProperty("Estado")
-    private Integer Estado;
+    public Integer Estado;
 
     @JsonProperty("IdTipoPregunta")
-    private Integer IdTipoPregunta;
+    public Integer IdTipoPregunta;
 
     @JsonProperty("Pregunta")
-    private String Pregunta;
+    public String Pregunta;
 
     @JsonProperty("Respuesta")
-    private String Respuesta;
+    public String Respuesta;
 
     @JsonProperty("Origen")
-    private Integer Origen;
+    public Integer Origen;
 
 }

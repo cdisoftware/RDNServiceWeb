@@ -21,23 +21,25 @@ public class PpreguntaRuedaServiceImplementacion implements PpreguntaRuedaServic
     private EntityManager repositorio;
 
     @Autowired
-    private LogConsolaService service;    
+    private LogConsolaService service;
 
     @Override
-    public List<PpreguntaRuedaEntity> ConsultaPreguntaRueda(Integer Bandera, 
-            Integer IdRuedaNegocio, String Idioma, Integer IdParticipante) {
-          try {
+    public List<PpreguntaRuedaEntity> ConsultaPreguntaRueda(Integer Bandera,
+            Integer IdRuedaNegocio, String Idioma, Integer IdParticipante, Integer IdperfilRueda) {
+        try {
             StoredProcedureQuery permisos = repositorio.createNamedStoredProcedureQuery("paPpreguntaRueda");
             permisos.registerStoredProcedureParameter("Bandera", Integer.class, ParameterMode.IN);
             permisos.registerStoredProcedureParameter("IdRuedaNegocio", Integer.class, ParameterMode.IN);
             permisos.registerStoredProcedureParameter("Idioma", String.class, ParameterMode.IN);
             permisos.registerStoredProcedureParameter("IdParticipante", Integer.class, ParameterMode.IN);
+            permisos.registerStoredProcedureParameter("IdperfilRueda", Integer.class, ParameterMode.IN);
             permisos.setParameter("Bandera", Bandera);
             permisos.setParameter("IdRuedaNegocio", IdRuedaNegocio);
             permisos.setParameter("Idioma", Idioma);
             permisos.setParameter("IdParticipante", IdParticipante);
+            permisos.setParameter("IdperfilRueda", IdperfilRueda);
             return permisos.getResultList();
-        } catch (Exception ex) {  
+        } catch (Exception ex) {
             LogConsolaEntity entidadLog = new LogConsolaEntity();
             entidadLog.setCodigo(String.valueOf(ex.hashCode()));
             entidadLog.setMensaje(ex.getMessage());

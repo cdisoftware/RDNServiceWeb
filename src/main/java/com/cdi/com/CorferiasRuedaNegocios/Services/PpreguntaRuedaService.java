@@ -6,6 +6,6 @@ import java.util.List;
 public interface PpreguntaRuedaService {
 
     public List<PpreguntaRuedaEntity> ConsultaPreguntaRueda(Integer Bandera, 
-            Integer IdRuedaNegocio, String Idioma, Integer IdParticipante);
+            Integer IdRuedaNegocio, String Idioma, Integer IdParticipante, Integer IdperfilRueda);
 
 }
