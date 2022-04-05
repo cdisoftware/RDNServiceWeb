@@ -13,32 +13,17 @@ import lombok.Data;
 @Data
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
-            name = "paPAgendaSalaMod",
-            procedureName = "paPAgendaSalaMod",
+            name = "paPValidaRespPart",
+            procedureName = "paPValidaRespPart",
             parameters = {
                 @StoredProcedureParameter(name = "Respuesta",
                         mode = ParameterMode.OUT,
                         type = String.class)
             })
 })
-public class PAgendaSalaModEntity {
+public class PValidaRespPartEntity {
 
     @Id
-    @JsonProperty("IdAgenda")
-    public Integer IdAgenda;
-
-    @JsonProperty("IdRuedaNegocio")
-    public Integer IdRuedaNegocio;
-
-    @JsonProperty("idSala")
-    public Integer idSala;
-
-    @JsonProperty("linkSala")
-    public String linkSala;
-
-    @JsonProperty("Horario")
-    public String Horario;
-
-    @JsonProperty("IdContactoUneSala")
-    public Integer IdContactoUneSala;
+    @JsonProperty("Respuesta")
+    private String Respuesta;
 }

@@ -19,11 +19,17 @@ public class PProductosServiciosPartEntity {
 
     @Id
     @JsonProperty("IdProducto")
-    private Integer IdProducto;
+    public Integer IdProducto;
 
     @JsonProperty("Idparticipante")
-    private Integer Idparticipante;
+    public Integer Idparticipante;
 
     @JsonProperty("PalabraClaveProd")
-    private String PalabraClaveProd;
+    public String PalabraClaveProd;
+
+    @JsonProperty("ValidaBuscOfre")
+    public Integer ValidaBuscOfre;
+
+    @JsonProperty("BuscaOfrece")
+    public String BuscaOfrece;
 }

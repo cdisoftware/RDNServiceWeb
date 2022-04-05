@@ -25,29 +25,32 @@ public class PProductosServiciosModEntity {
 
     @Id
     @JsonProperty("IdProducto")
-    private Integer IdProducto;
+    public Integer IdProducto;
 
     @JsonProperty("IdParticipante")
-    private Integer IdParticipante;
+    public Integer IdParticipante;
 
     @JsonProperty("FechaRegistro")
-    private String FechaRegistro;
+    public String FechaRegistro;
 
     @JsonProperty("DescripcionProducto")
-    private String DescripcionProducto;
+    public String DescripcionProducto;
 
     @JsonProperty("FichaTecnica")
-    private String FichaTecnica;
+    public String FichaTecnica;
 
     @JsonProperty("Imagen")
-    private String Imagen;
+    public String Imagen;
 
     @JsonProperty("Estado")
-    private Integer Estado;
+    public Integer Estado;
 
     @JsonProperty("IdUsuarioC")
-    private Integer IdUsuarioC;
+    public Integer IdUsuarioC;
 
     @JsonProperty("NombreProducto")
-    private String NombreProducto;
+    public String NombreProducto;
+
+    @JsonProperty("ValidaBuscOfre")
+    public Integer ValidaBuscOfre;
 }
