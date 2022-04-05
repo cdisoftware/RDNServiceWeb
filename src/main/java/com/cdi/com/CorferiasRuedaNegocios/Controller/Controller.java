@@ -1,6 +1,5 @@
 package com.cdi.com.CorferiasRuedaNegocios.Controller;
 
-import ch.qos.logback.core.net.ObjectWriter;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CActualizaAuditoriaEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CActualizaTokenEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CAdmPreguntaEstandarEntity;
@@ -106,6 +105,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Entity.CSubCategoriaSectorEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CTerminoPoliticaEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CTerminoPoliticaModEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CTtListaRespuestasModEntity;
+import com.cdi.com.CorferiasRuedaNegocios.Entity.CTtListasEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CUsuarioConsModEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CUsuarioConsultaRolesEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CUsuarioPermisoEntity;
@@ -305,6 +305,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Services.CSubCategoriaSectorService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CTerminoPoliticaModService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CTerminoPoliticaService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CTtListaRespuestasModService;
+import com.cdi.com.CorferiasRuedaNegocios.Services.CTtListasService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CUsuarioConsModService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CUsuarioConsultaRolesService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CValidaUsuarioConsolaService;
@@ -398,6 +399,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaContactoService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaParticipanteService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaPerfilPartService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaRdnContactoService;
+import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaRespPartService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PopcionesRtaPreguntaService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PpreguntaRuedaService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.TtCamposRuedaService;
@@ -1052,6 +1054,12 @@ public class Controller {
 
     @Autowired
     PConsultaCamposOblService servicePConsultaCamposOblService;
+
+    @Autowired
+    PValidaRespPartService servicePValidaRespPartService;
+
+    @Autowired
+    CTtListasService serviceCTtListasService;
 
     @GetMapping("/consultarpaises")
     public List<TtPaisEntity> ConsultarPaises() {
@@ -3680,7 +3688,7 @@ public class Controller {
         return servicePTtListaPaisService.ConsultaPtListPais();
     }
 
-    @PostMapping("/ServIntCodFerias/{anno}")
+    @GetMapping("/ServIntCodFerias/{anno}")
     public String ConsultaCodigoFerias(@PathVariable String anno) {
         JSONObject ObjectJson = new JSONObject();
         try {
@@ -3703,7 +3711,7 @@ public class Controller {
             ObjectJson = new JSONObject(json);
             JSONObject Cod = ObjectJson.getJSONObject("infoferias");
             if ("{}".equals(Cod.toString())) {
-                return "No hay datos por mostrar.";
+                return "[]";
             }
             JSONArray CodFeriasArray = Cod.getJSONArray("infferia");
             return CodFeriasArray.toString();
@@ -3712,7 +3720,7 @@ public class Controller {
         }
     }
 
-    @PostMapping("/ServIntNitXFeria/{nit}/{codferia}")
+    @GetMapping("/ServIntNitXFeria/{nit}/{codferia}")
     public String ConsultaNitXFeria(@PathVariable String nit, @PathVariable String codferia) {
         JSONObject ObjectJson = new JSONObject();
 //        NitFeriaEntity NitFeriaEntity = new NitFeriaEntity();
@@ -3737,7 +3745,7 @@ public class Controller {
             ObjectJson = new JSONObject(json);
             JSONObject NitFeria = ObjectJson.getJSONObject("infoubi");
             if ("{}".equals(NitFeria.toString())) {
-                return "No hay datos por mostrar.";
+                return "[]";
             }
             JSONArray NitFeriaArray = NitFeria.getJSONArray("infubi");
             /*
@@ -3754,7 +3762,7 @@ public class Controller {
         }
     }
 
-    @PostMapping("/ServIntInfoEmpresa/{nit}")
+    @GetMapping("/ServIntInfoEmpresa/{nit}")
     public String ConsultaInfoEmpresa(@PathVariable String nit) {
         JSONObject ObjectJson = new JSONObject();
         try {
@@ -3777,7 +3785,7 @@ public class Controller {
             ObjectJson = new JSONObject(json);
             JSONObject InfoEmpsa = ObjectJson.getJSONObject("infoempresa");
             if ("{}".equals(InfoEmpsa.toString())) {
-                return "No hay datos por mostrar.";
+                return "[]";
             }
             JSONArray InfoEmprsaArray = InfoEmpsa.getJSONArray("infempr");
 
@@ -3792,5 +3800,18 @@ public class Controller {
             @PathVariable Integer Bandera,
             @PathVariable Integer IdRdn) {
         return servicePConsultaCamposOblService.ConsultaPCampoObl(Bandera, IdRdn);
+    }
+
+    @GetMapping("/conspvalidapart/{IdParticipante}/{IdRueda}")
+    public String ConsultaPValidaPart(
+            @PathVariable Integer IdParticipante,
+            @PathVariable Integer IdRueda) {
+        return servicePValidaRespPartService.ConsultaPValidaPart(IdParticipante, IdRueda);
+    }
+
+    @GetMapping("/consctlistas/{bandera}")
+    public List<CTtListasEntity> ConsultaCTtLists(
+            @PathVariable Integer bandera) {
+        return serviceCTtListasService.ConsultaCTtLists(bandera);
     }
 }

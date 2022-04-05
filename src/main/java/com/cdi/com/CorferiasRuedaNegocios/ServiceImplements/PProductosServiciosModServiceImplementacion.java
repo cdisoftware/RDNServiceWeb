@@ -35,6 +35,7 @@ public class PProductosServiciosModServiceImplementacion implements PProductosSe
             rolconsola.registerStoredProcedureParameter("Estado", Integer.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("IdUsuarioC", Integer.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("IdProducto", Integer.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("ValidaBuscOfre", Integer.class, ParameterMode.IN);
             rolconsola.setParameter("Bandera", Bandera);
             rolconsola.setParameter("IdParticipante", entidad.getIdParticipante());
             rolconsola.setParameter("Idioma", Idioma);
@@ -45,6 +46,7 @@ public class PProductosServiciosModServiceImplementacion implements PProductosSe
             rolconsola.setParameter("Estado", entidad.getEstado());
             rolconsola.setParameter("IdUsuarioC", entidad.getIdUsuarioC());
             rolconsola.setParameter("IdProducto", entidad.getIdProducto());
+            rolconsola.setParameter("ValidaBuscOfre", entidad.getValidaBuscOfre());
             rolconsola.execute();
             return JSONObject.quote((String) rolconsola.getOutputParameterValue("Respuesta"));
         } catch (Exception ex) {
@@ -60,7 +62,7 @@ public class PProductosServiciosModServiceImplementacion implements PProductosSe
 
     @Override
     public String ActualizarProductosServicios(PProductosServiciosModEntity entidad, Integer Bandera, String Idioma) {
-           try {
+        try {
             StoredProcedureQuery rolconsola = repositorio.createNamedStoredProcedureQuery("paPProductosServiciosMod");
             rolconsola.registerStoredProcedureParameter("Bandera", Integer.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("IdParticipante", Integer.class, ParameterMode.IN);
@@ -72,6 +74,7 @@ public class PProductosServiciosModServiceImplementacion implements PProductosSe
             rolconsola.registerStoredProcedureParameter("Estado", Integer.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("IdUsuarioC", Integer.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("IdProducto", Integer.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("ValidaBuscOfre", Integer.class, ParameterMode.IN);
             rolconsola.setParameter("Bandera", Bandera);
             rolconsola.setParameter("IdParticipante", entidad.getIdParticipante());
             rolconsola.setParameter("Idioma", Idioma);
@@ -82,6 +85,7 @@ public class PProductosServiciosModServiceImplementacion implements PProductosSe
             rolconsola.setParameter("Estado", entidad.getEstado());
             rolconsola.setParameter("IdUsuarioC", entidad.getIdUsuarioC());
             rolconsola.setParameter("IdProducto", entidad.getIdProducto());
+            rolconsola.setParameter("ValidaBuscOfre", entidad.getValidaBuscOfre());
             rolconsola.execute();
             return JSONObject.quote((String) rolconsola.getOutputParameterValue("Respuesta"));
         } catch (Exception ex) {

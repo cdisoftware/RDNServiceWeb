@@ -45,4 +45,9 @@ public class PPerfilRuedaNegocioEntity implements Serializable {
     @JsonProperty("DescripcionPerfil")
     public String DescripcionPerfil;
 
+    @JsonProperty("IdTipoRueda")
+    public Integer IdTipoRueda;
+
+    @JsonProperty("IdFeria")
+    public Integer IdFeria;
 }

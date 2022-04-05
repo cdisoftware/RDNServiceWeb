@@ -19,26 +19,29 @@ public class PProductosServiciosEntity {
 
     @Id
     @JsonProperty("IdProducto")
-    private Integer IdProducto;
+    public Integer IdProducto;
 
     @JsonProperty("IdParticipante")
-    private Integer IdParticipante;
+    public Integer IdParticipante;
 
     @JsonProperty("FichaTecnica")
-    private String FichaTecnica;
+    public String FichaTecnica;
 
     @JsonProperty("Imagen")
-    private String Imagen;
+    public String Imagen;
 
     @JsonProperty("DescripcionProducto")
-    private String DescripcionProducto;
+    public String DescripcionProducto;
 
     @JsonProperty("NombreProducto")
-    private String NombreProducto;
+    public String NombreProducto;
 
     @JsonProperty("FichaTecnicaEng")
-    private String FichaTecnicaEng;
+    public String FichaTecnicaEng;
 
     @JsonProperty("Estado")
-    private Integer Estado;
+    public Integer Estado;
+
+    @JsonProperty("ValidaBuscOfre")
+    public Integer ValidaBuscOfre;
 }

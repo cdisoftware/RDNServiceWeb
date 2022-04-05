@@ -33,6 +33,8 @@ public class PRegistroPerfilModServiceImplementacion implements PRegistroPerfilM
             rolconsola.registerStoredProcedureParameter("Ip", String.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("IdUsuario", Integer.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("IdContacto", Integer.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("BuscOfrec", Integer.class, ParameterMode.IN);
+
             rolconsola.setParameter("Bandera", Bandera);
             rolconsola.setParameter("IdParticipante", entidad.getIdParticipante());
             rolconsola.setParameter("IdRuedaNegocio", entidad.getIdRuedaNegocio());
@@ -41,6 +43,8 @@ public class PRegistroPerfilModServiceImplementacion implements PRegistroPerfilM
             rolconsola.setParameter("Ip", entidad.getIp());
             rolconsola.setParameter("IdUsuario", IdUsuario);
             rolconsola.setParameter("IdContacto", entidad.getIdContacto());
+            rolconsola.setParameter("BuscOfrec", entidad.getBuscOfrec());
+
             rolconsola.execute();
             return JSONObject.quote((String) rolconsola.getOutputParameterValue("Respuesta"));
         } catch (Exception ex) {
@@ -56,7 +60,7 @@ public class PRegistroPerfilModServiceImplementacion implements PRegistroPerfilM
 
     @Override
     public String InsertaRelacionContactoMod(PRegistroPerfilModEntity entidad, Integer Bandera, Integer IdUsuario) {
-        try {
+    try {
             StoredProcedureQuery rolconsola = repositorio.createNamedStoredProcedureQuery("paPRelacionContactoMod");
             rolconsola.registerStoredProcedureParameter("Bandera", Integer.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("IdParticipante", Integer.class, ParameterMode.IN);
@@ -80,7 +84,5 @@ public class PRegistroPerfilModServiceImplementacion implements PRegistroPerfilM
             return JSONObject.quote("No fue posible ejecutar los datos, verifique el Log para validar la inconsistencia");
         }
     }
-    
-    
 
 }

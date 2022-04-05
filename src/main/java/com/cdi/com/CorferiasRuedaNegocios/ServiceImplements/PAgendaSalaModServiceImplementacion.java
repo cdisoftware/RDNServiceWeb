@@ -31,12 +31,16 @@ public class PAgendaSalaModServiceImplementacion implements PAgendaSalaModServic
             agendasalamod.registerStoredProcedureParameter("idSala", Integer.class, ParameterMode.IN);
             agendasalamod.registerStoredProcedureParameter("linkSala", String.class, ParameterMode.IN);
             agendasalamod.registerStoredProcedureParameter("Horario", String.class, ParameterMode.IN);
+            agendasalamod.registerStoredProcedureParameter("Contacto", Integer.class, ParameterMode.IN);
+
             agendasalamod.setParameter("Bandera", Bandera);
             agendasalamod.setParameter("IdRuedaNegocio", entidad.getIdRuedaNegocio());
             agendasalamod.setParameter("IdAgenda", entidad.getIdAgenda());
             agendasalamod.setParameter("idSala", entidad.getIdSala());
             agendasalamod.setParameter("linkSala", entidad.getLinkSala());
             agendasalamod.setParameter("Horario", entidad.getHorario());
+            agendasalamod.setParameter("Contacto", entidad.getIdContactoUneSala());
+
             agendasalamod.execute();
             return JSONObject.quote((String) agendasalamod.getOutputParameterValue("Respuesta"));
         } catch (Exception ex) {

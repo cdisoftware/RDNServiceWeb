@@ -34,36 +34,39 @@ public class PRegistroPerfilModEntity implements Serializable {
 
     @Id
     @JsonProperty("IdParticipante")
-    private Integer IdParticipante;
+    public Integer IdParticipante;
 
     @JsonProperty("IdRuedaNegocio")
-    private Integer IdRuedaNegocio;
+    public Integer IdRuedaNegocio;
 
     @JsonProperty("IdPerfilRueda")
-    private Integer IdPerfilRueda;
+    public Integer IdPerfilRueda;
 
     @JsonProperty("FechaRegistro")
-    private String FechaRegistro;
+    public String FechaRegistro;
 
     @JsonProperty("IdUsuarioC")
-    private Integer IdUsuarioC;
+    public Integer IdUsuarioC;
 
     @JsonProperty("AceptaTerminos")
-    private Integer AceptaTerminos;
+    public Integer AceptaTerminos;
 
     @JsonProperty("Ip")
-    private String Ip;
+    public String Ip;
 
     @JsonProperty("IdContacto")
-    private Integer IdContacto;
+    public Integer IdContacto;
 
     @JsonProperty("Estado")
-    private Integer Estado;
+    public Integer Estado;
 
     @JsonProperty("FechaAprobacion")
-    private String FechaAprobacion;
+    public String FechaAprobacion;
 
     @JsonProperty("FechaModifica")
-    private String FechaModifica;
+    public String FechaModifica;
+
+    @JsonProperty("BuscOfrec")
+    public Integer BuscOfrec;
 
 }
