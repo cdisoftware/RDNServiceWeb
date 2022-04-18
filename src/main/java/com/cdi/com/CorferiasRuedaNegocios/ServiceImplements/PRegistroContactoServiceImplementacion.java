@@ -89,8 +89,8 @@ public class PRegistroContactoServiceImplementacion implements PRegistroContacto
                     + "\"Firma\":\"" + Firma + "\","
                     + "\"Emailopc\":\"" + Emailopc + "\","
                     + "\"Cargo\":\"" + Cargo + "\"}]";
-            return ResFinal;
 
+            return ResFinal;
         } catch (Exception ex) {
             LogConsolaEntity entidadLog = new LogConsolaEntity();
             entidadLog.setCodigo(String.valueOf(ex.hashCode()));
@@ -99,7 +99,6 @@ public class PRegistroContactoServiceImplementacion implements PRegistroContacto
             entidadLog.setTipo(1);
             service.InsertaLog(entidadLog);
             return JSONObject.quote("No fue posible ejecutar los datos, verifique el Log para validar la inconsistencia");
-
         }
     }
 
