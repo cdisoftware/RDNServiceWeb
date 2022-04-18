@@ -37,6 +37,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Entity.CDefinirAuditoriaEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CUsuarioInfoConsolaEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CDptoPaisEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CEnvioRealCorreoEntity;
+import com.cdi.com.CorferiasRuedaNegocios.Entity.CEstadoEjecucionCitasEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CEvaluacionConsEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CMasivoEnvioCorreoEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CEvaluacionEntity;
@@ -92,6 +93,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Entity.CRelEmpresaEnvioCorreoEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CRepEvaPreguntasEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CRepRespuestasEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CRepRespuestasGeneralEntity;
+import com.cdi.com.CorferiasRuedaNegocios.Entity.CReporteAccesoSalasEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CReporteAuditoriaEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CReporteEvaEncEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CReporteParticipanteEntity;
@@ -151,6 +153,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Entity.PRecuperaDatosContactoEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PRedSocialGEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PRedSocialGModEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PRegistroContactoDocEntity;
+import com.cdi.com.CorferiasRuedaNegocios.Entity.PRegistroContactoEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PRegistroContactoModEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PRegistroParticipanteEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PRegistroParticipanteModEntity;
@@ -238,6 +241,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Services.CDatosTableroService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CDefinirAuditoriaService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CDptoPaisService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CEnvioRealCorreoService;
+import com.cdi.com.CorferiasRuedaNegocios.Services.CEstadoEjecucionCitasService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CEvaluacionConsService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CEvaluacionModService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CEvaluacionPartService;
@@ -294,6 +298,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Services.CRelEmpresaEnvioCorreoService
 import com.cdi.com.CorferiasRuedaNegocios.Services.CRepEvaPreguntasService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CRepRespuestasGeneralService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CRepRespuestasService;
+import com.cdi.com.CorferiasRuedaNegocios.Services.CReporteAccesoSalasService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CReporteAuditoriaService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CReporteEvaEncService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CReporteParticipanteService;
@@ -1074,6 +1079,12 @@ public class Controller {
 
     @Autowired
     PValidaEvalService servicePValidaEvalService;
+
+    @Autowired
+    CReporteAccesoSalasService serviceCReporteAccesoSalasService;
+
+    @Autowired
+    CEstadoEjecucionCitasService serviceCEstadoEjecucionCitasService;
 
     @GetMapping("/consultarpaises")
     public List<TtPaisEntity> ConsultarPaises() {
@@ -3856,5 +3867,22 @@ public class Controller {
             @PathVariable Integer IdRueda,
             @PathVariable Integer IdPerfil) {
         return servicePValidaEvalService.ConsultaPvalidaEval(IdRueda, IdPerfil);
+    }
+
+    @GetMapping("/conscreportaccesala/{Bandera}/{IdRuedaNegocio}/{IdParticipante}/{FechaCitaIni}/{FechaCitaFin}/{IdEstadoRealizaCita}")
+    public List<CReporteAccesoSalasEntity> ConsultaCReportAcceSala(
+            @PathVariable Integer Bandera,
+            @PathVariable Integer IdRuedaNegocio,
+            @PathVariable Integer IdParticipante,
+            @PathVariable String FechaCitaIni,
+            @PathVariable String FechaCitaFin,
+            @PathVariable Integer IdEstadoRealizaCita) {
+        return serviceCReporteAccesoSalasService.ConsultaCReportAcceSala(Bandera, IdRuedaNegocio, IdParticipante, FechaCitaIni, FechaCitaFin, IdEstadoRealizaCita);
+    }
+
+    @GetMapping("/consestdoejecitas/{Bandera}")
+    public List<CEstadoEjecucionCitasEntity> ConsultaEstdoEjecCitas(
+            @PathVariable Integer Bandera) {
+        return serviceCEstadoEjecucionCitasService.ConsultaEstdoEjecCitas(Bandera);
     }
 }

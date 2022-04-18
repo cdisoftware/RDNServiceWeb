@@ -19,45 +19,45 @@ public class PRegistroContactoEntity {
 
     @Id
     @JsonProperty("IdContacto")
-    private Integer IdContacto;
+    public Integer IdContacto;
 
     @JsonProperty("IdParticipante")
-    private Integer IdParticipante;
+    public Integer IdParticipante;
 
     @JsonProperty("NombreCompleto")
-    private String NombreCompleto;
+    public String NombreCompleto;
 
     @JsonProperty("Email")
-    private String Email;
+    public String Email;
 
     @JsonProperty("IdIdentificacion")
-    private Integer IdIdentificacion;
+    public Integer IdIdentificacion;
 
     @JsonProperty("NoIdentificacion")
-    private String NoIdentificacion;
+    public String NoIdentificacion;
 
     @JsonProperty("Telefono")
-    private String Telefono;
+    public String Telefono;
 
     @JsonProperty("IdGenero")
-    private Integer IdGenero;
+    public Integer IdGenero;
 
     @JsonProperty("IdIdioma")
-    private Integer IdIdioma;
+    public Integer IdIdioma;
 
     @JsonProperty("Dependencia")
-    private String Dependencia;
+    public String Dependencia;
 
     @JsonProperty("Contrasena")
-    private String Contrasena;
+    public String Contrasena;
 
     @JsonProperty("Cargo")
-    private String Cargo;
+    public String Cargo;
 
     @JsonProperty("Firma")
-    private String Firma;
+    public String Firma;
 
     @JsonProperty("Emailopc")
-    private String Emailopc;
+    public String Emailopc;
 
 }

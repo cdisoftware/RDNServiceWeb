@@ -1,6 +1,7 @@
 
 package com.cdi.com.CorferiasRuedaNegocios.Services;
 
+import com.cdi.com.CorferiasRuedaNegocios.Entity.PRegistroContactoEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PRegistroContactoModEntity;
 import java.util.List;
 
