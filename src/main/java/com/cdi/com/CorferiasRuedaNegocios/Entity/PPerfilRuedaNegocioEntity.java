@@ -1,4 +1,3 @@
-
 package com.cdi.com.CorferiasRuedaNegocios.Entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -46,4 +45,7 @@ public class PPerfilRuedaNegocioEntity implements Serializable {
 
     @JsonProperty("IdFeria")
     public Integer IdFeria;
+
+    @JsonProperty("IdTipoPerfil")
+    public Integer IdTipoPerfil;
 }

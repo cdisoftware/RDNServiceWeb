@@ -170,6 +170,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Entity.PSeguimientoCitaModEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PSubCategoriaSectorEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PTerminoPoliticaEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PTtListaPaisEntity;
+import com.cdi.com.CorferiasRuedaNegocios.Entity.PTtListaTipoDocumentoEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PUbicaParticipanteEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PValidaParticipanteEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PopcionesRtaPregunta;
@@ -403,6 +404,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Services.PSeguimientoCitaService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PSubCategoriaSectorService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PTerminoPoliticaService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PTtListaPaisService;
+import com.cdi.com.CorferiasRuedaNegocios.Services.PTtListaTipoDocumentoService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PUbicaParticipanteService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaContactoService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaEvalService;
@@ -1085,6 +1087,9 @@ public class Controller {
 
     @Autowired
     CEstadoEjecucionCitasService serviceCEstadoEjecucionCitasService;
+
+    @Autowired
+    PTtListaTipoDocumentoService servicePTtListaTipoDocumentoService;
 
     @GetMapping("/consultarpaises")
     public List<TtPaisEntity> ConsultarPaises() {
@@ -3884,5 +3889,11 @@ public class Controller {
     public List<CEstadoEjecucionCitasEntity> ConsultaEstdoEjecCitas(
             @PathVariable Integer Bandera) {
         return serviceCEstadoEjecucionCitasService.ConsultaEstdoEjecCitas(Bandera);
+    }
+
+    @GetMapping("/conslistipdocument/{BANDERA}")
+    public List<PTtListaTipoDocumentoEntity> ConsultaListTipDoc(
+            @PathVariable Integer BANDERA) {
+        return servicePTtListaTipoDocumentoService.ConsultaListTipDoc(BANDERA);
     }
 }
