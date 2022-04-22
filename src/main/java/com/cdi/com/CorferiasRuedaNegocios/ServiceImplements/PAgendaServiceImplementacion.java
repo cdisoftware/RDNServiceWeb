@@ -35,7 +35,7 @@ public class PAgendaServiceImplementacion implements PAgendaService {
             permisos.registerStoredProcedureParameter("IdEstadoCita", Integer.class, ParameterMode.IN);
             permisos.registerStoredProcedureParameter("IdModulo", Integer.class, ParameterMode.IN);
             permisos.registerStoredProcedureParameter("Fecha", String.class, ParameterMode.IN);
-               permisos.registerStoredProcedureParameter("IdCita", Integer.class, ParameterMode.IN);
+            permisos.registerStoredProcedureParameter("IdCita", Integer.class, ParameterMode.IN);
             permisos.setParameter("Bandera", Bandera);
             permisos.setParameter("Idioma", Idioma);
             permisos.setParameter("IdUsuario", IdUsuario);

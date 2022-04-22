@@ -78,4 +78,7 @@ public class PAgendaEntity {
     @JsonProperty("IdTipoRueda")
     public Integer IdTipoRueda;
 
+    @JsonProperty("QuienSolicita")
+    public Integer QuienSolicita;
+
 }
