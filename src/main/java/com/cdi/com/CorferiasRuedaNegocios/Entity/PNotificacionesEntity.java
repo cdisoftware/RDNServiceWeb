@@ -19,39 +19,42 @@ public class PNotificacionesEntity {
 
     @Id
     @JsonProperty("IdNotificacion")
-    private Integer IdNotificacion;
+    public Integer IdNotificacion;
 
     @JsonProperty("FechaProgramada")
-    private String FechaProgramada;
+    public String FechaProgramada;
 
     @JsonProperty("Titulo")
-    private String Titulo;
+    public String Titulo;
 
     @JsonProperty("Texto")
-    private String Texto;
+    public String Texto;
 
     @JsonProperty("Estado")
-    private Integer Estado;
+    public Integer Estado;
 
     @JsonProperty("Idevaluacion")
-    private Integer Idevaluacion;
+    public Integer Idevaluacion;
 
     @JsonProperty("DiaIn")
-    private Integer DiaIn;
+    public Integer DiaIn;
 
     @JsonProperty("MesIn")
-    private String MesIn;
+    public String MesIn;
 
     @JsonProperty("Vigencia")
-    private String Vigencia;
+    public String Vigencia;
 
     @JsonProperty("IdRuedaNegocio")
-    private Integer IdRuedaNegocio;
+    public Integer IdRuedaNegocio;
 
     @JsonProperty("NombreRDN")
-    private String NombreRDN;
+    public String NombreRDN;
 
     @JsonProperty("Imagen")
-    private String Imagen;
+    public String Imagen;
+    
+    @JsonProperty("Link")
+    public String Link; 
 
 }

@@ -21,15 +21,17 @@ public class PValidaRdnContactoServiceImplementacion implements PValidaRdnContac
     private LogConsolaService service;
 
     @Override
-    public String ConsultaValidaRdnContactoServices(Integer Bandera, Integer IdRdn, Integer IdContacto) {
+    public String ConsultaValidaRdnContactoServices(Integer Bandera, Integer IdRdn, Integer IdContacto, String Idioma) {
         try {
             StoredProcedureQuery rolconsola = repositorio.createNamedStoredProcedureQuery("paPValidaRdnContacto");
             rolconsola.registerStoredProcedureParameter("Bandera", Integer.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("IdRdn", Integer.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("IdContacto", Integer.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("Idioma", String.class, ParameterMode.IN);
             rolconsola.setParameter("Bandera", Bandera);
             rolconsola.setParameter("IdRdn", IdRdn);
             rolconsola.setParameter("IdContacto", IdContacto);
+            rolconsola.setParameter("Idioma", Idioma);
             rolconsola.execute();
             return JSONObject.quote((String) rolconsola.getOutputParameterValue("Respuesta"));
         } catch (Exception ex) {
