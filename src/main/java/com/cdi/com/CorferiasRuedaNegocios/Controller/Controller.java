@@ -3444,12 +3444,13 @@ public class Controller {
         return servicePRespuestaPreguntasSegEnService.ActualizarPreguntaSegEn(entidad, Bandera, IdUsuario);
     }
 
-    @GetMapping("/consultavalidardncontservices/{Bandera}/{IdRdn}/{IdContacto}")
+    @GetMapping("/consultavalidardncontservices/{Bandera}/{IdRdn}/{IdContacto}/{Idioma}")
     public String ConsultaValidaRdnContactoServices(
             @PathVariable Integer Bandera,
             @PathVariable Integer IdRdn,
-            @PathVariable Integer IdContacto) {
-        return servicePValidaRdnContactoService.ConsultaValidaRdnContactoServices(Bandera, IdRdn, IdContacto);
+            @PathVariable Integer IdContacto,
+            @PathVariable String Idioma) {
+        return servicePValidaRdnContactoService.ConsultaValidaRdnContactoServices(Bandera, IdRdn, IdContacto, Idioma);
     }
 
     @GetMapping("/consultapresppregsegen/{Bandera}/{Idioma}/{IdEvaluacion}/{IdRdn}/{IdTipoPerfil}/{IdParticipante}/{Participante}/{IdContacto}/{IdPregunta}")

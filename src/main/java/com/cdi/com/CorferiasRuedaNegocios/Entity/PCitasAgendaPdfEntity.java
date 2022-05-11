@@ -18,64 +18,67 @@ import lombok.Data;
 public class PCitasAgendaPdfEntity {
 
     @Id
+    @JsonProperty("id")
+    public Integer id;
+    
     @JsonProperty("IdAgenda")
-    private Integer IdAgenda;
+    public Integer IdAgenda;
 
     @JsonProperty("IdContacto")
-    private Integer IdContacto;
+    public Integer IdContacto;
 
-    @JsonProperty("IdRuedaNegocio")
-    private Integer IdRuedaNegocio;
+    @JsonProperty("IdRueda")
+    public Integer IdRueda;
 
     @JsonProperty("FechaCita")
-    private String FechaCita;
+    public String FechaCita;
 
     @JsonProperty("HoraInicio")
-    private String HoraInicio;
+    public String HoraInicio;
 
-    @JsonProperty("HoraInicioFormato")
-    private String HoraInicioFormato;
+    @JsonProperty("HoraIniFormato")
+    public String HoraIniFormato;
 
     @JsonProperty("HoraFinFormato")
-    private String HoraFinFormato;
+    public String HoraFinFormato;
 
     @JsonProperty("UbicacionCita")
-    private String UbicacionCita;
+    public String UbicacionCita;
 
     @JsonProperty("IdParticipante")
-    private Integer IdParticipante;
+    public Integer IdParticipante;
 
     @JsonProperty("Participante")
-    private String Participante;
+    public String Participante;
 
     @JsonProperty("Contacto")
-    private Integer Contacto;
+    public Integer Contacto;
 
     @JsonProperty("NombreContacto")
-    private String NombreContacto;
+    public String NombreContacto;
 
     @JsonProperty("IdCiudad")
-    private Integer IdCiudad;
+    public Integer IdCiudad;
 
     @JsonProperty("Ciudad")
-    private String Ciudad;
+    public String Ciudad;
 
     @JsonProperty("IdPais")
-    private Integer IdPais;
+    public Integer IdPais;
 
     @JsonProperty("Pais")
-    private String Pais;
+    public String Pais;
 
     @JsonProperty("EstadoCita")
-    private Integer EstadoCita;
+    public Integer EstadoCita;
 
     @JsonProperty("DescripcionEstado")
-    private String DescripcionEstado;
+    public String DescripcionEstado;
 
     @JsonProperty("TipoUsuario")
-    private String TipoUsuario;
+    public String TipoUsuario;
 
     @JsonProperty("Motivo")
-    private String Motivo;
+    public String Motivo;
 
 }
