@@ -21,12 +21,12 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @Profile("dev")
 /*@PropertySource("prod.properties")
 @Profile("prod")*/
-/*@PropertySource("corferias.properties")
+ /*@PropertySource("corferias.properties")
 @Profile("corferias")*/
 public class CorferiasRuedaNegociosApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CorferiasRuedaNegociosApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(CorferiasRuedaNegociosApplication.class, args);
+    }
+    
 }

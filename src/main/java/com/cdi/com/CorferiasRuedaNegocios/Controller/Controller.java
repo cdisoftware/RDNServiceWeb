@@ -127,6 +127,8 @@ import com.cdi.com.CorferiasRuedaNegocios.Entity.PAgendaSalaModEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PCategoriaSectorEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PChatEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PCitasAgendaPdfEntity;
+import com.cdi.com.CorferiasRuedaNegocios.Entity.PCitasAgendaPdfMasivoEntity;
+import com.cdi.com.CorferiasRuedaNegocios.Entity.PCitasAgendaPdfMasivo_ModEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PConsultaCamposOblEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PConsultaChatEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PConsultaContactoChatEntity;
@@ -360,6 +362,8 @@ import com.cdi.com.CorferiasRuedaNegocios.Services.PAgendaSalaModService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PAgendaService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PCategoriaSectorService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PChatService;
+import com.cdi.com.CorferiasRuedaNegocios.Services.PCitasAgendaPdfMasivoService;
+import com.cdi.com.CorferiasRuedaNegocios.Services.PCitasAgendaPdfMasivo_ModService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PCitasAgendaPdfService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PConsultaCamposOblService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PConsultaChatService;
@@ -1090,6 +1094,12 @@ public class Controller {
 
     @Autowired
     PTtListaTipoDocumentoService servicePTtListaTipoDocumentoService;
+
+    @Autowired
+    PCitasAgendaPdfMasivoService servicePCitasAgendaPdfMasivoService;
+
+    @Autowired
+    PCitasAgendaPdfMasivo_ModService servicePCitasAgendaPdfMasivo_ModService;
 
     @GetMapping("/consultarpaises")
     public List<TtPaisEntity> ConsultarPaises() {
@@ -3897,4 +3907,19 @@ public class Controller {
             @PathVariable Integer BANDERA) {
         return servicePTtListaTipoDocumentoService.ConsultaListTipDoc(BANDERA);
     }
+
+    @GetMapping("/conspcitasagendpdfmasivo/{IdProceso}")
+    public List<PCitasAgendaPdfMasivoEntity> ConsultaPCitasAgendaPDFmasivo(
+            @PathVariable Integer IdProceso) {
+        return servicePCitasAgendaPdfMasivoService.ConsultaPCitasAgendaPDFmasivo(IdProceso);
+    }
+
+    @GetMapping("/insertpcitagendapdfmasivo/{Bandera}/{IdRuedaNegocio}/{IdPerfil}")
+    public String InsertaPCitasAgdaPDFMasivo(
+            @PathVariable Integer Bandera,
+            @PathVariable Integer IdRuedaNegocio,
+            @PathVariable Integer IdPerfil) {
+        return servicePCitasAgendaPdfMasivo_ModService.InsertaPCitasAgdaPDFMasivo(Bandera, IdRuedaNegocio, IdPerfil);
+    }
+
 }
