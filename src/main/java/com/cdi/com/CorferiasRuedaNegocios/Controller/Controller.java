@@ -371,6 +371,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Services.PConsultaContactoChatService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PCuentaChatService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PCuentaNotificaService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PEncabezaAgendaPdfService;
+import com.cdi.com.CorferiasRuedaNegocios.Services.PFechaAgendamientoService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PInfoContactoService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PMascaraRegistroRdnService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PMesaChatMensModService;
@@ -1100,6 +1101,9 @@ public class Controller {
 
     @Autowired
     PCitasAgendaPdfMasivo_ModService servicePCitasAgendaPdfMasivo_ModService;
+
+    @Autowired
+    PFechaAgendamientoService servicePFechaAgendamientoService;
 
     @GetMapping("/consultarpaises")
     public List<TtPaisEntity> ConsultarPaises() {
@@ -3922,4 +3926,10 @@ public class Controller {
         return servicePCitasAgendaPdfMasivo_ModService.InsertaPCitasAgdaPDFMasivo(Bandera, IdRuedaNegocio, IdPerfil);
     }
 
+    @GetMapping("/conspfechagendamiento/{IdRueda}/{Idioma}")
+    public String ConsultaPFechaAgenda(
+            @PathVariable Integer IdRueda,
+            @PathVariable String Idioma) {
+        return servicePFechaAgendamientoService.ConsultaPFechaAgenda(IdRueda, Idioma);
+    }
 }
