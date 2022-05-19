@@ -86,4 +86,16 @@ public class PCitasAgendaPdfMasivoEntity {
 
     @JsonProperty("Motivo")
     public String Motivo;
+
+    @JsonProperty("ParticipanteS")
+    public String ParticipanteS;
+
+    @JsonProperty("ContactoS")
+    public String ContactoS;
+
+    @JsonProperty("EmailS")
+    public String EmailS;
+
+    @JsonProperty("TelS")
+    public String TelS;
 }
