@@ -46,7 +46,7 @@ public class CPreguntaEvaluacionPopServiceImplementacion implements CPreguntaEva
         } catch (Exception ex) {
             LogConsolaEntity entidadLog = new LogConsolaEntity();
             entidadLog.setCodigo(String.valueOf(ex.hashCode()));
-            entidadLog.setMensaje(ex.getMessage());
+            entidadLog.setMensaje("<consultapreguntasevaluacionpop>:" + ex.getMessage());
             entidadLog.setServicio("Servicio paCPreguntaEvaluacionPop");
             entidadLog.setTipo(1);
             service.InsertaLog(entidadLog);

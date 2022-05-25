@@ -42,7 +42,7 @@ public class CDatosTableroServiceImplementacion implements CDatosTableroService 
         } catch (Exception ex) {
             LogConsolaEntity entidadLog = new LogConsolaEntity();
             entidadLog.setCodigo(String.valueOf(ex.hashCode()));
-            entidadLog.setMensaje(ex.getMessage());
+            entidadLog.setMensaje(ex.getCause().getCause().getLocalizedMessage());
             entidadLog.setServicio("Servicio paCDatosTablero");
             entidadLog.setTipo(1);
             service.InsertaLog(entidadLog);
