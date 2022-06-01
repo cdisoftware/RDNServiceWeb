@@ -68,7 +68,7 @@ public class PRegistroContactoServiceImplementacion implements PRegistroContacto
                 IdGenero = con.get(i).getIdGenero().toString();
                 IdIdioma = con.get(i).getIdIdioma().toString();
                 Dependencia = con.get(i).getDependencia();
-                Contrasena = clsEncriptacion.Desencriptar(con.get(i).getContrasena());
+                Contrasena = con.get(i).getContrasena();
                 Cargo = con.get(i).getCargo();
                 Firma = con.get(i).getFirma();
                 Emailopc = con.get(i).getEmailopc();
@@ -137,7 +137,7 @@ public class PRegistroContactoServiceImplementacion implements PRegistroContacto
             rolconsola.setParameter("IdIdioma", entidad.getIdIdioma());
             rolconsola.setParameter("Cargo", entidad.getCargo());
             rolconsola.setParameter("Dependencia", entidad.getDependencia());
-            rolconsola.setParameter("Contrasena", clsEncriptacion.Encriptar(entidad.getContrasena()));
+            rolconsola.setParameter("Contrasena", entidad.getContrasena());
             rolconsola.setParameter("Firma", entidad.getFirma());
             rolconsola.setParameter("EmailOpc", entidad.getEmailOpc());
             rolconsola.setParameter("FirmaBit", entidad.getFirmaBit());
@@ -190,7 +190,7 @@ public class PRegistroContactoServiceImplementacion implements PRegistroContacto
             rolconsola.setParameter("IdIdioma", entidad.getIdIdioma());
             rolconsola.setParameter("Cargo", entidad.getCargo());
             rolconsola.setParameter("Dependencia", entidad.getDependencia());
-            rolconsola.setParameter("Contrasena", clsEncriptacion.Encriptar(entidad.getContrasena()));
+            rolconsola.setParameter("Contrasena", entidad.getContrasena());
             rolconsola.setParameter("Firma", entidad.getFirma());
             rolconsola.setParameter("EmailOpc", entidad.getEmailOpc());
             rolconsola.setParameter("FirmaBit", entidad.getFirmaBit());

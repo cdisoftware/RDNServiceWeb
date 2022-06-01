@@ -1461,6 +1461,7 @@ public class Controller {
         return JSONObject.quote("Archivo Subido Correctamente");
     }
     
+     //Subida pdf
     @PostMapping("/uploadarchivos")
     public String UploadArchivos(@RequestParam("file") MultipartFile file) {
         String fileName = null;
@@ -3646,7 +3647,7 @@ public class Controller {
     public String GenerarLinkMeet(@RequestBody meetwherebyEntity entidad) {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        headers.setBearerAuth("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmFwcGVhci5pbiIsImF1ZCI6Imh0dHBzOi8vYXBpLmFwcGVhci5pbi92MSIsImV4cCI6OTAwNzE5OTI1NDc0MDk5MSwiaWF0IjoxNjQ4NTA1ODY5LCJvcmdhbml6YXRpb25JZCI6MTU2NjYxLCJqdGkiOiIzMTY3M2NlNi1kNzk0LTQwNDYtODYyZi1kZmRhOGUwMzI1NGQifQ.5I2CmcAE7KY4Wyf32Orywo7S-kFNDWLmX-blanKlebE");
+        headers.setBearerAuth("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmFwcGVhci5pbiIsImF1ZCI6Imh0dHBzOi8vYXBpLmFwcGVhci5pbi92MSIsImV4cCI6OTAwNzE5OTI1NDc0MDk5MSwiaWF0IjoxNjU0MDMyNTU0LCJvcmdhbml6YXRpb25JZCI6MTYxNTk1LCJqdGkiOiJjM2U1ZTYzZi03YWZjLTRkY2QtOTcyYi01M2ZjNzBlN2VjNzcifQ.Ru-XyksOPYRGwAT38f5B4omVh2dCJwY5NKx33ebvt7c");
         HttpEntity<meetwherebyEntity> entity = new HttpEntity<meetwherebyEntity>(entidad, headers);
         RestTemplate rt = new RestTemplate();
         return rt.exchange(
