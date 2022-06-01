@@ -1,7 +1,5 @@
 package com.cdi.com.CorferiasRuedaNegocios.ServiceImplements;
 
-import com.cdi.com.CorferiasRuedaNegocios.Comun.clsEncriptacion;
-import com.cdi.com.CorferiasRuedaNegocios.Entity.CVisualizaParticipanteEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.LogConsolaEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CVisualizaParticipanteService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.LogConsolaService;
@@ -11,7 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
 import javax.persistence.StoredProcedureQuery;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

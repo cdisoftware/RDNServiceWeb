@@ -1,16 +1,11 @@
 package com.cdi.com.CorferiasRuedaNegocios.ServiceImplements;
 
-import com.cdi.com.CorferiasRuedaNegocios.Comun.clsEncriptacion;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.LogConsolaEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PRegistroContactoEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PRegistroContactoModEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Services.LogConsolaService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PRegistroContactoService;
-import java.util.ArrayList;
 import java.util.List;
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
