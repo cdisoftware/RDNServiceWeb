@@ -26,7 +26,7 @@ public class PRedSocialGModEntity implements Serializable {
 
     @Id
     @JsonProperty("Id")
-    private Integer Id;
+    public Integer Id;
 
     @JsonProperty("IdParticipante")
     public Integer IdParticipante;
