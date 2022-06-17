@@ -414,6 +414,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Services.PUbicaParticipanteService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaContactoService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaEvalService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaFechaCitaService;
+import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaPaisRdnService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaParticipanteService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaPerfilPartService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaRdnContactoService;
@@ -1108,6 +1109,9 @@ public class Controller {
     
     @Autowired
     PValidaFechaCitaService servicePValidaFechaCitaService;
+    
+    @Autowired
+    PValidaPaisRdnService servicePValidaPaisRdnService;
     
     @GetMapping("/consultarpaises")
     public List<TtPaisEntity> ConsultarPaises() {
@@ -3946,6 +3950,14 @@ public class Controller {
             @PathVariable String Hora,
             @PathVariable Integer IdRueda) {
         return servicePValidaFechaCitaService.ConsultaPFechaCita(Hora, IdContactoS, Fecha, Hora, IdRueda);
+    }
+    @GetMapping("/conspaisrdn/{Bandera}/{IdRdn}/{IdContacto}/{IdPerfil}")
+    public String ConsultaPaisRdn(
+            @PathVariable Integer Bandera,
+            @PathVariable Integer IdRdn,
+            @PathVariable Integer IdContacto,
+            @PathVariable Integer IdPerfil) {
+        return servicePValidaPaisRdnService.ConsultaPaisRdn(Bandera, IdRdn, IdContacto, IdPerfil);
     }
     
 }
