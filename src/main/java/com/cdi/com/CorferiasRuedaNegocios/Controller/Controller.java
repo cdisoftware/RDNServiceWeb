@@ -1443,9 +1443,12 @@ public class Controller {
             System.out.println("Error " + ex);;
         }
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                //CONFIGURACION PRUEBAS DESARROLLO
                 .path("/ImagenesRDN/")
-                //configuracion corferias
+                //CONFIGURACION CORFERIAS
                 //.path("https://imagenesappcdi.corferias.co/ImagenesCorferias/")
+                //CONFIGURACION SSL
+                //.path("https://truequesonline.com/ImagenesRDN/")
                 .path(fileName)
                 .toUriString();
         fileDownloadUri = fileDownloadUri.replace(":8082/CorferiasRuedaNegocios", "");
@@ -1475,9 +1478,12 @@ public class Controller {
             System.out.println("Error " + ex);;
         }
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                //configuracion pruebas desarrollo
                 .path("/ImagenesRDN/ArchivosRDN/")
                 //configuracion corferias
                 //.path("https://imagenesappcdi.corferias.co/ImagenesCorferias/")
+                //configuracion ssl
+                //.path("https://truequesonline.com/ImagenesRDN/Archivosrdn/")
                 .path(fileName)
                 .toUriString();
         fileDownloadUri = fileDownloadUri.replace(":8082/CorferiasRuedaNegocios", "");
