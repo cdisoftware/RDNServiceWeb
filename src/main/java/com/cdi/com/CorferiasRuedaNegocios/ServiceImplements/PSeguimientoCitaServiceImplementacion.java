@@ -24,15 +24,19 @@ public class PSeguimientoCitaServiceImplementacion implements PSeguimientoCitaSe
     private LogConsolaService service;
 
     @Override
-    public List<PSeguimientoCitaEntity> ConsultaPSegCita(Integer bandera, Integer IdRuedaNegocio, String FechaCita) {
+    public List<PSeguimientoCitaEntity> ConsultaPSegCita(Integer bandera, Integer IdRuedaNegocio, String FechaCita, Integer IdContacto) {
         try {
             StoredProcedureQuery consegcita = repositorio.createNamedStoredProcedureQuery("paPSeguimientoCita");
             consegcita.registerStoredProcedureParameter("bandera", Integer.class, ParameterMode.IN);
             consegcita.registerStoredProcedureParameter("IdRuedaNegocio", Integer.class, ParameterMode.IN);
             consegcita.registerStoredProcedureParameter("FechaCita", String.class, ParameterMode.IN);
+            consegcita.registerStoredProcedureParameter("IdContacto", Integer.class, ParameterMode.IN);
+
             consegcita.setParameter("bandera", bandera);
             consegcita.setParameter("IdRuedaNegocio", IdRuedaNegocio);
             consegcita.setParameter("FechaCita", FechaCita);
+            consegcita.setParameter("IdContacto", IdContacto);
+
             return consegcita.getResultList();
         } catch (Exception ex) {
             LogConsolaEntity entidadLog = new LogConsolaEntity();

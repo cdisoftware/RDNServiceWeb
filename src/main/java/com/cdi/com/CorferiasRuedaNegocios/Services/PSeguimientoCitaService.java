@@ -5,6 +5,7 @@ import java.util.List;
 
 public interface PSeguimientoCitaService {
 
-    public List<PSeguimientoCitaEntity> ConsultaPSegCita(Integer bandera, Integer IdRuedaNegocio, String FechaCita);
+    public List<PSeguimientoCitaEntity> ConsultaPSegCita(Integer bandera,
+            Integer IdRuedaNegocio, String FechaCita, Integer IdContacto);
 
 }
