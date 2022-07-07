@@ -18,12 +18,12 @@ import lombok.Data;
 public class mv_CiudadesActivasEntity {
 
     @Id
-    @JsonProperty("CD_MNCPIO")
-    public Integer CD_MNCPIO;
+    @JsonProperty("CD_RGION")
+    public Integer CD_RGION;
 
     @JsonProperty("DSCRPCION")
     public String DSCRPCION;
 
-    @JsonProperty("CD_RGION")
-    public Integer CD_RGION;
+    @JsonProperty("CD_MNCPIO")
+    public Integer CD_MNCPIO;
 }

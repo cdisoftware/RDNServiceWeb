@@ -1,7 +1,6 @@
 package com.cdi.com.Agroapoya2CDI.Controller;
 
 import com.cdi.com.Agroapoya2CDI.Entity.AGRO_DIRECCION_POPUPEntity;
-import com.cdi.com.Agroapoya2CDI.Entity.AGRO_VALIDARBTNGRUPALEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.ActualizaLinkEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.Agro_Select_AGRO_BANCOEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.Agro_Select_AGRO_FORMA_PAGOEntity;
@@ -17,7 +16,6 @@ import com.cdi.com.Agroapoya2CDI.Entity.SELECT_MNCPIOEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.Select_TipoDocumentoEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.mv_pa_INSERT_PROCESO_PAGOEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.cliente_select_ofertasNuevasEntity;
-import com.cdi.com.Agroapoya2CDI.Entity.mv_CNSCTVOCMNDADCNSMOEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.mv_CiudadesActivasEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.mv_infoBasicaUsuarioEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.mv_listaSectoresConOfertasEntity;
@@ -292,4 +290,5 @@ public class Controller {
             @PathVariable Integer Bandera) {
         return serviceAGRO_DIRECCION_POPUPService.ConsultaDireccionPopUp(Bandera);
     }
+
 }
