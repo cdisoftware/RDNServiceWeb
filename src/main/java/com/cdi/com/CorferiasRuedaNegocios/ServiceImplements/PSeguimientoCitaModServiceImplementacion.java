@@ -30,10 +30,10 @@ public class PSeguimientoCitaModServiceImplementacion implements PSeguimientoCit
             insertpsegcita.registerStoredProcedureParameter("IdAgenda", Integer.class, ParameterMode.IN);
             insertpsegcita.registerStoredProcedureParameter("Producto", String.class, ParameterMode.IN);
             insertpsegcita.registerStoredProcedureParameter("Interesado", Integer.class, ParameterMode.IN);
-            insertpsegcita.registerStoredProcedureParameter("valorSpot", Integer.class, ParameterMode.IN);
-            insertpsegcita.registerStoredProcedureParameter("Valor3a6meses", Integer.class, ParameterMode.IN);
-            insertpsegcita.registerStoredProcedureParameter("Valor6a9meses", Integer.class, ParameterMode.IN);
-            insertpsegcita.registerStoredProcedureParameter("Valor9a12meses", Integer.class, ParameterMode.IN);
+            insertpsegcita.registerStoredProcedureParameter("valorSpot", Float.class, ParameterMode.IN);
+            insertpsegcita.registerStoredProcedureParameter("Valor3a6meses", Float.class, ParameterMode.IN);
+            insertpsegcita.registerStoredProcedureParameter("Valor6a9meses", Float.class, ParameterMode.IN);
+            insertpsegcita.registerStoredProcedureParameter("Valor9a12meses", Float.class, ParameterMode.IN);
             insertpsegcita.setParameter("bandera", bandera);
             insertpsegcita.setParameter("IdRuedaNegocio", entidad.getIdRuedaNegocio());
             insertpsegcita.setParameter("IdAgenda", entidad.getIdAgenda());
