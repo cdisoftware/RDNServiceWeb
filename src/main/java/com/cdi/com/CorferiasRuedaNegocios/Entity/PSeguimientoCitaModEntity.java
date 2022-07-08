@@ -37,15 +37,15 @@ public class PSeguimientoCitaModEntity {
     public Integer Interesado;
 
     @JsonProperty("valorSpot")
-    public Integer valorSpot;
+    public Float valorSpot;
 
     @JsonProperty("Valor3a6meses")
-    public Integer Valor3a6meses;
+    public Float Valor3a6meses;
 
     @JsonProperty("Valor6a9meses")
-    public Integer Valor6a9meses;
+    public Float Valor6a9meses;
 
     @JsonProperty("Valor9a12meses")
-    public Integer Valor9a12meses;
+    public Float Valor9a12meses;
 
 }
