@@ -78,4 +78,19 @@ public class mv_infoBasicaUsuarioEntity {
     @JsonProperty("TOKEN_PERSONA")
     public String TOKEN_PERSONA;
 
+    @JsonProperty("ID_FRMA_PGO")
+    public Integer ID_FRMA_PGO;
+
+    @JsonProperty("ID_TPO_CUENTA")
+    public Integer ID_TPO_CUENTA;
+
+    @JsonProperty("NOCUENTA")
+    public String NOCUENTA;
+
+    @JsonProperty("ID_BNCO")
+    public Integer ID_BNCO;
+
+    @JsonProperty("ID_TPO_PRSNA")
+    public Integer ID_TPO_PRSNA;
+
 }

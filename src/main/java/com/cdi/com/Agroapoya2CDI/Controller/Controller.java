@@ -9,6 +9,7 @@ import com.cdi.com.Agroapoya2CDI.Entity.Agro_Select_AGRO_TIPO_PERSONAEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CGrupoClienteEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CRelacionGrupoClienteEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.INFOGENERALEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.MV_AGRO_VALIDACODIGOEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.mv_insert_AGRO_CLIENTE_2Entity;
 import com.cdi.com.Agroapoya2CDI.Entity.MV_INSERT_AGRO_PERSONASVDOSEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.MV_MLTLSTAS_RGSTROEntity;
@@ -17,6 +18,7 @@ import com.cdi.com.Agroapoya2CDI.Entity.Select_TipoDocumentoEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.mv_pa_INSERT_PROCESO_PAGOEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.cliente_select_ofertasNuevasEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.mv_CiudadesActivasEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.mv_EnvioCorreoTransprtistaViejeEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.mv_infoBasicaUsuarioEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.mv_listaSectoresConOfertasEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.mv_pa_cliente_select_ofertasNuevasEntity;
@@ -28,9 +30,11 @@ import com.cdi.com.Agroapoya2CDI.Services.Agro_Select_AGRO_BANCOService;
 import com.cdi.com.Agroapoya2CDI.Services.Agro_Select_AGRO_FORMA_PAGOService;
 import com.cdi.com.Agroapoya2CDI.Services.Agro_Select_AGRO_TIPO_CUENTAService;
 import com.cdi.com.Agroapoya2CDI.Services.Agro_Select_AGRO_TIPO_PERSONAService;
+import com.cdi.com.Agroapoya2CDI.Services.CALCULADORA_VALORPAGOService;
 import com.cdi.com.Agroapoya2CDI.Services.CGrupoClienteService;
 import com.cdi.com.Agroapoya2CDI.Services.CRelacionGrupoClienteService;
 import com.cdi.com.Agroapoya2CDI.Services.INFOGENERALService;
+import com.cdi.com.Agroapoya2CDI.Services.MV_AGRO_VALIDACODIGOService;
 import com.cdi.com.Agroapoya2CDI.Services.cliente_select_ofertasNuevasService;
 import com.cdi.com.Agroapoya2CDI.Services.mv_CiudadesActivasService;
 import com.cdi.com.Agroapoya2CDI.Services.mv_infoBasicaUsuarioService;
@@ -55,6 +59,7 @@ import com.cdi.com.Agroapoya2CDI.Services.SELECT_MNCPIOService;
 import com.cdi.com.Agroapoya2CDI.Services.Select_TipoDocumentoService;
 import com.cdi.com.Agroapoya2CDI.Services.mv_pa_INSERT_PROCESO_PAGOService;
 import com.cdi.com.Agroapoya2CDI.Services.mv_CNSCTVOCMNDADCNSMOService;
+import com.cdi.com.Agroapoya2CDI.Services.mv_EnvioCorreoTransprtistaViejeService;
 import com.cdi.com.Agroapoya2CDI.Services.mv_insert_AGRO_CLIENTE_2Service;
 
 @RestController
@@ -131,6 +136,15 @@ public class Controller {
 
     @Autowired
     AGRO_DIRECCION_POPUPService serviceAGRO_DIRECCION_POPUPService;
+
+    @Autowired
+    MV_AGRO_VALIDACODIGOService serviceMV_AGRO_VALIDACODIGOService;
+
+    @Autowired
+    CALCULADORA_VALORPAGOService serviceCALCULADORA_VALORPAGOService;
+
+    @Autowired
+    mv_EnvioCorreoTransprtistaViejeService servicemv_EnvioCorreoTransprtistaViejeService;
 
     @GetMapping("/consultainfogeneral/{ID}")
     public List<INFOGENERALEntity> ConsultaInfoGeneral(
@@ -291,4 +305,30 @@ public class Controller {
         return serviceAGRO_DIRECCION_POPUPService.ConsultaDireccionPopUp(Bandera);
     }
 
+    @GetMapping("/consagrovalidacodigo/{BANDERA}/{CODIGO}/{CODIGODOS}/{UNIDADES}")
+    public List<MV_AGRO_VALIDACODIGOEntity> ConsultaAgroValidaCod(
+            @PathVariable Integer BANDERA,
+            @PathVariable Integer CODIGO,
+            @PathVariable String CODIGODOS,
+            @PathVariable Integer UNIDADES) {
+        return serviceMV_AGRO_VALIDACODIGOService.ConsultaAgroValidaCod(BANDERA, CODIGO, CODIGODOS, UNIDADES);
+    }
+
+    @GetMapping("/conscalvalorpagos/{TIPOCOMPRA}/{CD_CNSCTVO}/{CD_UNDAD}/{USUCODIG}/{Descarga}/{Bandera}")
+    public String ConsultaValorPago(
+            @PathVariable Integer TIPOCOMPRA,
+            @PathVariable Integer CD_CNSCTVO,
+            @PathVariable Integer CD_UNDAD,
+            @PathVariable Integer USUCODIG,
+            @PathVariable Integer Descarga,
+            @PathVariable Integer Bandera) {
+        return serviceCALCULADORA_VALORPAGOService.ConsultaValorPago(TIPOCOMPRA, CD_CNSCTVO, CD_UNDAD, USUCODIG, Descarga, Bandera);
+    }
+
+    @GetMapping("/consenviocorreotransviaje/{id_trans}/{consecutico}")
+    public List<mv_EnvioCorreoTransprtistaViejeEntity> ConsultaEnvioCorreoTransptsta(
+            @PathVariable Integer id_trans,
+            @PathVariable Integer consecutico) {
+        return servicemv_EnvioCorreoTransprtistaViejeService.ConsultaEnvioCorreoTransptsta(id_trans, consecutico);
+    }
 }
