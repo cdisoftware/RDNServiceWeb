@@ -98,7 +98,7 @@ public class PRegistroContactoServiceImplementacion implements PRegistroContacto
     }
 
     @Override
-    public String InsertarRegistroContacto(PRegistroContactoModEntity entidad, Integer Bandera, Integer IdUsuario) {
+    public String InsertarRegistroContacto(PRegistroContactoModEntity entidad, Integer Bandera, Integer IdUsuario, Integer IdRuedaNegocio) {
         try {
             StoredProcedureQuery rolconsola = repositorio.createNamedStoredProcedureQuery("paPRegistroContactoMod");
             rolconsola.registerStoredProcedureParameter("Bandera", Integer.class, ParameterMode.IN);
@@ -118,6 +118,7 @@ public class PRegistroContactoServiceImplementacion implements PRegistroContacto
             rolconsola.registerStoredProcedureParameter("Firma", String.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("EmailOpc", String.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("FirmaBit", String.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("IdRuedaNegocio", Integer.class, ParameterMode.IN);
 
             rolconsola.setParameter("Bandera", Bandera);
             rolconsola.setParameter("IdParticipante", entidad.getIdParticipante());
@@ -136,6 +137,7 @@ public class PRegistroContactoServiceImplementacion implements PRegistroContacto
             rolconsola.setParameter("Firma", entidad.getFirma());
             rolconsola.setParameter("EmailOpc", entidad.getEmailOpc());
             rolconsola.setParameter("FirmaBit", entidad.getFirmaBit());
+            rolconsola.setParameter("IdRuedaNegocio", IdRuedaNegocio);
 
             rolconsola.execute();
             return JSONObject.quote((String) rolconsola.getOutputParameterValue("Respuesta"));
@@ -151,7 +153,7 @@ public class PRegistroContactoServiceImplementacion implements PRegistroContacto
     }
 
     @Override
-    public String ActualizarRegistroContacto(PRegistroContactoModEntity entidad, Integer Bandera, Integer IdUsuario) {
+    public String ActualizarRegistroContacto(PRegistroContactoModEntity entidad, Integer Bandera, Integer IdUsuario, Integer IdRuedaNegocio) {
         try {
             StoredProcedureQuery rolconsola = repositorio.createNamedStoredProcedureQuery("paPRegistroContactoMod");
             rolconsola.registerStoredProcedureParameter("Bandera", Integer.class, ParameterMode.IN);
@@ -171,6 +173,7 @@ public class PRegistroContactoServiceImplementacion implements PRegistroContacto
             rolconsola.registerStoredProcedureParameter("Firma", String.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("EmailOpc", String.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("FirmaBit", String.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("IdRuedaNegocio", Integer.class, ParameterMode.IN);
 
             rolconsola.setParameter("Bandera", Bandera);
             rolconsola.setParameter("IdParticipante", entidad.getIdParticipante());
@@ -189,6 +192,8 @@ public class PRegistroContactoServiceImplementacion implements PRegistroContacto
             rolconsola.setParameter("Firma", entidad.getFirma());
             rolconsola.setParameter("EmailOpc", entidad.getEmailOpc());
             rolconsola.setParameter("FirmaBit", entidad.getFirmaBit());
+            rolconsola.setParameter("IdRuedaNegocio", IdRuedaNegocio);
+
             rolconsola.execute();
             return JSONObject.quote((String) rolconsola.getOutputParameterValue("Respuesta"));
         } catch (Exception ex) {
