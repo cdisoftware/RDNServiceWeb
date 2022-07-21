@@ -1576,20 +1576,22 @@ public class Controller {
                 IdContacto);
     }
 
-    @PostMapping("/insertaregistrocontacto/{Bandera}/{IdUsuario}")
+    @PostMapping("/insertaregistrocontacto/{Bandera}/{IdUsuario}/{IdRuedaNegocio}")
     public String InsertarRegistroContacto(
             @RequestBody PRegistroContactoModEntity entidad,
             @PathVariable Integer Bandera,
-            @PathVariable Integer IdUsuario) {
-        return servicePRegistroContactoService.InsertarRegistroContacto(entidad, Bandera, IdUsuario);
+            @PathVariable Integer IdUsuario,
+            @PathVariable Integer IdRuedaNegocio) {
+        return servicePRegistroContactoService.InsertarRegistroContacto(entidad, Bandera, IdUsuario, IdRuedaNegocio);
     }
 
-    @PutMapping("/actualizaregistrocontacto/{Bandera}/{IdUsuario}")
+    @PutMapping("/actualizaregistrocontacto/{Bandera}/{IdUsuario}/{IdRuedaNegocio}")
     public String ActualizarRegistroContacto(
             @RequestBody PRegistroContactoModEntity entidad,
             @PathVariable Integer Bandera,
-            @PathVariable Integer IdUsuario) {
-        return servicePRegistroContactoService.InsertarRegistroContacto(entidad, Bandera, IdUsuario);
+            @PathVariable Integer IdUsuario,
+            @PathVariable Integer IdRuedaNegocio) {
+        return servicePRegistroContactoService.InsertarRegistroContacto(entidad, Bandera, IdUsuario, IdRuedaNegocio);
     }
 
     @GetMapping("/consultaperfilruedanegocio/{Bandera}/{Idioma}/{Idparticipante}/{IdRuedaNegocio}")
@@ -2777,7 +2779,7 @@ public class Controller {
                 Idioma, IdContacto, IdRueda);
     }
 
-    @GetMapping("/consultapagenda/{Bandera}/{Idioma}/{IdUsuario}/{IdRuedaNegocio}/{IdPerfilRueda}/{IdEstadoCita}/{IdModulo}/{IdCita}")
+    @PostMapping("/consultapagenda/{Bandera}/{Idioma}/{IdUsuario}/{IdRuedaNegocio}/{IdPerfilRueda}/{IdEstadoCita}/{IdModulo}/{IdCita}")
     public List<PAgendaEntity> ConsultaPAgenda(
             @RequestBody PAgendaEntity entidad,
             @PathVariable Integer Bandera,

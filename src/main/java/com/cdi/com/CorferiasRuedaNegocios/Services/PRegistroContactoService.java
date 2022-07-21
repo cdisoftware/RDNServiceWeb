@@ -10,7 +10,7 @@ public interface PRegistroContactoService {
     
     public String ConsultaRegistroContacto(Integer Bandera,String Idioma, Integer IdContacto);
     
-    public String InsertarRegistroContacto(PRegistroContactoModEntity entidad, Integer Bandera, Integer IdUsuario);
+    public String InsertarRegistroContacto(PRegistroContactoModEntity entidad, Integer Bandera, Integer IdUsuario, Integer IdRuedaNegocio);
     
-    public String ActualizarRegistroContacto(PRegistroContactoModEntity entidad, Integer Bandera, Integer IdUsuario);
+    public String ActualizarRegistroContacto(PRegistroContactoModEntity entidad, Integer Bandera, Integer IdUsuario, Integer IdRuedaNegocio);
 }

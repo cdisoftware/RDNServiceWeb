@@ -19,8 +19,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @Configuration
 @PropertySource("dev.properties")
 @Profile("dev")
-/*@PropertySource("prod.properties")
-@Profile("prod")*/
+//@PropertySource("prod.properties")
+//@Profile("prod")
  /*@PropertySource("corferias.properties")
 @Profile("corferias")*/
 public class CorferiasRuedaNegociosApplication {

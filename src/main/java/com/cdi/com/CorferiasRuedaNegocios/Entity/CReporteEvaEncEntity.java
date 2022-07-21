@@ -31,7 +31,7 @@ public class CReporteEvaEncEntity {
     public String TipoId;
 
     @JsonProperty("Nit")
-    public Integer Nit;
+    public String Nit;
 
     @JsonProperty("IdRuedaNegocio")
     public Integer IdRuedaNegocio;
