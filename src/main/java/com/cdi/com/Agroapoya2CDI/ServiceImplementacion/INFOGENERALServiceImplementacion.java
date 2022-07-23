@@ -18,11 +18,15 @@ public class INFOGENERALServiceImplementacion implements INFOGENERALService {
     private EntityManager repositorio;
 
     @Override
-    public List<INFOGENERALEntity> ConsultaInfoGeneral(Integer ID) {
+    public List<INFOGENERALEntity> ConsultaInfoGeneral(Integer ID, Integer subId) {
         try {
             StoredProcedureQuery consinfogen = repositorio.createNamedStoredProcedureQuery("INFOGENERAL");
             consinfogen.registerStoredProcedureParameter("ID", Integer.class, ParameterMode.IN);
+            consinfogen.registerStoredProcedureParameter("subId", Integer.class, ParameterMode.IN);
+
             consinfogen.setParameter("ID", ID);
+            consinfogen.setParameter("subId", subId);
+
             return consinfogen.getResultList();
         } catch (Exception ex) {
 

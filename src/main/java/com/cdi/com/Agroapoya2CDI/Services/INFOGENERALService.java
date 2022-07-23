@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface INFOGENERALService {
     
-    public List<INFOGENERALEntity> ConsultaInfoGeneral(Integer ID);
+    public List<INFOGENERALEntity> ConsultaInfoGeneral(Integer ID, Integer subId);
     
 }

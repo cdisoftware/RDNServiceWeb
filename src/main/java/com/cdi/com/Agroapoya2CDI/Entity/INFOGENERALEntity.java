@@ -19,6 +19,9 @@ import lombok.Data;
 public class INFOGENERALEntity {
 
     @Id
+     @JsonProperty("IdSubInfo")
+    public Integer IdSubInfo;
+    
     @JsonProperty("IdInfoGeneral")
     public Integer IdInfoGeneral;
 

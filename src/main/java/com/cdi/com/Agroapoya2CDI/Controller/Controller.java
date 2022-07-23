@@ -7,6 +7,9 @@ import com.cdi.com.Agroapoya2CDI.Entity.Agro_Select_AGRO_FORMA_PAGOEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.Agro_Select_AGRO_TIPO_CUENTAEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.Agro_Select_AGRO_TIPO_PERSONAEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CGrupoClienteEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.COfertaEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.COfertaImagenModEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.COfertaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CRelacionGrupoClienteEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.INFOGENERALEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.MV_AGRO_VALIDACODIGOEntity;
@@ -15,14 +18,24 @@ import com.cdi.com.Agroapoya2CDI.Entity.MV_INSERT_AGRO_PERSONASVDOSEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.MV_MLTLSTAS_RGSTROEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.SELECT_MNCPIOEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.Select_TipoDocumentoEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.UploadFileResponse;
 import com.cdi.com.Agroapoya2CDI.Entity.mv_pa_INSERT_PROCESO_PAGOEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.cliente_select_ofertasNuevasEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.consultaProductoEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.imagenesOfertaEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.listaCondicionEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.listaEmpaqueEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.listaTamanoEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.mv_CiudadesActivasEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.mv_EnvioCorreoTransprtistaViejeEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.mv_infoBasicaUsuarioEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.mv_listaSectoresConOfertasEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.mv_pa_cliente_select_ofertasNuevasEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.productosEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.selec_agro_url_pagosEntity;
+import com.cdi.com.Agroapoya2CDI.ServiceImplementacion.FileStorageException;
+import com.cdi.com.Agroapoya2CDI.ServiceImplementacion.FileStorageService;
+import com.cdi.com.Agroapoya2CDI.ServiceImplementacion.FileUtils;
 import com.cdi.com.Agroapoya2CDI.Services.AGRO_DIRECCION_POPUPService;
 import com.cdi.com.Agroapoya2CDI.Services.AGRO_VALIDARBTNGRUPALService;
 import com.cdi.com.Agroapoya2CDI.Services.ActualizaLinkService;
@@ -32,6 +45,9 @@ import com.cdi.com.Agroapoya2CDI.Services.Agro_Select_AGRO_TIPO_CUENTAService;
 import com.cdi.com.Agroapoya2CDI.Services.Agro_Select_AGRO_TIPO_PERSONAService;
 import com.cdi.com.Agroapoya2CDI.Services.CALCULADORA_VALORPAGOService;
 import com.cdi.com.Agroapoya2CDI.Services.CGrupoClienteService;
+import com.cdi.com.Agroapoya2CDI.Services.COfertaImagenModService;
+import com.cdi.com.Agroapoya2CDI.Services.COfertaModService;
+import com.cdi.com.Agroapoya2CDI.Services.COfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.CRelacionGrupoClienteService;
 import com.cdi.com.Agroapoya2CDI.Services.INFOGENERALService;
 import com.cdi.com.Agroapoya2CDI.Services.MV_AGRO_VALIDACODIGOService;
@@ -57,10 +73,27 @@ import com.cdi.com.Agroapoya2CDI.Services.MV_INSERT_AGRO_PERSONASVDOSService;
 import com.cdi.com.Agroapoya2CDI.Services.MV_MLTLSTAS_RGSTROService;
 import com.cdi.com.Agroapoya2CDI.Services.SELECT_MNCPIOService;
 import com.cdi.com.Agroapoya2CDI.Services.Select_TipoDocumentoService;
+import com.cdi.com.Agroapoya2CDI.Services.consultaProductoService;
+import com.cdi.com.Agroapoya2CDI.Services.imagenesOfertaService;
+import com.cdi.com.Agroapoya2CDI.Services.listaCondicionService;
+import com.cdi.com.Agroapoya2CDI.Services.listaEmpaqueService;
+import com.cdi.com.Agroapoya2CDI.Services.listaTamanoService;
 import com.cdi.com.Agroapoya2CDI.Services.mv_pa_INSERT_PROCESO_PAGOService;
 import com.cdi.com.Agroapoya2CDI.Services.mv_CNSCTVOCMNDADCNSMOService;
 import com.cdi.com.Agroapoya2CDI.Services.mv_EnvioCorreoTransprtistaViejeService;
 import com.cdi.com.Agroapoya2CDI.Services.mv_insert_AGRO_CLIENTE_2Service;
+import com.cdi.com.Agroapoya2CDI.Services.productosService;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+import org.json.JSONObject;
+import static org.springframework.data.repository.init.ResourceReader.Type.JSON;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping(value = "/", produces = "application/json", method = {RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT, RequestMethod.PATCH})
@@ -146,10 +179,41 @@ public class Controller {
     @Autowired
     mv_EnvioCorreoTransprtistaViejeService servicemv_EnvioCorreoTransprtistaViejeService;
 
-    @GetMapping("/consultainfogeneral/{ID}")
+    @Autowired
+    productosService serviceproductosService;
+
+    @Autowired
+    listaEmpaqueService servicelistaEmpaqueService;
+
+    @Autowired
+    listaCondicionService servicelistaCondicionService;
+
+    @Autowired
+    listaTamanoService servicelistaTamanoService;
+
+    @Autowired
+    private FileStorageService fileStorageService;
+
+    @Autowired
+    imagenesOfertaService serviceimagenesOfertaService;
+
+    @Autowired
+    COfertaModService serviceCOfertaModService;
+
+    @Autowired
+    consultaProductoService serviceconsultaProductoService;
+
+    @Autowired
+    COfertaService serviceCOfertaService;
+    
+    @Autowired
+    COfertaImagenModService serviceCOfertaImagenModService;
+
+    @GetMapping("/consultainfogeneral/{ID}/{subId}")
     public List<INFOGENERALEntity> ConsultaInfoGeneral(
-            @PathVariable Integer ID) {
-        return serviceINFOGENERALService.ConsultaInfoGeneral(ID);
+            @PathVariable Integer ID,
+            @PathVariable Integer subId) {
+        return serviceINFOGENERALService.ConsultaInfoGeneral(ID, subId);
     }
 
     @GetMapping("/consclientselectofert/{US_CLIENTE}")
@@ -330,5 +394,146 @@ public class Controller {
             @PathVariable Integer id_trans,
             @PathVariable Integer consecutico) {
         return servicemv_EnvioCorreoTransprtistaViejeService.ConsultaEnvioCorreoTransptsta(id_trans, consecutico);
+    }
+
+    @GetMapping("/consproductos/{bandera}")
+    public List<productosEntity> ConsultaProducto(
+            @PathVariable Integer bandera) {
+        return serviceproductosService.ConsultaProductos(bandera);
+    }
+
+    @GetMapping("/conslistempaque/{producto}")
+    public List<listaEmpaqueEntity> ConsultaListaEmpaque(
+            @PathVariable Integer producto) {
+        return servicelistaEmpaqueService.ConsultaListaEmpaque(producto);
+    }
+
+    @GetMapping("/conslistcondicion/{producto}")
+    public List<listaCondicionEntity> ConsultaListaCondicion(
+            @PathVariable Integer producto) {
+        return servicelistaCondicionService.ConsultaListaCondicion(producto);
+    }
+
+    @GetMapping("/conslistamano/{producto}")
+    public List<listaTamanoEntity> ConsultaListatamano(
+            @PathVariable Integer producto) {
+        return servicelistaTamanoService.ConsultaListaTamano(producto);
+    }
+
+    @PostMapping("/uploadFile")
+    public String uploadFiles(@RequestParam("file") MultipartFile file) {
+        String fileName = null;
+        try {
+            fileName = fileStorageService.storeFile(file);
+        } catch (FileStorageException ex) {
+            System.out.println("Error " + ex);
+        }
+        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/ImagenesAgroapoya2/")
+                .path(fileName)
+                .toUriString();
+        fileDownloadUri = fileDownloadUri.replace(":8089/ImagenesAgroapoya2", "");
+        try {
+            file.transferTo(new File("C:/inetpub/wwwroot/ImagenesAgroapoya2/" + fileName));
+        } catch (IOException | IllegalStateException ex) {
+            System.out.println("Error " + ex);
+        }
+        UploadFileResponse uploadfile = new UploadFileResponse(fileName, fileDownloadUri,
+                file.getContentType(), file.getSize());
+        uploadfile.getFileDownloadUri();
+        return JSONObject.quote("Archivo Subido Correctamente");
+    }
+
+//    @RequestMapping("/multipleImageUpload")
+//    public List multipleImageUpload(@RequestParam("uploadFiles") MultipartFile[] files){
+//                 System.out.println ("Número de imágenes cargadas:" + files.length);
+//
+//        List<Map<String,Object>> root=new ArrayList<Map<String,Object>>();
+//
+//                 for (archivo MultipartFile: archivos) {// Ciclo guardar archivo
+//
+//                         Map <String, Object> result = new HashMap <String, Object> (); // El resultado de la carga de un archivo
+//                         String result_msg = ""; // Subir información de resultados
+//
+//            if (file.getSize() / 1000 > 100){
+//                                 result_msg = "El tamaño de la imagen no puede exceder los 100 KB";
+//            }
+//            else{
+//                                 // Determinar el formato del archivo de carga
+//                String fileType = file.getContentType();
+//                if (fileType.equals("image/jpeg") || fileType.equals("image/png") || fileType.equals("image/jpeg")) {
+//                                         // Ruta absoluta del archivo de destino para cargar
+//                    final String localPath="F:\\IDEAProject\\imageupload\\target\\classes\\static\\img";
+//                                         // Nombre del archivo guardado después de la carga (es necesario evitar la sobrescritura de archivos causada por una imagen duplicada)
+//                                         // Obtener el nombre del archivo
+//                    String fileName = file.getOriginalFilename();
+//                                         // Obtener el nombre del sufijo del archivo
+//                    String suffixName = fileName.substring(fileName.lastIndexOf("."));
+//                                         // Regenera el nombre del archivo
+//                    fileName = UUID.randomUUID()+suffixName;
+//                    if (FileUtils.upload(file, localPath, fileName)) {
+//                                                 // La ruta relativa del almacenamiento de archivos (generalmente almacenada en la base de datos para el src de la etiqueta img)
+//                        String relativePath="img/"+fileName;
+//                                                 result.put ("relativePath", relativePath); // El front end juzga si la carga es exitosa de acuerdo con la existencia de este campo
+//                                                 result_msg = "Imagen cargada exitosamente";
+//                    }
+//                    else{
+//                                                 result_msg = "Error al cargar la imagen";
+//                    }
+//                }
+//                else{
+//                                         result_msg = "El formato de la imagen es incorrecto";
+//                }
+//            }
+//            result.put("result_msg",result_msg);
+//            root.add(result);
+//        }
+//        String root_json=JSON.toJSONString(root);
+//        System.out.println(root_json);
+//        return root;
+//        
+//        
+//    }
+    @GetMapping("/consimagenoferta/{Bandera}/{cd_cnsctivo}")
+    public List<imagenesOfertaEntity> ConsultaImageOferta(
+            @PathVariable Integer Bandera,
+            @PathVariable Integer cd_cnsctivo) {
+        return serviceimagenesOfertaService.ConsultaImageOferta(Bandera, cd_cnsctivo);
+    }
+
+    @PostMapping("/insertcofertamod/{bandera}/{ID_EMPAQUE}")
+    public String InsertaCOfertaMod(
+            @RequestBody COfertaModEntity entidad,
+            @PathVariable Integer bandera,
+            @PathVariable String ID_EMPAQUE) {
+        return serviceCOfertaModService.InsertaCOfertaMod(entidad, bandera, ID_EMPAQUE);
+    }
+
+    @PutMapping("/actcofertamod/{bandera}/{ID_EMPAQUE}")
+    public String ActualizaCOfertaMod(
+            @RequestBody COfertaModEntity entidad,
+            @PathVariable Integer bandera,
+            @PathVariable String ID_EMPAQUE) {
+        return serviceCOfertaModService.ActualizaCOfertaMod(entidad, bandera, ID_EMPAQUE);
+    }
+
+    @GetMapping("/conscproducto/{cd_consecutivo}")
+    public List<consultaProductoEntity> ConsultacProducto(
+            @PathVariable Integer cd_consecutivo) {
+        return serviceconsultaProductoService.ConsultaProducto(cd_consecutivo);
+    }
+
+    @GetMapping("/conscoferta/{bandera}/{CD_CNSCTVO}")
+    public List<COfertaEntity> ConsultaCOferta(
+            @PathVariable Integer bandera,
+            @PathVariable String CD_CNSCTVO) {
+        return serviceCOfertaService.ConsultaCOferta(bandera, CD_CNSCTVO);
+    }
+    
+     @PostMapping("/actcofertaimagenmod/{bandera}")
+    public String ActualizaCOfertaImagenMod(
+            @RequestBody COfertaImagenModEntity entidad,
+            @PathVariable Integer bandera) {
+        return serviceCOfertaImagenModService.ActualizaCOfertaImagenMod(entidad, bandera);
     }
 }
