@@ -19,87 +19,87 @@ public class CRepRespuestasGeneralEntity {
 
     @Id
     @JsonProperty("idcontacto")
-    private Integer idcontacto;
+    public Integer idcontacto;
 
     @JsonProperty("IdEvaluacion")
-    private Integer IdEvaluacion;
+    public Integer IdEvaluacion;
 
     @JsonProperty("IdParticipante")
-    private Integer IdParticipante;
+    public Integer IdParticipante;
 
     @JsonProperty("Participante")
-    private String Participante;
+    public String Participante;
 
     @JsonProperty("TipoIdContacto")
-    private String TipoIdContacto;
+    public String TipoIdContacto;
 
     @JsonProperty("NroIdContacto")
-    private Integer NroIdContacto;
+    public String NroIdContacto;
 
     @JsonProperty("Contacto")
-    private String Contacto;
+    public String Contacto;
 
     @JsonProperty("Email")
-    private String Email;
+    public String Email;
 
     @JsonProperty("RuedadeNegocios")
-    private String Ruedadenegocios;
+    public String Ruedadenegocios;
 
     @JsonProperty("Estado")
-    private String Estado;
+    public String Estado;
 
     @JsonProperty("FechaActivacion")
-    private String FechaActivacion;
+    public String FechaActivacion;
 
     @JsonProperty("FechaInactiva")
-    private String FechaInactiva;
+    public String FechaInactiva;
 
     @JsonProperty("Perfil")
-    private String Perfil;
+    public String Perfil;
 
     @JsonProperty("IdTipoEvaEnc")
-    private Integer IdTipoEvaEnc;
+    public Integer IdTipoEvaEnc;
 
     @JsonProperty("TipoEvaluacion")
-    private String TipoEvaluacion;
+    public String TipoEvaluacion;
 
     @JsonProperty("FechaPublicacion")
-    private String FechaPublicacion;
+    public String FechaPublicacion;
 
     @JsonProperty("Codigo")
-    private String Codigo;
+    public String Codigo;
 
     @JsonProperty("RegistroRespuesta")
-    private String RegistroRespuesta;
+    public String RegistroRespuesta;
     
      @JsonProperty("Pregunta1")
-    private String Pregunta1;
+    public String Pregunta1;
      
      @JsonProperty("Pregunta2")
-    private String Pregunta2;
+    public String Pregunta2;
      
      @JsonProperty("Pregunta3")
-    private String Pregunta3;
+    public String Pregunta3;
      
      @JsonProperty("Pregunta4")
-    private String Pregunta4;
+    public String Pregunta4;
      
      @JsonProperty("Pregunta5")
-    private String Pregunta5;
+    public String Pregunta5;
      
      @JsonProperty("Pregunta6")
-    private String Pregunta6;
+    public String Pregunta6;
      
      @JsonProperty("Pregunta7")
-    private String Pregunta7;
+    public String Pregunta7;
      
      @JsonProperty("Pregunta8")
-    private String Pregunta8;
+    public String Pregunta8;
      
      @JsonProperty("Pregunta9")
-    private String Pregunta9;
+    public String Pregunta9;
      
      @JsonProperty("Pregunta10")
-    private String Pregunta10;
+    public String Pregunta10;
 
 }
