@@ -22,7 +22,7 @@ public class PSeguimientoCitaModServiceImplementacion implements PSeguimientoCit
     private LogConsolaService service;
 
     @Override
-    public String InsertaPSegCita(PSeguimientoCitaModEntity entidad, Integer bandera) {
+    public String InsertaPSegCita(PSeguimientoCitaModEntity entidad, Integer bandera, String Idioma) {
         try {
             StoredProcedureQuery insertpsegcita = repositorio.createNamedStoredProcedureQuery("paPSeguimientoCitaMod");
             insertpsegcita.registerStoredProcedureParameter("bandera", Integer.class, ParameterMode.IN);
@@ -34,6 +34,8 @@ public class PSeguimientoCitaModServiceImplementacion implements PSeguimientoCit
             insertpsegcita.registerStoredProcedureParameter("Valor3a6meses", Float.class, ParameterMode.IN);
             insertpsegcita.registerStoredProcedureParameter("Valor6a9meses", Float.class, ParameterMode.IN);
             insertpsegcita.registerStoredProcedureParameter("Valor9a12meses", Float.class, ParameterMode.IN);
+            insertpsegcita.registerStoredProcedureParameter("Idioma", String.class, ParameterMode.IN);
+
             insertpsegcita.setParameter("bandera", bandera);
             insertpsegcita.setParameter("IdRuedaNegocio", entidad.getIdRuedaNegocio());
             insertpsegcita.setParameter("IdAgenda", entidad.getIdAgenda());
@@ -43,6 +45,8 @@ public class PSeguimientoCitaModServiceImplementacion implements PSeguimientoCit
             insertpsegcita.setParameter("Valor3a6meses", entidad.getValor3a6meses());
             insertpsegcita.setParameter("Valor6a9meses", entidad.getValor6a9meses());
             insertpsegcita.setParameter("Valor9a12meses", entidad.getValor9a12meses());
+            insertpsegcita.setParameter("Idioma", Idioma);
+
             insertpsegcita.execute();
             return JSONObject.quote((String) insertpsegcita.getOutputParameterValue("Respuesta"));
         } catch (Exception ex) {
@@ -57,7 +61,7 @@ public class PSeguimientoCitaModServiceImplementacion implements PSeguimientoCit
     }
 
     @Override
-    public String ActualizaPSegCita(PSeguimientoCitaModEntity entidad, Integer bandera) {
+    public String ActualizaPSegCita(PSeguimientoCitaModEntity entidad, Integer bandera, String Idioma) {
         try {
             StoredProcedureQuery actpsegcita = repositorio.createNamedStoredProcedureQuery("paPSeguimientoCitaMod");
             actpsegcita.registerStoredProcedureParameter("bandera", Integer.class, ParameterMode.IN);
@@ -65,10 +69,12 @@ public class PSeguimientoCitaModServiceImplementacion implements PSeguimientoCit
             actpsegcita.registerStoredProcedureParameter("IdAgenda", Integer.class, ParameterMode.IN);
             actpsegcita.registerStoredProcedureParameter("Producto", String.class, ParameterMode.IN);
             actpsegcita.registerStoredProcedureParameter("Interesado", Integer.class, ParameterMode.IN);
-            actpsegcita.registerStoredProcedureParameter("valorSpot", Integer.class, ParameterMode.IN);
-            actpsegcita.registerStoredProcedureParameter("Valor3a6meses", Integer.class, ParameterMode.IN);
-            actpsegcita.registerStoredProcedureParameter("Valor6a9meses", Integer.class, ParameterMode.IN);
-            actpsegcita.registerStoredProcedureParameter("Valor9a12meses", Integer.class, ParameterMode.IN);
+            actpsegcita.registerStoredProcedureParameter("valorSpot", Float.class, ParameterMode.IN);
+            actpsegcita.registerStoredProcedureParameter("Valor3a6meses", Float.class, ParameterMode.IN);
+            actpsegcita.registerStoredProcedureParameter("Valor6a9meses", Float.class, ParameterMode.IN);
+            actpsegcita.registerStoredProcedureParameter("Valor9a12meses", Float.class, ParameterMode.IN);
+            actpsegcita.registerStoredProcedureParameter("Idioma", String.class, ParameterMode.IN);
+
             actpsegcita.setParameter("bandera", bandera);
             actpsegcita.setParameter("IdRuedaNegocio", entidad.getIdRuedaNegocio());
             actpsegcita.setParameter("IdAgenda", entidad.getIdAgenda());
@@ -78,6 +84,8 @@ public class PSeguimientoCitaModServiceImplementacion implements PSeguimientoCit
             actpsegcita.setParameter("Valor3a6meses", entidad.getValor3a6meses());
             actpsegcita.setParameter("Valor6a9meses", entidad.getValor6a9meses());
             actpsegcita.setParameter("Valor9a12meses", entidad.getValor9a12meses());
+            actpsegcita.setParameter("Idioma", Idioma);
+
             actpsegcita.execute();
             return JSONObject.quote((String) actpsegcita.getOutputParameterValue("Respuesta"));
         } catch (Exception ex) {

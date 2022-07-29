@@ -3886,18 +3886,20 @@ public class Controller {
         return servicePSeguimientoCitaService.ConsultaPSegCita(bandera, IdRuedaNegocio, FechaCita, IdContacto);
     }
 
-    @PostMapping("/insertpsegcita/{bandera}")
+    @PostMapping("/insertpsegcita/{bandera}/{Idioma}")
     public String InsertaPSegCita(
             @RequestBody PSeguimientoCitaModEntity entidad,
-            @PathVariable Integer bandera) {
-        return servicePSeguimientoCitaModService.InsertaPSegCita(entidad, bandera);
+            @PathVariable Integer bandera,
+            @PathVariable String Idioma) {
+        return servicePSeguimientoCitaModService.InsertaPSegCita(entidad, bandera, Idioma);
     }
 
-    @PutMapping("/actualizapsegcita/{bandera}")
+    @PutMapping("/actualizapsegcita/{bandera}/{Idioma}")
     public String ActualizaPSegCita(
             @RequestBody PSeguimientoCitaModEntity entidad,
-            @PathVariable Integer bandera) {
-        return servicePSeguimientoCitaModService.ActualizaPSegCita(entidad, bandera);
+            @PathVariable Integer bandera,
+            @PathVariable String Idioma) {
+        return servicePSeguimientoCitaModService.ActualizaPSegCita(entidad, bandera, Idioma);
     }
 
     @GetMapping("/conspvalidaeval/{IdRueda}/{IdPerfil}")
