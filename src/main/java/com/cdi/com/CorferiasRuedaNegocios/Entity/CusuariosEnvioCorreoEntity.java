@@ -19,14 +19,14 @@ public class CusuariosEnvioCorreoEntity {
 
     @Id
     @JsonProperty("Id")
-    private String Id;
+    public Integer Id;
 
     @JsonProperty("CorreoRemitente")
-    private String CorreoRemitente;
+    public String CorreoRemitente;
 
     @JsonProperty("ServicePath")
-    private String ServicePath;
+    public String ServicePath;
 
     @JsonProperty("Clave")
-    private String Clave;
+    public String Clave;
 }

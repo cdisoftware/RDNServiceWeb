@@ -24,29 +24,29 @@ public class CMasivoEnvioCorreoEntity {
 
     @Id
     @JsonProperty("Id")
-    private Integer Id;
+    public Integer Id;
 
     @JsonProperty("IdContacto")
-    private Integer IdContacto;
+    public Integer IdContacto;
 
     @JsonProperty("IdPlantilla")
-    private Integer IdPlantilla;
+    public Integer IdPlantilla;
 
     @JsonProperty("Asunto")
-    private String Asunto;
+    public String Asunto;
 
     @JsonProperty("Email")
-    private String Email;
+    public String Email;
 
     @JsonProperty("Html")
-    private String Html;
+    public String Html;
 
     @JsonProperty("ImagenEnc")
-    private String ImagenEnc;
+    public String ImagenEnc;
 
     @JsonProperty("ImagenPie")
-    private String ImagenPie;
+    public String ImagenPie;
 
     @JsonProperty("IdCodigoProceso")
-    private Integer IdCodigoProceso;
+    public Integer IdCodigoProceso;
 }

@@ -59,6 +59,7 @@ public class MasivoEnvioMailServiceImplementacion implements EnvioMailService {
     String contenido;
     String imagenencabezado;
     String imagenpiepagina;
+    Integer IdPlantilla;
 
     @Override
     public String EnviarCorreo(Integer bandera, String Idioma, Integer IdEnvioCorreo) {
@@ -74,6 +75,7 @@ public class MasivoEnvioMailServiceImplementacion implements EnvioMailService {
             List<CMasivoEnvioCorreoEntity> cuerpocorreo = cuerpo.getResultList();
             String[] rem = new String[cuerpocorreo.size()];
             for (int i = 0; i < cuerpocorreo.size(); i++) {
+                IdPlantilla = cuerpocorreo.get(i).getIdPlantilla();
                 imagenencabezado = rem[i] = cuerpocorreo.get(i).getImagenEnc();
                 asunto = rem[i] = cuerpocorreo.get(i).getAsunto();
                 destinatario = rem[i] = cuerpocorreo.get(i).getEmail();
@@ -84,11 +86,11 @@ public class MasivoEnvioMailServiceImplementacion implements EnvioMailService {
                 context.setVariable("asunto", asunto);
                 context.setVariable("contenido", contenido);
                 context.setVariable("imagenpiepagina", imagenpiepagina);
+                String content = templateEngine.process("EnvioCorreos", context);
+                mapMessage.put("subject", asunto);
+                mapMessage.put("content", content);
+                sendMessage(mapMessage, bandera, Idioma, IdPlantilla);
             }
-            String content = templateEngine.process("EnvioCorreos", context);
-            mapMessage.put("subject", asunto);
-            mapMessage.put("content", content);
-            sendMessage(mapMessage, bandera, Idioma);
             Respuesta = JSONObject.quote("Correo Enviado Correctamente");
         } catch (Exception e) {
             LogConsolaEntity entidadLog = new LogConsolaEntity();
@@ -103,7 +105,7 @@ public class MasivoEnvioMailServiceImplementacion implements EnvioMailService {
         return Respuesta;
     }
 
-    public void sendMessage(Map<String, Object> mapMessage, Integer bandera, String Idioma) throws Exception {
+    public void sendMessage(Map<String, Object> mapMessage, Integer bandera, String Idioma, Integer IdPlantilla) throws Exception {
 
         String correoremitente = null;
         String servicePath = null;
@@ -131,12 +133,11 @@ public class MasivoEnvioMailServiceImplementacion implements EnvioMailService {
             Transport ts = session.getTransport();
             ts.connect(servicePath, correoremitente, contrasena);
             // Crear correo electrónico
-            Message message = createMixedMail(session, mapMessage, correoremitente, bandera, Idioma);
+            Message message = createMixedMail(session, mapMessage, correoremitente, bandera, Idioma, IdPlantilla);
             //enviar correo electrónico 
             ts.sendMessage(message, message.getAllRecipients());
             ts.close();
         } catch (Exception e) {
-
             LogConsolaEntity entidadLog = new LogConsolaEntity();
             entidadLog.setCodigo(String.valueOf(e.hashCode()));
             entidadLog.setMensaje(e.getMessage());
@@ -149,7 +150,7 @@ public class MasivoEnvioMailServiceImplementacion implements EnvioMailService {
     }
 
     public MimeMessage createMixedMail(Session session, Map<String, Object> mapMessage, String correoremitente,
-            Integer bandera, String Idioma) throws Exception {
+            Integer bandera, String Idioma, Integer IdPlantilla) throws Exception {
 
         MimeMessage message = new MimeMessage(session);
 
@@ -183,7 +184,6 @@ public class MasivoEnvioMailServiceImplementacion implements EnvioMailService {
             }
 
             Integer idplantilla = cuerpocorreo.get(0).getIdPlantilla();
-
             message.setSubject(mapMessage.get("subject").toString());
 
             StoredProcedureQuery adjuntos = repositorio.createNamedStoredProcedureQuery("paCRelDocEnvioCorreo");
@@ -191,7 +191,7 @@ public class MasivoEnvioMailServiceImplementacion implements EnvioMailService {
             adjuntos.registerStoredProcedureParameter("IdPlantilla", Integer.class, ParameterMode.IN);
             adjuntos.registerStoredProcedureParameter("Idioma", String.class, ParameterMode.IN);
             adjuntos.setParameter("Bandera", bandera);
-            adjuntos.setParameter("IdPlantilla", idplantilla);
+            adjuntos.setParameter("IdPlantilla", IdPlantilla);
             adjuntos.setParameter("Idioma", Idioma);
             adjuntos.getResultList();
 
