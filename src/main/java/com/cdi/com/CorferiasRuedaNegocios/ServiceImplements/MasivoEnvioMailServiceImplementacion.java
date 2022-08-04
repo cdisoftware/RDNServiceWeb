@@ -81,8 +81,7 @@ public class MasivoEnvioMailServiceImplementacion implements EnvioMailService {
                 asunto = rem[i] = cuerpocorreo.get(i).getAsunto();
                 destinatario = rem[i] = cuerpocorreo.get(i).getEmail();
                 contenido = rem[i] = cuerpocorreo.get(i).getHtml();
-                imagenpiepagina = rem[i] = cuerpocorreo.get(i).getImagenPie();
-                
+                imagenpiepagina = rem[i] = cuerpocorreo.get(i).getImagenPie();                
                 context.setVariable("imagenencabezado", imagenencabezado);
                 context.setVariable("destinatario", destinatario);
                 context.setVariable("asunto", asunto);
@@ -160,33 +159,9 @@ public class MasivoEnvioMailServiceImplementacion implements EnvioMailService {
         try {
 
             // Establecer la información básica del correo
-            message.setFrom(new InternetAddress(correoremitente));
-
-            StoredProcedureQuery cuerpo = repositorio.createNamedStoredProcedureQuery("paCEnvioRealCorreo_Consulta");
-            cuerpo.registerStoredProcedureParameter("CodigoProceso", Integer.class, ParameterMode.IN);
-            cuerpo.setParameter("CodigoProceso", codigoproceso);
-            cuerpo.getResultList();
-            List<CMasivoEnvioCorreoEntity> cuerpocorreo = cuerpo.getResultList();
-
-            String[] r = new String[cuerpocorreo.size()];
-            String[] ArregloDestinatarios = new String[cuerpocorreo.size()];
-
-            for (int i = 0; i < cuerpocorreo.size(); i++) {
-                destinatario = r[i] = cuerpocorreo.get(i).getEmail();
-                ArregloDestinatarios[i] = destinatario;
-            }
-
-            Address[] tos = new InternetAddress[ArregloDestinatarios.length];
-            if (ArregloDestinatarios != null && ArregloDestinatarios.length > 0) {
-                for (int j = 0; j < ArregloDestinatarios.length; j++) {
-                    tos[j] = new InternetAddress(ArregloDestinatarios[j]);
-                }
-                message.setRecipients(Message.RecipientType.TO, tos);
-            } else {
-                tos[0] = new InternetAddress(destinatario);
-            }
-
-            Integer idplantilla = cuerpocorreo.get(0).getIdPlantilla();
+            message.setFrom(new InternetAddress(correoremitente));            
+            message.setRecipients(Message.RecipientType.TO, destinatario);
+            //Integer idplantilla = cuerpocorreo.get(0).getIdPlantilla();
             message.setSubject(mapMessage.get("subject").toString());
 
             StoredProcedureQuery adjuntos = repositorio.createNamedStoredProcedureQuery("paCRelDocEnvioCorreo");
