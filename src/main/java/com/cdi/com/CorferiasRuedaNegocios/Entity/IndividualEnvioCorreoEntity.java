@@ -24,17 +24,17 @@ import lombok.Data;
 public class IndividualEnvioCorreoEntity {
 
     @Id
+    @JsonProperty("Email")
+    public String Email;
+
     @JsonProperty("IdContacto")
     public Integer IdContacto;
-    
+
     @JsonProperty("IdPlantilla")
     public Integer IdPlantilla;
 
     @JsonProperty("Asunto")
     public String Asunto;
-
-    @JsonProperty("Email")
-    public String Email;
 
     @JsonProperty("Html")
     public String Html;
@@ -45,6 +45,6 @@ public class IndividualEnvioCorreoEntity {
     @JsonProperty("ImagenPie")
     public String ImagenPie;
 
-   // @JsonProperty("EmailOpc")
-   // public String EmailOpc;
+    @JsonProperty("EmailOpc")
+    public String EmailOpc;
 }

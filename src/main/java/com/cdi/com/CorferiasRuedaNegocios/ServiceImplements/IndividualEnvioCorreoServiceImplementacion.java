@@ -86,24 +86,23 @@ public class IndividualEnvioCorreoServiceImplementacion implements IndividualEnv
 
             Context context = new Context();
             String[] rem = new String[cuerpocorreo.size()];
-            //for (int i = 0; i < cuerpocorreo.size(); i++) {
-            imagenencabezado = cuerpocorreo.get(0).getImagenEnc();
-            asunto = cuerpocorreo.get(0).getAsunto();
-            destinatario = cuerpocorreo.get(0).getEmail();
-            contenido = cuerpocorreo.get(0).getHtml();
-            imagenpiepagina = cuerpocorreo.get(0).getImagenPie();
+            for (int i = 0; i < cuerpocorreo.size(); i++) {
+                imagenencabezado = rem[i] = cuerpocorreo.get(i).getImagenEnc();
+                asunto = rem[i] = cuerpocorreo.get(i).getAsunto();
+                destinatario = rem[i] = cuerpocorreo.get(i).getEmail();
+                contenido = rem[i] = cuerpocorreo.get(i).getHtml();
+                imagenpiepagina = rem[i] = cuerpocorreo.get(i).getImagenPie();
 
-            context.setVariable("imagenencabezado", imagenencabezado);
-            context.setVariable("destinatario", destinatario);
-            context.setVariable("asunto", asunto);
-            context.setVariable("contenido", contenido);
-            context.setVariable("imagenpiepagina", imagenpiepagina);
-
+                context.setVariable("imagenencabezado", imagenencabezado);
+                context.setVariable("destinatario", destinatario);
+                context.setVariable("asunto", asunto);
+                context.setVariable("contenido", contenido);
+                context.setVariable("imagenpiepagina", imagenpiepagina);
+            }
             String content = templateEngine.process("EnvioCorreos", context);
             mapMessage.put("subject", asunto);
             mapMessage.put("content", content);
             sendMessage(mapMessage, bandera, IdContacto, IdRueda, IdAgenda, IdModulo, IdEstado, Idioma);
-            //}
             Respuesta = JSONObject.quote("Correo Enviado Correctamente");
 
         } catch (Exception e) {
@@ -124,19 +123,19 @@ public class IndividualEnvioCorreoServiceImplementacion implements IndividualEnv
 
         try {
 
-            String correoremitente;
-            String servicePath;
-            String contrasena;
+            String correoremitente = null;
+            String servicePath = null;
+            String contrasena = null;
 
             StoredProcedureQuery remitente = repositorio.createNamedStoredProcedureQuery("paCRemitenteCorreo");
             remitente.getResultList();
             List<CusuariosEnvioCorreoEntity> remite = remitente.getResultList();
             String[] rem = new String[remite.size()];
-            //for (int i = 0; i < remite.size(); i++) {
-            correoremitente = rem[0] = remite.get(0).getCorreoRemitente();
-            servicePath = rem[0] = remite.get(0).getServicePath();
-            contrasena = rem[0] = clsEncriptacion.Desencriptar(remite.get(0).getClave());
-            //}
+            for (int i = 0; i < remite.size(); i++) {
+                correoremitente = rem[i] = remite.get(i).getCorreoRemitente();
+                servicePath = rem[i] = remite.get(i).getServicePath();
+                contrasena = rem[i] = clsEncriptacion.Desencriptar(remite.get(i).getClave());
+            }
             Properties props = new Properties();
             props.setProperty("mail.transport.protocol", "smtp"); // usa el protocolo pop3
             props.setProperty("mail.host", servicePath); // servidor pop3
@@ -195,10 +194,10 @@ public class IndividualEnvioCorreoServiceImplementacion implements IndividualEnv
             String[] r = new String[cuerpocorreo.size()];
             String[] ArregloDestinatarios = new String[cuerpocorreo.size()];
 
-            //for (int i = 0; i < cuerpocorreo.size(); i++) {
-            destinatario = cuerpocorreo.get(0).getEmail();
-            ArregloDestinatarios[0] = destinatario;
-            //}
+            for (int i = 0; i < cuerpocorreo.size(); i++) {
+                destinatario = r[i] = cuerpocorreo.get(i).getEmail();
+                ArregloDestinatarios[i] = destinatario;
+            }
             Integer idplantilla = cuerpocorreo.get(0).getIdPlantilla();
             Address[] tos = new InternetAddress[ArregloDestinatarios.length];
             if (ArregloDestinatarios != null && ArregloDestinatarios.length > 0) {
