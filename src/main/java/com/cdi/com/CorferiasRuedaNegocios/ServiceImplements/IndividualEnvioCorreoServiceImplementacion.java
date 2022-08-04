@@ -86,6 +86,7 @@ public class IndividualEnvioCorreoServiceImplementacion implements IndividualEnv
 
             Context context = new Context();
             String[] rem = new String[cuerpocorreo.size()];
+            //for (int i = 0; i < cuerpocorreo.size(); i++) {
             imagenencabezado = cuerpocorreo.get(0).getImagenEnc();
             asunto = cuerpocorreo.get(0).getAsunto();
             destinatario = cuerpocorreo.get(0).getEmail();
@@ -102,6 +103,7 @@ public class IndividualEnvioCorreoServiceImplementacion implements IndividualEnv
             mapMessage.put("subject", asunto);
             mapMessage.put("content", content);
             sendMessage(mapMessage, bandera, IdContacto, IdRueda, IdAgenda, IdModulo, IdEstado, Idioma);
+            //}
             Respuesta = JSONObject.quote("Correo Enviado Correctamente");
 
         } catch (Exception e) {
@@ -130,11 +132,11 @@ public class IndividualEnvioCorreoServiceImplementacion implements IndividualEnv
             remitente.getResultList();
             List<CusuariosEnvioCorreoEntity> remite = remitente.getResultList();
             String[] rem = new String[remite.size()];
-
+            //for (int i = 0; i < remite.size(); i++) {
             correoremitente = rem[0] = remite.get(0).getCorreoRemitente();
             servicePath = rem[0] = remite.get(0).getServicePath();
             contrasena = rem[0] = clsEncriptacion.Desencriptar(remite.get(0).getClave());
-
+            //}
             Properties props = new Properties();
             props.setProperty("mail.transport.protocol", "smtp"); // usa el protocolo pop3
             props.setProperty("mail.host", servicePath); // servidor pop3
@@ -169,23 +171,17 @@ public class IndividualEnvioCorreoServiceImplementacion implements IndividualEnv
         MimeMessage message = new MimeMessage(session);
 
         try {
-
+            // Establecer la información básica del correo
             message.setFrom(new InternetAddress(correoremitente));
+
             StoredProcedureQuery rolconsola = repositorio.createNamedStoredProcedureQuery("paCEnvioRealCorreo_Individual");
-            rolconsola.registerStoredProcedureParameter("bandera", Integer.class,
-                    ParameterMode.IN);
-            rolconsola.registerStoredProcedureParameter("IdContacto", Integer.class,
-                    ParameterMode.IN);
-            rolconsola.registerStoredProcedureParameter("IdRueda", Integer.class,
-                    ParameterMode.IN);
-            rolconsola.registerStoredProcedureParameter("IdAgenda", Integer.class,
-                    ParameterMode.IN);
-            rolconsola.registerStoredProcedureParameter("IdModulo", Integer.class,
-                    ParameterMode.IN);
-            rolconsola.registerStoredProcedureParameter("IdEstado", Integer.class,
-                    ParameterMode.IN);
-            rolconsola.registerStoredProcedureParameter("Idioma", String.class,
-                    ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("bandera", Integer.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("IdContacto", Integer.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("IdRueda", Integer.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("IdAgenda", Integer.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("IdModulo", Integer.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("IdEstado", Integer.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("Idioma", String.class, ParameterMode.IN);
             rolconsola.setParameter("bandera", bandera);
             rolconsola.setParameter("IdContacto", IdContacto);
             rolconsola.setParameter("IdRueda", IdRueda);
@@ -199,10 +195,11 @@ public class IndividualEnvioCorreoServiceImplementacion implements IndividualEnv
             String[] r = new String[cuerpocorreo.size()];
             String[] ArregloDestinatarios = new String[cuerpocorreo.size()];
 
+            //for (int i = 0; i < cuerpocorreo.size(); i++) {
             destinatario = cuerpocorreo.get(0).getEmail();
             ArregloDestinatarios[0] = destinatario;
+            //}
             Integer idplantilla = cuerpocorreo.get(0).getIdPlantilla();
-
             Address[] tos = new InternetAddress[ArregloDestinatarios.length];
             if (ArregloDestinatarios != null && ArregloDestinatarios.length > 0) {
                 for (int j = 0; j < ArregloDestinatarios.length; j++) {
@@ -212,6 +209,7 @@ public class IndividualEnvioCorreoServiceImplementacion implements IndividualEnv
             } else {
                 tos[0] = new InternetAddress(destinatario);
             }
+
             message.setSubject(mapMessage.get("subject").toString());
 
             StoredProcedureQuery adjuntos = repositorio.createNamedStoredProcedureQuery("paCRelDocEnvioCorreo");

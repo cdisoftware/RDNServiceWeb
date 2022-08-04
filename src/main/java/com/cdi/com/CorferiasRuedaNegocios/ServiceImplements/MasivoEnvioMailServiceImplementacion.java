@@ -73,6 +73,7 @@ public class MasivoEnvioMailServiceImplementacion implements EnvioMailService {
             cuerpo.setParameter("CodigoProceso", IdEnvioCorreo);
             cuerpo.getResultList();
             List<CMasivoEnvioCorreoEntity> cuerpocorreo = cuerpo.getResultList();
+            
             String[] rem = new String[cuerpocorreo.size()];
             for (int i = 0; i < cuerpocorreo.size(); i++) {
                 IdPlantilla = cuerpocorreo.get(i).getIdPlantilla();
@@ -81,11 +82,13 @@ public class MasivoEnvioMailServiceImplementacion implements EnvioMailService {
                 destinatario = rem[i] = cuerpocorreo.get(i).getEmail();
                 contenido = rem[i] = cuerpocorreo.get(i).getHtml();
                 imagenpiepagina = rem[i] = cuerpocorreo.get(i).getImagenPie();
+                
                 context.setVariable("imagenencabezado", imagenencabezado);
                 context.setVariable("destinatario", destinatario);
                 context.setVariable("asunto", asunto);
                 context.setVariable("contenido", contenido);
                 context.setVariable("imagenpiepagina", imagenpiepagina);
+                
                 String content = templateEngine.process("EnvioCorreos", context);
                 mapMessage.put("subject", asunto);
                 mapMessage.put("content", content);
