@@ -96,6 +96,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Entity.CRepRespuestasGeneralEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CReporteAccesoSalasEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CReporteAuditoriaEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CReporteEvaEncEntity;
+import com.cdi.com.CorferiasRuedaNegocios.Entity.CReporteEvaProyeccionEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CReporteParticipanteEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CReporteSectorCatSubEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.CRuedaNegocioEntity;
@@ -304,6 +305,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Services.CRepRespuestasService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CReporteAccesoSalasService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CReporteAuditoriaService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CReporteEvaEncService;
+import com.cdi.com.CorferiasRuedaNegocios.Services.CReporteEvaProyeccionService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CReporteParticipanteService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CReporteSectorCatSubService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.CRuedaNegocioModService;
@@ -1112,6 +1114,9 @@ public class Controller {
 
     @Autowired
     PValidaPaisRdnService servicePValidaPaisRdnService;
+
+    @Autowired
+    CReporteEvaProyeccionService serviceCReporteEvaProyeccionService;
 
     @GetMapping("/consultarpaises")
     public List<TtPaisEntity> ConsultarPaises() {
@@ -3970,6 +3975,15 @@ public class Controller {
             @PathVariable Integer IdContacto,
             @PathVariable Integer IdPerfil) {
         return servicePValidaPaisRdnService.ConsultaPaisRdn(Bandera, IdRdn, IdContacto, IdPerfil);
+    }
+
+    @GetMapping("/conscreportevaproy/{Bandera}/{IdRuedaNegocio}/{Nombreempresa}/{Nit}")
+    public List<CReporteEvaProyeccionEntity> ConsultaCReporteEvaProyeccion(
+            @PathVariable Integer Bandera,
+            @PathVariable Integer IdRuedaNegocio,
+            @PathVariable String Nombreempresa,
+            @PathVariable String Nit) {
+        return serviceCReporteEvaProyeccionService.ConsultaCReporteEvaProyeccion(Bandera, IdRuedaNegocio, Nombreempresa, Nit);
     }
 
 }
