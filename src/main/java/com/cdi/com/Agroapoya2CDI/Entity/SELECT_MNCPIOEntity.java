@@ -11,8 +11,8 @@ import lombok.Data;
 @Data
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
-            name = "SELECT_MNCPIO",
-            procedureName = "SELECT_MNCPIO",
+            name = "paT_select_Mncpio",
+            procedureName = "paT_select_Mncpio",
             resultClasses = SELECT_MNCPIOEntity.class)
 })
 public class SELECT_MNCPIOEntity {

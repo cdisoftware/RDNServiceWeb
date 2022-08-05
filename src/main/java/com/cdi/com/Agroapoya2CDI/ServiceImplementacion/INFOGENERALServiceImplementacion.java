@@ -20,7 +20,7 @@ public class INFOGENERALServiceImplementacion implements INFOGENERALService {
     @Override
     public List<INFOGENERALEntity> ConsultaInfoGeneral(Integer ID, Integer subId) {
         try {
-            StoredProcedureQuery consinfogen = repositorio.createNamedStoredProcedureQuery("INFOGENERAL");
+            StoredProcedureQuery consinfogen = repositorio.createNamedStoredProcedureQuery("paC_ayudasGeneral");
             consinfogen.registerStoredProcedureParameter("ID", Integer.class, ParameterMode.IN);
             consinfogen.registerStoredProcedureParameter("subId", Integer.class, ParameterMode.IN);
 

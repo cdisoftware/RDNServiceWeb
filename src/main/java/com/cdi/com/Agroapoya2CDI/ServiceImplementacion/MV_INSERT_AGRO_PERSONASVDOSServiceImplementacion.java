@@ -16,9 +16,11 @@ public class MV_INSERT_AGRO_PERSONASVDOSServiceImplementacion implements MV_INSE
     private EntityManager repositorio;
 
     @Override
-    public String InsertAgroPrsnasvdos(MV_INSERT_AGRO_PERSONASVDOSEntity entidad) {
+    public String InsertAgroPrsnasvdos(MV_INSERT_AGRO_PERSONASVDOSEntity entidad, Integer bandera, Integer codUsuario) {
         try {
-            StoredProcedureQuery insertagropersds = repositorio.createNamedStoredProcedureQuery("MV_INSERT_AGRO_PERSONASVDOS");
+            StoredProcedureQuery insertagropersds = repositorio.createNamedStoredProcedureQuery("paC_personaMod");
+            insertagropersds.registerStoredProcedureParameter("bandera", Integer.class, ParameterMode.IN);
+            insertagropersds.registerStoredProcedureParameter("codUsuario", Integer.class, ParameterMode.IN);
             insertagropersds.registerStoredProcedureParameter("tpo_persona", Integer.class, ParameterMode.IN);
             insertagropersds.registerStoredProcedureParameter("nombres", String.class, ParameterMode.IN);
             insertagropersds.registerStoredProcedureParameter("apellido", String.class, ParameterMode.IN);
@@ -41,7 +43,8 @@ public class MV_INSERT_AGRO_PERSONASVDOSServiceImplementacion implements MV_INSE
             insertagropersds.registerStoredProcedureParameter("nocuenta", String.class, ParameterMode.IN);
             insertagropersds.registerStoredProcedureParameter("id_bnco", Integer.class, ParameterMode.IN);
             insertagropersds.registerStoredProcedureParameter("id_tpoprsn", Integer.class, ParameterMode.IN);
-
+            insertagropersds.setParameter("bandera", bandera);
+            insertagropersds.setParameter("codUsuario", codUsuario);
             insertagropersds.setParameter("tpo_persona", entidad.getCD_TIPO_PRSNA());
             insertagropersds.setParameter("nombres", entidad.getNOMBRES_PERSONA());
             insertagropersds.setParameter("apellido", entidad.getAPELLIDOS_PERSONA());

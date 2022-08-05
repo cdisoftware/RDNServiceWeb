@@ -11,8 +11,8 @@ import lombok.Data;
 @Data
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
-            name = "Select_TipoDocumento",
-            procedureName = "Select_TipoDocumento",
+            name = "paT_TipoDocumento",
+            procedureName = "paT_TipoDocumento",
             resultClasses = Select_TipoDocumentoEntity.class)
 })
 public class Select_TipoDocumentoEntity {

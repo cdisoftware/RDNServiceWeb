@@ -17,7 +17,7 @@ public class CALCULADORA_VALORPAGOServiceImplementacion implements CALCULADORA_V
     @Override
     public String ConsultaValorPago(Integer TIPOCOMPRA, Integer CD_CNSCTVO, Integer CD_UNDAD, Integer USUCODIG, Integer descarga, Integer Bandera) {
         try {
-            StoredProcedureQuery valorpago = repositorio.createNamedStoredProcedureQuery("mv_AGRO_CALCULADORA_VALORPAGOS");
+            StoredProcedureQuery valorpago = repositorio.createNamedStoredProcedureQuery("paC_CalculadoraPagos");
             valorpago.registerStoredProcedureParameter("TIPOCOMPRA", Integer.class, ParameterMode.IN);
             valorpago.registerStoredProcedureParameter("CD_CNSCTVO", Integer.class, ParameterMode.IN);
             valorpago.registerStoredProcedureParameter("CD_UNDAD", Integer.class, ParameterMode.IN);

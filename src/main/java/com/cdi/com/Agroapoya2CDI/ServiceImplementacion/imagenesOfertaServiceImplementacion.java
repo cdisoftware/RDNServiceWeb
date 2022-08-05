@@ -20,7 +20,7 @@ public class imagenesOfertaServiceImplementacion implements imagenesOfertaServic
     @Override
     public List<imagenesOfertaEntity> ConsultaImageOferta(Integer Bandera, Integer cd_cnsctivo) {
         try {
-            StoredProcedureQuery tpoDoc = repositorio.createNamedStoredProcedureQuery("sp_imagenesOferta");
+            StoredProcedureQuery tpoDoc = repositorio.createNamedStoredProcedureQuery("paC_imagenesOferta");
             tpoDoc.registerStoredProcedureParameter("Bandera", Integer.class, ParameterMode.IN);
             tpoDoc.registerStoredProcedureParameter("cd_cnsctivo", Integer.class, ParameterMode.IN);
 

@@ -11,8 +11,8 @@ import lombok.Data;
 @Data
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
-            name = "sp_listaCondicion",
-            procedureName = "sp_listaCondicion",
+            name = "paT_listaCondicion",
+            procedureName = "paT_listaCondicion",
             resultClasses = listaCondicionEntity.class)
 })
 public class listaCondicionEntity {
@@ -23,4 +23,5 @@ public class listaCondicionEntity {
 
     @JsonProperty("des_condicion")
     public String des_condicion;
+
 }

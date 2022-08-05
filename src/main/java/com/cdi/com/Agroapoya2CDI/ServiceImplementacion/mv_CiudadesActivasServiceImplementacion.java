@@ -20,7 +20,7 @@ public class mv_CiudadesActivasServiceImplementacion implements mv_CiudadesActiv
     @Override
     public List<mv_CiudadesActivasEntity> ConsultaCiudadesActivs(Integer bandera) {
         try {
-            StoredProcedureQuery consciudact = repositorio.createNamedStoredProcedureQuery("mv_CiudadesActivas");
+            StoredProcedureQuery consciudact = repositorio.createNamedStoredProcedureQuery("paT_Geografica");
             consciudact.registerStoredProcedureParameter("bandera", Integer.class, ParameterMode.IN);
             consciudact.setParameter("bandera", bandera);
             return consciudact.getResultList();

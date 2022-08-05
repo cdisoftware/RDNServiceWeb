@@ -11,13 +11,16 @@ import lombok.Data;
 @Data
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
-            name = "AGRO_VALIDARBTNGRUPAL",
-            procedureName = "AGRO_VALIDARBTNGRUPAL",
-            resultClasses = AGRO_VALIDARBTNGRUPALEntity.class)
+            name = "paCPersonas",
+            procedureName = "paCPersonas",
+            resultClasses = CPersonasEntity.class)
 })
-public class AGRO_VALIDARBTNGRUPALEntity {
+public class CPersonasEntity {
 
     @Id
-    @JsonProperty("respuesta")
-    private String respuesta;
+    @JsonProperty("codigo_persona")
+    public Integer codigo_persona;
+
+    @JsonProperty("nombre_persona")
+    public String nombre_persona;
 }

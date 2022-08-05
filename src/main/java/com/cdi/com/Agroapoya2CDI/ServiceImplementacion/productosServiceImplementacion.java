@@ -20,7 +20,7 @@ public class productosServiceImplementacion implements productosService {
     @Override
     public List<productosEntity> ConsultaProductos(Integer bandera) {
         try {
-            StoredProcedureQuery tpoDoc = repositorio.createNamedStoredProcedureQuery("sp_productos");
+            StoredProcedureQuery tpoDoc = repositorio.createNamedStoredProcedureQuery("paT_productos");
             tpoDoc.registerStoredProcedureParameter("bandera", Integer.class, ParameterMode.IN);
             tpoDoc.setParameter("bandera", bandera);
             return tpoDoc.getResultList();

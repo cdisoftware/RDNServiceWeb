@@ -20,7 +20,7 @@ public class SELECT_MNCPIOServiceImplementacion implements SELECT_MNCPIOService 
     @Override
     public List<SELECT_MNCPIOEntity> ConsultaMNCPIO(Integer CD_RGION) {
         try {
-            StoredProcedureQuery consmncpio = repositorio.createNamedStoredProcedureQuery("SELECT_MNCPIO");
+            StoredProcedureQuery consmncpio = repositorio.createNamedStoredProcedureQuery("paT_select_Mncpio");
             consmncpio.registerStoredProcedureParameter("CD_RGION", Integer.class, ParameterMode.IN);
             consmncpio.setParameter("CD_RGION", CD_RGION);
             return consmncpio.getResultList();

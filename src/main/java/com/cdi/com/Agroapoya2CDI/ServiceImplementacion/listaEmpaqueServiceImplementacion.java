@@ -20,7 +20,7 @@ public class listaEmpaqueServiceImplementacion implements listaEmpaqueService {
     @Override
     public List<listaEmpaqueEntity> ConsultaListaEmpaque(Integer producto) {
         try {
-            StoredProcedureQuery tpoDoc = repositorio.createNamedStoredProcedureQuery("sp_listaEmpaque");
+            StoredProcedureQuery tpoDoc = repositorio.createNamedStoredProcedureQuery("paT_listaEmpaque");
             tpoDoc.registerStoredProcedureParameter("producto", Integer.class, ParameterMode.IN);
             tpoDoc.setParameter("producto", producto);
             return tpoDoc.getResultList();

@@ -16,7 +16,7 @@ public class COfertaModServiceImplementacion implements COfertaModService {
     private EntityManager repositorio;
 
     @Override
-    public String InsertaCOfertaMod(COfertaModEntity entidad, Integer bandera, String ID_EMPAQUE) {
+    public String InAcCOfertaMod(COfertaModEntity entidad, Integer bandera, String ID_EMPAQUE) {
         try {
             StoredProcedureQuery insertofrta = repositorio.createNamedStoredProcedureQuery("paCOfertaMod");
             insertofrta.registerStoredProcedureParameter("bandera", Integer.class, ParameterMode.IN);
@@ -60,57 +60,6 @@ public class COfertaModServiceImplementacion implements COfertaModService {
             insertofrta.setParameter("CD_CNSCTVO", entidad.getCD_CNSCTVO());
             insertofrta.execute();
             return JSONObject.quote((String) insertofrta.getOutputParameterValue("Respuesta"));
-        } catch (Exception ex) {
-            return JSONObject.quote("No fue posible ejecutar los datos, verifique el Log para validar la inconsistencia");
-        }
-
-    }
-
-    @Override
-    public String ActualizaCOfertaMod(COfertaModEntity entidad, Integer bandera, String ID_EMPAQUE) {
-        try {
-            StoredProcedureQuery actofrta = repositorio.createNamedStoredProcedureQuery("paCOfertaMod");
-            actofrta.registerStoredProcedureParameter("bandera", Integer.class, ParameterMode.IN);
-            actofrta.registerStoredProcedureParameter("CD_PRDCTO", String.class, ParameterMode.IN);
-            actofrta.registerStoredProcedureParameter("ID_EMPAQUE", String.class, ParameterMode.IN);
-            actofrta.registerStoredProcedureParameter("UND_EMPQUE", String.class, ParameterMode.IN);
-            actofrta.registerStoredProcedureParameter("CD_CNDCION", String.class, ParameterMode.IN);
-            actofrta.registerStoredProcedureParameter("CD_TMNO", String.class, ParameterMode.IN);
-            actofrta.registerStoredProcedureParameter("DSCRPCION_PRDCTO", String.class, ParameterMode.IN);
-            actofrta.registerStoredProcedureParameter("VR_UNDAD_EMPQUE", String.class, ParameterMode.IN);
-            actofrta.registerStoredProcedureParameter("CD_UNDAD", String.class, ParameterMode.IN);
-            actofrta.registerStoredProcedureParameter("VR_TOTAL_OFRTA", String.class, ParameterMode.IN);
-            actofrta.registerStoredProcedureParameter("VGNCIA_DESDE", String.class, ParameterMode.IN);
-            actofrta.registerStoredProcedureParameter("CD_JRNDA", String.class, ParameterMode.IN);
-            actofrta.registerStoredProcedureParameter("CD_RGION", String.class, ParameterMode.IN);
-            actofrta.registerStoredProcedureParameter("CD_MNCPIO", String.class, ParameterMode.IN);
-            actofrta.registerStoredProcedureParameter("UBCCION_PRCLA", String.class, ParameterMode.IN);
-            actofrta.registerStoredProcedureParameter("COORDENADAS_PRCLA", String.class, ParameterMode.IN);
-            actofrta.registerStoredProcedureParameter("USUCODIG", String.class, ParameterMode.IN);
-            actofrta.registerStoredProcedureParameter("ID_PRODUCTOR", String.class, ParameterMode.IN);
-            actofrta.registerStoredProcedureParameter("CD_CNSCTVO", String.class, ParameterMode.IN);
-
-            actofrta.setParameter("bandera", bandera);
-            actofrta.setParameter("CD_PRDCTO", entidad.getCD_PRDCTO());
-            actofrta.setParameter("ID_EMPAQUE", ID_EMPAQUE);
-            actofrta.setParameter("UND_EMPQUE", entidad.getUND_EMPQUE());
-            actofrta.setParameter("CD_CNDCION", entidad.getCD_CNDCION());
-            actofrta.setParameter("CD_TMNO", entidad.getCD_TMNO());
-            actofrta.setParameter("DSCRPCION_PRDCTO", entidad.getDSCRPCION_PRDCTO());
-            actofrta.setParameter("VR_UNDAD_EMPQUE", entidad.getVR_UNDAD_EMPQUE());
-            actofrta.setParameter("CD_UNDAD", entidad.getCD_UNDAD());
-            actofrta.setParameter("VR_TOTAL_OFRTA", entidad.getVR_TOTAL_OFRTA());
-            actofrta.setParameter("VGNCIA_DESDE", entidad.getVGNCIA_DESDE());
-            actofrta.setParameter("CD_JRNDA", entidad.getCD_JRNDA());
-            actofrta.setParameter("CD_RGION", entidad.getCD_RGION());
-            actofrta.setParameter("CD_MNCPIO", entidad.getCD_MNCPIO());
-            actofrta.setParameter("UBCCION_PRCLA", entidad.getUBCCION_PRCLA());
-            actofrta.setParameter("COORDENADAS_PRCLA", entidad.getCOORDENADAS_PRCLA());
-            actofrta.setParameter("USUCODIG", entidad.getUSUCODIG());
-            actofrta.setParameter("ID_PRODUCTOR", entidad.getID_PRODUCTOR());
-            actofrta.setParameter("CD_CNSCTVO", entidad.getCD_CNSCTVO());
-            actofrta.execute();
-            return JSONObject.quote((String) actofrta.getOutputParameterValue("Respuesta"));
         } catch (Exception ex) {
             return JSONObject.quote("No fue posible ejecutar los datos, verifique el Log para validar la inconsistencia");
         }

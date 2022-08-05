@@ -11,15 +11,16 @@ import lombok.Data;
 @Data
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
-            name = "pa_ActualizaLink",
-            procedureName = "pa_ActualizaLink")
+            name = "paT_TipoVias",
+            procedureName = "paT_TipoVias",
+            resultClasses = TipoViasEntity.class)
 })
-public class ActualizaLinkEntity {
+public class TipoViasEntity {
 
     @Id
-    @JsonProperty("IdGrupo")
-    public Integer IdGrupo;
+    @JsonProperty("Id")
+    public Integer Id;
 
-    @JsonProperty("Link")
-    public String Link;
+    @JsonProperty("descripcion")
+    public String descripcion;
 }

@@ -11,8 +11,8 @@ import lombok.Data;
 @Data
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
-            name = "sp_consultaProducto",
-            procedureName = "sp_consultaProducto",
+            name = "paC_consultaProducto",
+            procedureName = "paC_consultaProducto",
             resultClasses = consultaProductoEntity.class)
 })
 public class consultaProductoEntity {

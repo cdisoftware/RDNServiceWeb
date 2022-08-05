@@ -20,7 +20,7 @@ public class MV_AGRO_VALIDACODIGOServiceImplementacion implements MV_AGRO_VALIDA
     @Override
     public List<MV_AGRO_VALIDACODIGOEntity> ConsultaAgroValidaCod(Integer BANDERA, Integer CODIGO, String CODIGODOS, Integer UNIDADES) {
         try {
-            StoredProcedureQuery valcodig = repositorio.createNamedStoredProcedureQuery("MV_AGRO_VALIDACODIGO");
+            StoredProcedureQuery valcodig = repositorio.createNamedStoredProcedureQuery("paC_ValidaCodigo");
             valcodig.registerStoredProcedureParameter("BANDERA", Integer.class, ParameterMode.IN);
             valcodig.registerStoredProcedureParameter("CODIGO", Integer.class, ParameterMode.IN);
             valcodig.registerStoredProcedureParameter("CODIGODOS", String.class, ParameterMode.IN);

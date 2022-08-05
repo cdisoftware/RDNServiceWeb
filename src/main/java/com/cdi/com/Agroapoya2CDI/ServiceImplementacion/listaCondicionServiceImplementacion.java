@@ -20,7 +20,7 @@ public class listaCondicionServiceImplementacion implements listaCondicionServic
     @Override
     public List<listaCondicionEntity> ConsultaListaCondicion(Integer producto) {
         try {
-            StoredProcedureQuery tpoDoc = repositorio.createNamedStoredProcedureQuery("sp_listaCondicion");
+            StoredProcedureQuery tpoDoc = repositorio.createNamedStoredProcedureQuery("paT_listaCondicion");
             tpoDoc.registerStoredProcedureParameter("producto", Integer.class, ParameterMode.IN);
             tpoDoc.setParameter("producto", producto);
             return tpoDoc.getResultList();

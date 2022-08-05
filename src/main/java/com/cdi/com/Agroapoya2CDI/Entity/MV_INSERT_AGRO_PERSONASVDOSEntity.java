@@ -13,8 +13,8 @@ import lombok.Data;
 @Data
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
-            name = "MV_INSERT_AGRO_PERSONASVDOS",
-            procedureName = "MV_INSERT_AGRO_PERSONASVDOS",
+            name = "paC_personaMod",
+            procedureName = "paC_personaMod",
             parameters = {
                 @StoredProcedureParameter(name = "respuesta",
                         mode = ParameterMode.OUT,

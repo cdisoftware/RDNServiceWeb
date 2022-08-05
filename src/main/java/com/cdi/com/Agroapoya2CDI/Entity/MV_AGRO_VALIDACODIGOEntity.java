@@ -11,8 +11,8 @@ import lombok.Data;
 @Data
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
-            name = "MV_AGRO_VALIDACODIGO",
-            procedureName = "MV_AGRO_VALIDACODIGO",
+            name = "paC_ValidaCodigo",
+            procedureName = "paC_ValidaCodigo",
             resultClasses = MV_AGRO_VALIDACODIGOEntity.class)
 })
 public class MV_AGRO_VALIDACODIGOEntity {

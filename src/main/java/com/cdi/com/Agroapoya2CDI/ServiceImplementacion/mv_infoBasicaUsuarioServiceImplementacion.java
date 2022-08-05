@@ -20,7 +20,7 @@ public class mv_infoBasicaUsuarioServiceImplementacion implements mv_infoBasicaU
     @Override
     public List<mv_infoBasicaUsuarioEntity> ConsultaInfoBascUser(mv_infoBasicaUsuarioEntity entidad, Integer bandera) {
         try {
-            StoredProcedureQuery consinfouser = repositorio.createNamedStoredProcedureQuery("mv_infoBasicaUsuario");
+            StoredProcedureQuery consinfouser = repositorio.createNamedStoredProcedureQuery("paC_infoBasicaUsuario");
             consinfouser.registerStoredProcedureParameter("bandera", Integer.class, ParameterMode.IN);
             consinfouser.registerStoredProcedureParameter("usucodig", Integer.class, ParameterMode.IN);
              consinfouser.registerStoredProcedureParameter("correo", String.class, ParameterMode.IN);

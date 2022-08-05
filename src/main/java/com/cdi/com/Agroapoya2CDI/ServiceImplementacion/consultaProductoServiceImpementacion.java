@@ -20,7 +20,7 @@ public class consultaProductoServiceImpementacion implements consultaProductoSer
     @Override
     public List<consultaProductoEntity> ConsultaProducto(Integer cd_consecutivo) {
         try {
-            StoredProcedureQuery tpoDoc = repositorio.createNamedStoredProcedureQuery("sp_consultaProducto");
+            StoredProcedureQuery tpoDoc = repositorio.createNamedStoredProcedureQuery("paC_consultaProducto");
             tpoDoc.registerStoredProcedureParameter("cd_consecutivo", Integer.class, ParameterMode.IN);
             tpoDoc.setParameter("cd_consecutivo", cd_consecutivo);
             return tpoDoc.getResultList();

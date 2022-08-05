@@ -11,16 +11,19 @@ import lombok.Data;
 @Data
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
-            name = "AGRO_DIRECCION_POPUP",
-            procedureName = "AGRO_DIRECCION_POPUP",
-            resultClasses = AGRO_DIRECCION_POPUPEntity.class)
+            name = "paT_ListasDatosBanco",
+            procedureName = "paT_ListasDatosBanco",
+            resultClasses = ListasDatosBancoEntity.class)
 })
-public class AGRO_DIRECCION_POPUPEntity {
+public class ListasDatosBancoEntity {
 
     @Id
-    @JsonProperty("Id")
-    public Integer Id;
+    @JsonProperty("id")
+    public Integer id;
 
     @JsonProperty("descripcion")
     public String descripcion;
+
+    @JsonProperty("estado")
+    public Integer estado;
 }

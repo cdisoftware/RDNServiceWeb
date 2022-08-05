@@ -11,8 +11,8 @@ import lombok.Data;
 @Data
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
-            name = "mv_infoBasicaUsuario",
-            procedureName = "mv_infoBasicaUsuario",
+            name = "paC_infoBasicaUsuario",
+            procedureName = "paC_infoBasicaUsuario",
             resultClasses = mv_infoBasicaUsuarioEntity.class)
 })
 public class mv_infoBasicaUsuarioEntity {

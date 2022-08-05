@@ -11,8 +11,8 @@ import lombok.Data;
 @Data
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
-            name = "mv_CiudadesActivas",
-            procedureName = "mv_CiudadesActivas",
+            name = "paT_Geografica",
+            procedureName = "paT_Geografica",
             resultClasses = mv_CiudadesActivasEntity.class)
 })
 public class mv_CiudadesActivasEntity {

@@ -20,7 +20,7 @@ public class Select_TipoDocumentoServiceImplementacion implements Select_TipoDoc
     @Override
     public List<Select_TipoDocumentoEntity> ConsultaSelectTpoDocumento(Integer Bandera) {
         try {
-            StoredProcedureQuery tpoDoc = repositorio.createNamedStoredProcedureQuery("Select_TipoDocumento");
+            StoredProcedureQuery tpoDoc = repositorio.createNamedStoredProcedureQuery("paT_TipoDocumento");
             tpoDoc.registerStoredProcedureParameter("Bandera", Integer.class, ParameterMode.IN);
             tpoDoc.setParameter("Bandera", Bandera);
             return tpoDoc.getResultList();
