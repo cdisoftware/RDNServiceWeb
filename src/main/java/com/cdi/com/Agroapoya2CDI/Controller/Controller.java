@@ -4,6 +4,7 @@ import com.cdi.com.Agroapoya2CDI.Entity.COfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.COfertaImagenModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.COfertaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CPersonasEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.EstadosOfertaEntity;
 //import com.cdi.com.Agroapoya2CDI.Entity.EmailEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.INFOGENERALEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.ListasDatosBancoEntity;
@@ -32,6 +33,7 @@ import com.cdi.com.Agroapoya2CDI.Services.COfertaImagenModService;
 import com.cdi.com.Agroapoya2CDI.Services.COfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.COfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.CPersonasService;
+import com.cdi.com.Agroapoya2CDI.Services.EstadosOfertaService;
 //import com.cdi.com.Agroapoya2CDI.Services.EmailService;
 import com.cdi.com.Agroapoya2CDI.Services.INFOGENERALService;
 import com.cdi.com.Agroapoya2CDI.Services.ListasDatosBancoService;
@@ -149,6 +151,9 @@ public class Controller {
 
     @Autowired
     CPersonasService serviceCPersonasService;
+    
+    @Autowired
+    EstadosOfertaService serviceEstadosOfertaService;
 
 //    @Autowired
 //    EmailService serviceEmailService;
@@ -354,4 +359,9 @@ public class Controller {
 //        return serviceEmailService.sendEmail(emailBody);
 //    }
 
+      @GetMapping("/consestadosofertas/{prmtro}")
+    public List<EstadosOfertaEntity> ConsultaEstadoOfertas(
+            @PathVariable Integer prmtro) {
+        return serviceEstadosOfertaService.ConsultaEstadoOfertas(prmtro);
+    }
 }
