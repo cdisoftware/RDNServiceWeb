@@ -31,6 +31,7 @@ public class MV_INSERT_AGRO_PERSONASVDOSServiceImplementacion implements MV_INSE
             insertagropersds.registerStoredProcedureParameter("direccion", String.class, ParameterMode.IN);
             insertagropersds.registerStoredProcedureParameter("dpto", Integer.class, ParameterMode.IN);
             insertagropersds.registerStoredProcedureParameter("ciudad", Integer.class, ParameterMode.IN);
+            insertagropersds.registerStoredProcedureParameter("Complemento_direccion", String.class, ParameterMode.IN);
             insertagropersds.registerStoredProcedureParameter("CMNTRIO", String.class, ParameterMode.IN);
             insertagropersds.registerStoredProcedureParameter("TOKEN", String.class, ParameterMode.IN);
             insertagropersds.registerStoredProcedureParameter("NIT", String.class, ParameterMode.IN);
@@ -55,6 +56,7 @@ public class MV_INSERT_AGRO_PERSONASVDOSServiceImplementacion implements MV_INSE
             insertagropersds.setParameter("direccion", entidad.getDRCCION());
             insertagropersds.setParameter("dpto", entidad.getCD_DPTO());
             insertagropersds.setParameter("ciudad", entidad.getCD_CDAD());
+            insertagropersds.setParameter("Complemento_direccion", entidad.getCMPLMNTO_DRRCCION());
             insertagropersds.setParameter("CMNTRIO", entidad.getCMNTRIO());
             insertagropersds.setParameter("TOKEN", entidad.getTOKEN_PERSONA());
             insertagropersds.setParameter("NIT", entidad.getNIT());

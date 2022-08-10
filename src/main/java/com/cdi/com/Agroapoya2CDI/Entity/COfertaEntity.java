@@ -25,7 +25,7 @@ public class COfertaEntity {
     public Integer Presentación_emp;
 
     @JsonProperty("peso")
-    public String peso;
+    public Float peso;
 
     @JsonProperty("Condicion")
     public Integer Condicion;
@@ -77,5 +77,23 @@ public class COfertaEntity {
 
     @JsonProperty("CodigoOferta")
     public Integer CodigoOferta;
+
+    @JsonProperty("Nombre_productor")
+    public String Nombre_productor;
+
+    @JsonProperty("Nombre_Producto")
+    public String Nombre_Producto;
+
+    @JsonProperty("Nmbre_tamaño")
+    public String Nmbre_tamaño;
+
+    @JsonProperty("Descripción_empaque")
+    public String Descripción_empaque;
+
+    @JsonProperty("Nombre_jornada")
+    public String Nombre_jornada;
+
+    @JsonProperty("caracterizacion")
+    public String caracterizacion;
 
 }

@@ -57,6 +57,9 @@ public class MV_INSERT_AGRO_PERSONASVDOSEntity {
 
     @JsonProperty("CD_CDAD")
     public Integer CD_CDAD;
+    
+     @JsonProperty("CMPLMNTO_DRRCCION")
+    public String CMPLMNTO_DRRCCION;
 
     @JsonProperty("CMNTRIO")
     public String CMNTRIO;
