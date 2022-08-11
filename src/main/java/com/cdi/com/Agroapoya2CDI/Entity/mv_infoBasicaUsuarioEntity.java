@@ -21,8 +21,14 @@ public class mv_infoBasicaUsuarioEntity {
     @JsonProperty("USUCODIG")
     public Integer USUCODIG;
 
+    @JsonProperty("id_TipoPersona")
+    public Integer id_TipoPersona;
+
     @JsonProperty("NOMBRES_PERSONA")
     public String NOMBRES_PERSONA;
+
+    @JsonProperty("des_TipoPersona")
+    public String des_TipoPersona;
 
     @JsonProperty("APELLIDOS_PERSONA")
     public String APELLIDOS_PERSONA;
