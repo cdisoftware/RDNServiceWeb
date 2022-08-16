@@ -1,10 +1,16 @@
 package com.cdi.com.Agroapoya2CDI.Controller;
 
+import com.cdi.com.Agroapoya2CDI.Entity.AOfertasEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.AestadoOfertaModEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CCiudadDistribucionOfertEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CConductorEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CConductorSectorOfertaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.COfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.COfertaImagenModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.COfertaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CPersonasEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CSectorOfertaEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CSectorOfertaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.ConductorEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.EstadosOfertaEntity;
 //import com.cdi.com.Agroapoya2CDI.Entity.EmailEntity;
@@ -15,6 +21,8 @@ import com.cdi.com.Agroapoya2CDI.Entity.MV_AGRO_VALIDACODIGOEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.MV_INSERT_AGRO_PERSONASVDOSEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.ProductoEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.SELECT_MNCPIOEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.SectoresEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.SectoresModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.Select_TipoDocumentoEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.TipoViasEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.UploadFileResponse;
@@ -30,18 +38,23 @@ import com.cdi.com.Agroapoya2CDI.Entity.mv_CiudadesActivasEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.mv_EnvioCorreoTransprtistaViejeEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.mv_infoBasicaUsuarioEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.mv_listaSectoresConOfertasEntity;
-import com.cdi.com.Agroapoya2CDI.Entity.mv_pa_cliente_select_ofertasNuevasEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.productosEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.tipo_carro_carroceriaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.tipo_carro_pesoEntity;
 import com.cdi.com.Agroapoya2CDI.ServiceImplementacion.FileStorageException;
 import com.cdi.com.Agroapoya2CDI.ServiceImplementacion.FileStorageService;
+import com.cdi.com.Agroapoya2CDI.Services.AOfertasService;
+import com.cdi.com.Agroapoya2CDI.Services.AestadoOfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.CALCULADORA_VALORPAGOService;
+import com.cdi.com.Agroapoya2CDI.Services.CCiudadDistribucionOfertService;
+import com.cdi.com.Agroapoya2CDI.Services.CConductorSectorOfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.CConductorService;
 import com.cdi.com.Agroapoya2CDI.Services.COfertaImagenModService;
 import com.cdi.com.Agroapoya2CDI.Services.COfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.COfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.CPersonasService;
+import com.cdi.com.Agroapoya2CDI.Services.CSectorOfertaModService;
+import com.cdi.com.Agroapoya2CDI.Services.CSectorOfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.ConductorService;
 import com.cdi.com.Agroapoya2CDI.Services.EstadosOfertaService;
 //import com.cdi.com.Agroapoya2CDI.Services.EmailService;
@@ -53,7 +66,6 @@ import com.cdi.com.Agroapoya2CDI.Services.cliente_select_ofertasNuevasService;
 import com.cdi.com.Agroapoya2CDI.Services.mv_CiudadesActivasService;
 import com.cdi.com.Agroapoya2CDI.Services.mv_infoBasicaUsuarioService;
 import com.cdi.com.Agroapoya2CDI.Services.mv_listaSectoresConOfertasService;
-import com.cdi.com.Agroapoya2CDI.Services.mv_pa_cliente_select_ofertasNuevasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -67,6 +79,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.cdi.com.Agroapoya2CDI.Services.MV_INSERT_AGRO_PERSONASVDOSService;
 import com.cdi.com.Agroapoya2CDI.Services.ProductoService;
 import com.cdi.com.Agroapoya2CDI.Services.SELECT_MNCPIOService;
+import com.cdi.com.Agroapoya2CDI.Services.SectoresModService;
+import com.cdi.com.Agroapoya2CDI.Services.SectoresService;
 import com.cdi.com.Agroapoya2CDI.Services.Select_TipoDocumentoService;
 import com.cdi.com.Agroapoya2CDI.Services.TipoViasService;
 import com.cdi.com.Agroapoya2CDI.Services.codigoPersonaModService;
@@ -84,6 +98,7 @@ import com.cdi.com.Agroapoya2CDI.Services.tipo_carro_pesoService;
 import java.io.File;
 import java.io.IOException;
 import org.json.JSONObject;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -108,9 +123,6 @@ public class Controller {
 
     @Autowired
     mv_infoBasicaUsuarioService servicemv_infoBasicaUsuarioService;
-
-    @Autowired
-    mv_pa_cliente_select_ofertasNuevasService servicemv_pa_cliente_select_ofertasNuevasService;
 
     @Autowired
     MV_INSERT_AGRO_PERSONASVDOSService serviceINSERT_AGRO_PERSONASVDOSService;
@@ -201,6 +213,30 @@ public class Controller {
     @Autowired
     CConductorService serviceCConductorService;
 
+    @Autowired
+    SectoresService serviceSectoresService;
+
+    @Autowired
+    CSectorOfertaModService serviceCSectorOfertaModService;
+
+    @Autowired
+    CSectorOfertaService serviceCSectorOfertaService;
+
+    @Autowired
+    CConductorSectorOfertaModService serviceCConductorSectorOfertaModService;
+
+    @Autowired
+    CCiudadDistribucionOfertService serviceCCiudadDistribucionOfertService;
+
+    @Autowired
+    SectoresModService serviceSectoresModService;
+
+    @Autowired
+    AOfertasService serviceAOfertasService;
+
+    @Autowired
+    AestadoOfertaModService serviceAestadoOfertaModService;
+
     @GetMapping("/consultainfogeneral/{ID}/{subId}")
     public List<INFOGENERALEntity> ConsultaInfoGeneral(
             @PathVariable Integer ID,
@@ -232,16 +268,6 @@ public class Controller {
             @RequestBody mv_infoBasicaUsuarioEntity entidad,
             @PathVariable Integer bandera) {
         return servicemv_infoBasicaUsuarioService.ConsultaInfoBascUser(entidad, bandera);
-    }
-
-    @GetMapping("/consclientofertnew/{US_CLIENTE}/{TIPOCOMPRA}/{NOMBRE}/{ID_SECTOR}/{CD_MNCPIO}")
-    public List<mv_pa_cliente_select_ofertasNuevasEntity> ConsultaClientOfertNew(
-            @PathVariable Integer US_CLIENTE,
-            @PathVariable Integer TIPOCOMPRA,
-            @PathVariable String NOMBRE,
-            @PathVariable Integer ID_SECTOR,
-            @PathVariable Integer CD_MNCPIO) {
-        return servicemv_pa_cliente_select_ofertasNuevasService.ConsultaClientOfertNew(US_CLIENTE, TIPOCOMPRA, NOMBRE, ID_SECTOR, CD_MNCPIO);
     }
 
     @PostMapping("/insertagroprsnasvdos/{bandera}/{codUsuario}")
@@ -471,5 +497,67 @@ public class Controller {
             @RequestBody CConductorEntity entidad,
             @PathVariable Integer bandera) {
         return serviceCConductorService.ConsultaCConductor(entidad, bandera);
+    }
+
+    @GetMapping("/consectores/{bandera}/{NOMBRE_SECTOR}/{CD_PAIS}/{CD_RGION}/{CD_MNCPIO}")
+    public List<SectoresEntity> ConsultaSectores(
+            @PathVariable Integer bandera,
+            @PathVariable String NOMBRE_SECTOR,
+            @PathVariable Integer CD_PAIS,
+            @PathVariable Integer CD_RGION,
+            @PathVariable Integer CD_MNCPIO) {
+        return serviceSectoresService.ConsultaSectores(bandera, NOMBRE_SECTOR, CD_PAIS, CD_RGION, CD_MNCPIO);
+    }
+
+    @PostMapping("/csectorofertamod/{bandera}")
+    public String CSectorOfertaMod(
+            @RequestBody CSectorOfertaModEntity entidad,
+            @PathVariable Integer bandera) {
+        return serviceCSectorOfertaModService.CSectorOfertaMod(entidad, bandera);
+    }
+
+    @GetMapping("/conscsectoroferta/{bandera}/{CD_CNSCTVO}")
+    public List<CSectorOfertaEntity> ConsultaCSectorOferta(
+            @PathVariable Integer bandera,
+            @PathVariable Integer CD_CNSCTVO) {
+        return serviceCSectorOfertaService.ConsultaCSectorOferta(bandera, CD_CNSCTVO);
+    }
+
+    @PostMapping("/cconductorofertamod/{bandera}")
+    public String CConductorOfertaMod(
+            @RequestBody CConductorSectorOfertaModEntity entidad,
+            @PathVariable Integer bandera) {
+        return serviceCConductorSectorOfertaModService.CConductorOfertaMod(entidad, bandera);
+    }
+
+    @GetMapping("/conscciudadistcionofert/{bandera}/{CD_CNSCTVO}")
+    public List<CCiudadDistribucionOfertEntity> ConsultaCCiudadDistcionOferta(
+            @PathVariable Integer bandera,
+            @PathVariable String CD_CNSCTVO) {
+        return serviceCCiudadDistribucionOfertService.ConsultaCCiudadDistcionOferta(bandera, CD_CNSCTVO);
+    }
+
+    @PostMapping("/sectoresmod/{BANDERA}")
+    public String SectoresMod(
+            @RequestBody SectoresModEntity entidad,
+            @PathVariable Integer BANDERA) {
+        return serviceSectoresModService.SectoresMod(entidad, BANDERA);
+    }
+
+    @PostMapping("/consaofertas/{Bandera}/{cnctivoOferta}/{id_prdcto}/{idProductor}")
+    public List<AOfertasEntity> ConsultaAOfertas(
+            @RequestBody AOfertasEntity entidad,
+            @PathVariable Integer Bandera,
+            @PathVariable Integer cnctivoOferta,
+            @PathVariable Integer id_prdcto,
+            @PathVariable Integer idProductor) {
+        return serviceAOfertasService.ConsultaAOfertas(entidad, Bandera, cnctivoOferta, id_prdcto, idProductor);
+    }
+
+    @PostMapping("/aestadofertamod/{Bandera}")
+    public String AEstadoOfertaMod(
+            @RequestBody AestadoOfertaModEntity entidad,
+            @PathVariable Integer Bandera) {
+        return serviceAestadoOfertaModService.AEstadoOfertaMod(entidad, Bandera);
     }
 }

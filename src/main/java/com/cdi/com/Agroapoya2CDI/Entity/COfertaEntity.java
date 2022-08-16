@@ -96,4 +96,6 @@ public class COfertaEntity {
     @JsonProperty("caracterizacion")
     public String caracterizacion;
 
+    @JsonProperty("IMAGEN")
+    public String IMAGEN;
 }

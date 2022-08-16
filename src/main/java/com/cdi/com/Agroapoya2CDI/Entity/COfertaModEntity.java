@@ -75,4 +75,10 @@ public class COfertaModEntity {
     @JsonProperty("CD_CNSCTVO")
     public String CD_CNSCTVO;
 
+    @JsonProperty("CRCTRZCION")
+    public String CRCTRZCION;
+
+    @JsonProperty("OBS_EDICION")
+    public String OBS_EDICION;
+
 }
