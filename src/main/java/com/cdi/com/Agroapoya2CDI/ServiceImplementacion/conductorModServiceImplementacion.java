@@ -33,6 +33,8 @@ public class conductorModServiceImplementacion implements conductorModService {
             mod.registerStoredProcedureParameter("COORDENADAS", String.class, ParameterMode.IN);
             mod.registerStoredProcedureParameter("id_carroceria", Integer.class, ParameterMode.IN);
             mod.registerStoredProcedureParameter("id_pesoCargaCarro", Integer.class, ParameterMode.IN);
+            mod.registerStoredProcedureParameter("observacion", String.class, ParameterMode.IN);
+
             mod.setParameter("bandera", bandera);
             mod.setParameter("ID_CNDCTOR", entidad.getID_CNDCTOR());
             mod.setParameter("USUCODIG_TRANS", entidad.getUSUCODIG_TRANS());
@@ -47,6 +49,8 @@ public class conductorModServiceImplementacion implements conductorModService {
             mod.setParameter("COORDENADAS", entidad.getCOORDENADAS());
             mod.setParameter("id_carroceria", id_carroceria);
             mod.setParameter("id_pesoCargaCarro", id_pesoCargaCarro);
+            mod.setParameter("observacion", entidad.getObservacion());
+
             mod.execute();
             return JSONObject.quote((String) mod.getOutputParameterValue("respuesta"));
         } catch (Exception ex) {

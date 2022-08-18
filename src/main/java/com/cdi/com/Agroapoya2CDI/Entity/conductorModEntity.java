@@ -57,4 +57,7 @@ public class conductorModEntity {
     @JsonProperty("COORDENADAS")
     public String COORDENADAS;
 
+    @JsonProperty("observacion")
+    public String observacion;
+
 }
