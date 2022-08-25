@@ -12,6 +12,8 @@ import com.cdi.com.Agroapoya2CDI.Entity.COfertaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CPersonasEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CSectorOfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CSectorOfertaModEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CValoracionOfertaModEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CiudadOfertaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.ConductorEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.EstadosOfertaEntity;
 //import com.cdi.com.Agroapoya2CDI.Entity.EmailEntity;
@@ -33,6 +35,7 @@ import com.cdi.com.Agroapoya2CDI.Entity.conductorModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.consultaProductoEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.entregasConductorEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.estadoEntregaEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.evidenciaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.evidenciaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.imagenesOfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.listaCondicionEntity;
@@ -61,6 +64,8 @@ import com.cdi.com.Agroapoya2CDI.Services.COfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.CPersonasService;
 import com.cdi.com.Agroapoya2CDI.Services.CSectorOfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.CSectorOfertaService;
+import com.cdi.com.Agroapoya2CDI.Services.CValoracionOfertaModService;
+import com.cdi.com.Agroapoya2CDI.Services.CiudadOfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.ConductorService;
 import com.cdi.com.Agroapoya2CDI.Services.EstadosOfertaService;
 //import com.cdi.com.Agroapoya2CDI.Services.EmailService;
@@ -96,6 +101,7 @@ import com.cdi.com.Agroapoya2CDI.Services.consultaProductoService;
 import com.cdi.com.Agroapoya2CDI.Services.entregasConductorService;
 import com.cdi.com.Agroapoya2CDI.Services.estadoEntregaService;
 import com.cdi.com.Agroapoya2CDI.Services.evidenciaModService;
+import com.cdi.com.Agroapoya2CDI.Services.evidenciaService;
 import com.cdi.com.Agroapoya2CDI.Services.imagenesOfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.listaCondicionService;
 import com.cdi.com.Agroapoya2CDI.Services.listaEmpaqueService;
@@ -261,6 +267,15 @@ public class Controller {
 
     @Autowired
     entregasConductorService serviceentregasConductorService;
+
+    @Autowired
+    evidenciaService serviceevidenciaService;
+
+    @Autowired
+    CiudadOfertaModService serviceCiudadOfertaModService;
+
+    @Autowired
+    CValoracionOfertaModService serviceCValoracionOfertaModService;
 
     @GetMapping("/consultainfogeneral/{ID}/{subId}")
     public List<INFOGENERALEntity> ConsultaInfoGeneral(
@@ -617,11 +632,33 @@ public class Controller {
         return serviceestadoEntregaService.ConsultaEstadoEntrega(bandera);
     }
 
-    @GetMapping("/consestadoentrega/{bandera}/{ID_CNDCTOR}/{ID_ENTREGA}")
+    @GetMapping("/consentregasconductor/{bandera}/{ID_CNDCTOR}/{ID_ENTREGA}")
     public List<entregasConductorEntity> ConsultaEntregasConductor(
             @PathVariable Integer bandera,
             @PathVariable Integer ID_CNDCTOR,
             @PathVariable Integer ID_ENTREGA) {
         return serviceentregasConductorService.ConsultaEntregasConductor(bandera, ID_CNDCTOR, ID_ENTREGA);
+    }
+
+    @GetMapping("/consevidencia/{bandera}/{id_evidencia}/{id_factura}")
+    public List<evidenciaEntity> ConsultaEvidencia(
+            @PathVariable Integer bandera,
+            @PathVariable Integer id_evidencia,
+            @PathVariable Integer id_factura) {
+        return serviceevidenciaService.ConsultaEvidencia(bandera, id_evidencia, id_factura);
+    }
+
+    @PostMapping("/ciudadofertamod/{Bandera}")
+    public String CiudadOfertaMod(
+            @RequestBody CiudadOfertaModEntity entidad,
+            @PathVariable Integer Bandera) {
+        return serviceCiudadOfertaModService.CiudadOfertaMod(entidad, Bandera);
+    }
+
+    @PostMapping("/cvaloracionofertamod/{BANDERA}")
+    public String CValoracionOfertaMod(
+            @RequestBody CValoracionOfertaModEntity entidad,
+            @PathVariable Integer BANDERA) {
+        return serviceCValoracionOfertaModService.CValoracionOfertaMod(entidad, BANDERA);
     }
 }

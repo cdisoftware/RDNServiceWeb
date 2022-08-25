@@ -98,4 +98,25 @@ public class TransActivosEntity {
 
     @JsonProperty("Ciudad_Orig")
     public String Ciudad_Orig;
+
+    @JsonProperty("desc_SectorEntrega")
+    public String desc_SectorEntrega;
+
+    @JsonProperty("desEstadoCarga")
+    public String desEstadoCarga;
+
+    @JsonProperty("idEstadoCarga")
+    public Integer idEstadoCarga;
+
+    @JsonProperty("fechaEntrega")
+    public String fechaEntrega;
+
+    @JsonProperty("CiudadEntrega")
+    public String CiudadEntrega;
+
+    @JsonProperty("PLCA")
+    public String PLCA;
+
+    @JsonProperty("UnidadesTotales")
+    public Integer UnidadesTotales;
 }

@@ -21,8 +21,8 @@ public class COfertaEntity {
     @JsonProperty("Producto")
     public Integer Producto;
 
-    @JsonProperty("Presentación_emp")
-    public Integer Presentación_emp;
+    @JsonProperty("Presentacion_emp")
+    public Integer Presentacion_emp;
 
     @JsonProperty("peso")
     public Float peso;
@@ -30,8 +30,8 @@ public class COfertaEntity {
     @JsonProperty("Condicion")
     public Integer Condicion;
 
-    @JsonProperty("Tamaño")
-    public Integer Tamaño;
+    @JsonProperty("Tamano")
+    public Integer Tamano;
 
     @JsonProperty("caracteristicas")
     public String caracteristicas;
@@ -84,11 +84,11 @@ public class COfertaEntity {
     @JsonProperty("Nombre_Producto")
     public String Nombre_Producto;
 
-    @JsonProperty("Nmbre_tamaño")
-    public String Nmbre_tamaño;
+    @JsonProperty("Nmbre_tamano")
+    public String Nmbre_tamano;
 
-    @JsonProperty("Descripción_empaque")
-    public String Descripción_empaque;
+    @JsonProperty("Descripcion_empaque")
+    public String Descripcion_empaque;
 
     @JsonProperty("Nombre_jornada")
     public String Nombre_jornada;
@@ -98,4 +98,10 @@ public class COfertaEntity {
 
     @JsonProperty("IMAGEN")
     public String IMAGEN;
+
+    @JsonProperty("vlor_pactado_productor")
+    public String vlor_pactado_productor;
+
+    @JsonProperty("vlor_flte_xunidad")
+    public String vlor_flte_xunidad;
 }

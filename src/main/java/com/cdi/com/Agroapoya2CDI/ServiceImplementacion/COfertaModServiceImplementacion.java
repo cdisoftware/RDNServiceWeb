@@ -60,8 +60,8 @@ public class COfertaModServiceImplementacion implements COfertaModService {
             insertofrta.setParameter("USUCODIG", entidad.getUSUCODIG());
             insertofrta.setParameter("ID_PRODUCTOR", entidad.getID_PRODUCTOR());
             insertofrta.setParameter("CD_CNSCTVO", entidad.getCD_CNSCTVO());
-            insertofrta.setParameter("CRCTRZCION", entidad.getCD_CNSCTVO());
-            insertofrta.setParameter("OBS_EDICION", entidad.getCD_CNSCTVO());
+            insertofrta.setParameter("CRCTRZCION", entidad.getCRCTRZCION());
+            insertofrta.setParameter("OBS_EDICION", entidad.getOBS_EDICION());
 
             insertofrta.execute();
             return JSONObject.quote((String) insertofrta.getOutputParameterValue("Respuesta"));

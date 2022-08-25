@@ -18,6 +18,9 @@ import lombok.Data;
 public class entregasConductorEntity {
 
     @Id
+    @JsonProperty("ID")
+    public Integer ID;
+
     @JsonProperty("CD_CNSCTVO")
     public Integer CD_CNSCTVO;
 
@@ -89,5 +92,11 @@ public class entregasConductorEntity {
 
     @JsonProperty("PLCA")
     public String PLCA;
+
+    @JsonProperty("COD_PEDIDO")
+    public String COD_PEDIDO;
+
+    @JsonProperty("ID_CLNTE")
+    public Integer ID_CLNTE;
 
 }
