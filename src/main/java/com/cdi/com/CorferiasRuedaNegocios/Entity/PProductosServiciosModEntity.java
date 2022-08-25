@@ -30,9 +30,6 @@ public class PProductosServiciosModEntity {
     @JsonProperty("IdParticipante")
     public Integer IdParticipante;
 
-    @JsonProperty("FechaRegistro")
-    public String FechaRegistro;
-
     @JsonProperty("DescripcionProducto")
     public String DescripcionProducto;
 
