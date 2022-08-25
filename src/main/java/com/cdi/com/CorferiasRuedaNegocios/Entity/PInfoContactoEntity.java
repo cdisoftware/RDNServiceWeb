@@ -19,27 +19,27 @@ public class PInfoContactoEntity {
 
     @Id
     @JsonProperty("IdContacto")
-    private Integer IdContacto;
+    public Integer IdContacto;
 
     @JsonProperty("NoIdentificacion")
-    private String NoIdentificacion;
+    public String NoIdentificacion;
 
     @JsonProperty("IdIdentificacion")
-    private String IdIdentificacion;
+    public String IdIdentificacion;
 
     @JsonProperty("NombreCompleto")
-    private String NombreCompleto;
+    public String NombreCompleto;
 
     @JsonProperty("Email")
-    private String Email;
+    public String Email;
 
     @JsonProperty("Contrasena")
-    private String Contrasena;
+    public String Contrasena;
 
     @JsonProperty("IdParticipante")
-    private Integer IdParticipante;
+    public Integer IdParticipante;
 
     @JsonProperty("IdIdioma")
-    private Integer IdIdioma;
+    public Integer IdIdioma;
 
 }

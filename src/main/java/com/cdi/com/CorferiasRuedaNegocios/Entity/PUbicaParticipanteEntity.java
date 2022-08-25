@@ -33,18 +33,18 @@ import lombok.Data;
 public class PUbicaParticipanteEntity {
 
     @Id
-    @JsonProperty("IdRuedaNegocio")
-    private Integer IdRuedaNegocio;
-
     @JsonProperty("IdParticipante")
-    private Integer IdParticipante;
+    public Integer IdParticipante;
+
+    @JsonProperty("IdRuedaNegocio")
+    public Integer IdRuedaNegocio;
 
     @JsonProperty("Pabellon")
-    private Integer Pabellon;
+    public String Pabellon;
 
     @JsonProperty("Nivel")
-    private Integer Nivel;
+    public String Nivel;
 
     @JsonProperty("Stand")
-    private Integer Stand;
+    public String Stand;
 }

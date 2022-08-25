@@ -150,13 +150,19 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <configuration>            
+                            <mainClass>com.baeldung.heap.HeapSizeDemoApplication</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
                 <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
+                    <executable>true</executable>
+                    <jvmArguments>
+                        -Xms256m
+                        -Xmx1g
+                    </jvmArguments>
                 </configuration>
             </plugin>
         </plugins>

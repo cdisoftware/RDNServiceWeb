@@ -55,9 +55,9 @@ public class PUbicaParticipanteModServiceImplementacion implements PUbicaPartici
             rolconsola.registerStoredProcedureParameter("Bandera", Integer.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("IdParticipante", Integer.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("IdRdn", Integer.class, ParameterMode.IN);
-            rolconsola.registerStoredProcedureParameter("Pabellon", Integer.class, ParameterMode.IN);
-            rolconsola.registerStoredProcedureParameter("Nivel", Integer.class, ParameterMode.IN);
-            rolconsola.registerStoredProcedureParameter("Stand", Integer.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("Pabellon", String.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("Nivel", String.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("Stand", String.class, ParameterMode.IN);
             rolconsola.setParameter("Bandera", Bandera);
             rolconsola.setParameter("IdParticipante", entidad.getIdParticipante());
             rolconsola.setParameter("IdRdn", entidad.getIdRuedaNegocio());
@@ -84,9 +84,9 @@ public class PUbicaParticipanteModServiceImplementacion implements PUbicaPartici
             rolconsola.registerStoredProcedureParameter("Bandera", Integer.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("IdParticipante", Integer.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("IdRdn", Integer.class, ParameterMode.IN);
-            rolconsola.registerStoredProcedureParameter("Pabellon", Integer.class, ParameterMode.IN);
-            rolconsola.registerStoredProcedureParameter("Nivel", Integer.class, ParameterMode.IN);
-            rolconsola.registerStoredProcedureParameter("Stand", Integer.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("Pabellon", String.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("Nivel", String.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("Stand", String.class, ParameterMode.IN);
             rolconsola.setParameter("Bandera", Bandera);
             rolconsola.setParameter("IdParticipante", entidad.getIdParticipante());
             rolconsola.setParameter("IdRdn", entidad.getIdRuedaNegocio());
