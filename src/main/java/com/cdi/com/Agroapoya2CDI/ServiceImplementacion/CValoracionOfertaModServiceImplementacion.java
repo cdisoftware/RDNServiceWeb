@@ -28,7 +28,7 @@ public class CValoracionOfertaModServiceImplementacion implements CValoracionOfe
             insertbackup.registerStoredProcedureParameter("MXMO_UNDDES_INDVDUAL", String.class, ParameterMode.IN);
             insertbackup.registerStoredProcedureParameter("VLOR_DMNCLIO_INDVDUAL", String.class, ParameterMode.IN);
             insertbackup.registerStoredProcedureParameter("VLOR_FNAL_INDVDUAL", String.class, ParameterMode.IN);
-            insertbackup.registerStoredProcedureParameter("TPO_CMSION_GRPAL", Integer.class, ParameterMode.IN);
+            insertbackup.registerStoredProcedureParameter("TPO_CMSION_GRPAL", String.class, ParameterMode.IN);
             insertbackup.registerStoredProcedureParameter("VLOR_CMSION_GRPAL", String.class, ParameterMode.IN);
             insertbackup.registerStoredProcedureParameter("MNMO_UNDDES_LIDER", String.class, ParameterMode.IN);
             insertbackup.registerStoredProcedureParameter("MXMO_UNDDES_LIDER", String.class, ParameterMode.IN);
@@ -43,8 +43,8 @@ public class CValoracionOfertaModServiceImplementacion implements CValoracionOfe
             insertbackup.registerStoredProcedureParameter("VLOR_FNAL_PRTCPNTE", String.class, ParameterMode.IN);
             insertbackup.registerStoredProcedureParameter("VGNCIA_DESDE", String.class, ParameterMode.IN);
             insertbackup.registerStoredProcedureParameter("VGNCIA_HASTA", String.class, ParameterMode.IN);
-            insertbackup.registerStoredProcedureParameter("HORA_DESDE", Integer.class, ParameterMode.IN);
-            insertbackup.registerStoredProcedureParameter("HORA_HASTA", Integer.class, ParameterMode.IN);
+            insertbackup.registerStoredProcedureParameter("HORA_DESDE", String.class, ParameterMode.IN);
+            insertbackup.registerStoredProcedureParameter("HORA_HASTA", String.class, ParameterMode.IN);
             insertbackup.registerStoredProcedureParameter("FCHA_ENTRGA", String.class, ParameterMode.IN);
             insertbackup.registerStoredProcedureParameter("OBSERVACIONES", String.class, ParameterMode.IN);
 

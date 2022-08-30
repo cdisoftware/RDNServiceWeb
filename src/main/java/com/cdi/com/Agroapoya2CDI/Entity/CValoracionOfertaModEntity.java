@@ -50,7 +50,7 @@ public class CValoracionOfertaModEntity {
     public String VLOR_FNAL_INDVDUAL;
 
     @JsonProperty("TPO_CMSION_GRPAL")
-    public Integer TPO_CMSION_GRPAL;
+    public String TPO_CMSION_GRPAL;
 
     @JsonProperty("VLOR_CMSION_GRPAL")
     public String VLOR_CMSION_GRPAL;
@@ -95,10 +95,10 @@ public class CValoracionOfertaModEntity {
     public String VGNCIA_HASTA;
 
     @JsonProperty("HORA_DESDE")
-    public Integer HORA_DESDE;
+    public String HORA_DESDE;
 
     @JsonProperty("HORA_HASTA")
-    public Integer HORA_HASTA;
+    public String HORA_HASTA;
 
     @JsonProperty("FCHA_ENTRGA")
     public String FCHA_ENTRGA;
