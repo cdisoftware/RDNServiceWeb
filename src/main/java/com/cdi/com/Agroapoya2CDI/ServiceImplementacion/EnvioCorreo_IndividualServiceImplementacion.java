@@ -1,5 +1,6 @@
 package com.cdi.com.Agroapoya2CDI.ServiceImplementacion;
 
+import com.cdi.com.Agroapoya2CDI.Comun.clsEncriptacion;
 import com.cdi.com.Agroapoya2CDI.Entity.DocuEnvioCorreoEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.EnvioCorreo_IndividualEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.RemitenteCorreoEntity;
@@ -53,7 +54,7 @@ public class EnvioCorreo_IndividualServiceImplementacion implements EnvioCorreo_
     String imagenpiepagina;
 
     @Override
-    public String EnvioCorreoIndividual(Integer bandera, Integer IdPlantilla, Integer usucodig, String correoPersona) {
+    public String EnvioCorreoIndividual(EnvioCorreo_IndividualEntity entidad, Integer bandera, Integer IdPlantilla, Integer usucodig) {
 
         Map<String, Object> mapMessage = new HashMap<>();
         try {
@@ -67,7 +68,7 @@ public class EnvioCorreo_IndividualServiceImplementacion implements EnvioCorreo_
             rolconsola.setParameter("bandera", bandera);
             rolconsola.setParameter("IdPlantilla", IdPlantilla);
             rolconsola.setParameter("usucodig", usucodig);
-            rolconsola.setParameter("correoPersona", correoPersona);
+            rolconsola.setParameter("correoPersona", entidad.getEmailOpc());
 
             rolconsola.getResultList();
             List<EnvioCorreo_IndividualEntity> cuerpocorreo = rolconsola.getResultList();
@@ -90,7 +91,7 @@ public class EnvioCorreo_IndividualServiceImplementacion implements EnvioCorreo_
             String content = templateEngine.process("EnvioCorreos", context);
             mapMessage.put("subject", asunto);
             mapMessage.put("content", content);
-            sendMessage(mapMessage, bandera, IdPlantilla, usucodig, correoPersona);
+            sendMessage(mapMessage, bandera, IdPlantilla, usucodig, entidad.getEmailOpc());
             Respuesta = JSONObject.quote("Correo Enviado Correctamente");
 
         } catch (Exception e) {
@@ -102,19 +103,19 @@ public class EnvioCorreo_IndividualServiceImplementacion implements EnvioCorreo_
     public void sendMessage(Map<String, Object> mapMessage, Integer bandera, Integer IdPlantilla, Integer usucodig,
             String correoPersona) throws Exception {
         try {
-            String correoremitente = "agroapoya2@cdi.com.co";
-            String servicePath = "mail.cdi.com.co";
-            String contrasena = "Cdi.2022$";
+            String correoremitente = null;
+            String servicePath = null;
+            String contrasena = null;
 
             StoredProcedureQuery remitente = repositorio.createNamedStoredProcedureQuery("paC_RemitenteCorreo");
             remitente.getResultList();
             List<RemitenteCorreoEntity> remite = remitente.getResultList();
             String[] rem = new String[remite.size()];
-//            for (int i = 0; i < remite.size(); i++) {
-//                correoremitente = rem[i] = remite.get(i).getCorreoRemitente();
-//                servicePath = rem[i] = remite.get(i).getServicePath();
-//                contrasena = rem[i] = clsEncriptacion.Desencriptar(remite.get(i).getClave());
-//            }
+            for (int i = 0; i < remite.size(); i++) {
+                correoremitente = rem[i] = remite.get(i).getCorreoRemitente();
+                servicePath = rem[i] = remite.get(i).getServicePath();
+                contrasena = rem[i] = clsEncriptacion.Desencriptar(remite.get(i).getClave());
+            }
             Properties props = new Properties();
             props.setProperty("mail.transport.protocol", "smtp"); // usa el protocolo pop3
             props.setProperty("mail.host", servicePath); // servidor pop3
@@ -126,7 +127,7 @@ public class EnvioCorreo_IndividualServiceImplementacion implements EnvioCorreo_
             Transport ts = session.getTransport();
             ts.connect(servicePath, correoremitente, contrasena);
             // Crear correo electrónico
-            Message message = createMixedMail(session, mapMessage, correoremitente, bandera, IdPlantilla, usucodig, correoPersona);
+            Message message = createMixedMail(session, mapMessage, correoremitente, bandera, IdPlantilla, usucodig);
             //enviar correo electrónico 
             ts.sendMessage(message, message.getAllRecipients());
             ts.close();
@@ -137,57 +138,21 @@ public class EnvioCorreo_IndividualServiceImplementacion implements EnvioCorreo_
     }
 
     public MimeMessage createMixedMail(Session session, Map<String, Object> mapMessage,
-            String correoremitente, Integer bandera, Integer IdPlantilla, Integer usucodig,
-            String correoPersona) throws Exception {
+            String correoremitente, Integer bandera, Integer IdPlantilla, Integer usucodig) throws Exception {
 
         MimeMessage message = new MimeMessage(session);
 
         try {
             // Establecer la información básica del correo
             message.setFrom(new InternetAddress(correoremitente));
-            //message.setRecipients(Message.RecipientType.TO, destinatario);
-            
-       
-            //message.setText("Hola Juan Jose");
-
-            StoredProcedureQuery rolconsola = repositorio.createNamedStoredProcedureQuery("paC_EnvioCorreo_Individual");
-            rolconsola.registerStoredProcedureParameter("bandera", Integer.class, ParameterMode.IN);
-            rolconsola.registerStoredProcedureParameter("IdPlantilla", Integer.class, ParameterMode.IN);
-            rolconsola.registerStoredProcedureParameter("usucodig", Integer.class, ParameterMode.IN);
-            rolconsola.registerStoredProcedureParameter("correoPersona", String.class, ParameterMode.IN);
-
-            rolconsola.setParameter("bandera", bandera);
-            rolconsola.setParameter("IdPlantilla", IdPlantilla);
-            rolconsola.setParameter("usucodig", usucodig);
-            rolconsola.setParameter("correoPersona", correoPersona);
-            rolconsola.getResultList();
-            List<EnvioCorreo_IndividualEntity> cuerpocorreo = rolconsola.getResultList();
-
-            String[] r = new String[cuerpocorreo.size()];
-            String[] ArregloDestinatarios = new String[cuerpocorreo.size()];
-
-            for (int i = 0; i < cuerpocorreo.size(); i++) {
-                destinatario = r[i] = cuerpocorreo.get(i).getEmail();
-                ArregloDestinatarios[i] = destinatario;
-            }
-            Integer idplantilla = cuerpocorreo.get(0).getIdPlantilla();
-            Address[] tos = new InternetAddress[ArregloDestinatarios.length];
-            if (ArregloDestinatarios != null && ArregloDestinatarios.length > 0) {
-                for (int j = 0; j < ArregloDestinatarios.length; j++) {
-                    tos[j] = new InternetAddress(ArregloDestinatarios[j]);
-                }
-                message.setRecipients(Message.RecipientType.TO, tos);
-            } else {
-                tos[0] = new InternetAddress(destinatario);
-            }
-
+            message.setRecipients(Message.RecipientType.TO, destinatario);
             message.setSubject(mapMessage.get("subject").toString());
 
             StoredProcedureQuery adjuntos = repositorio.createNamedStoredProcedureQuery("paC_DocuEnvioCorreo");
             adjuntos.registerStoredProcedureParameter("Bandera", Integer.class, ParameterMode.IN);
             adjuntos.registerStoredProcedureParameter("IdPlantilla", Integer.class, ParameterMode.IN);
             adjuntos.setParameter("Bandera", bandera);
-            adjuntos.setParameter("IdPlantilla", idplantilla);
+            adjuntos.setParameter("IdPlantilla", IdPlantilla);
             adjuntos.getResultList();
 
             List<DocuEnvioCorreoEntity> documentos = adjuntos.getResultList();
@@ -208,7 +173,6 @@ public class EnvioCorreo_IndividualServiceImplementacion implements EnvioCorreo_
                 File f = new File(URLDecoder.decode(url.getFile(), "UTF-8"));
                 Files.copy(st,
                         Paths.get("C:\\SERV_CORREOS_AGROAPOYA2\\temp" + f),
-                        //Paths.get("D:/ImagenesCorferias" + f),
                         StandardCopyOption.REPLACE_EXISTING);
 
                 if (path != null && !"".equals(path)) {

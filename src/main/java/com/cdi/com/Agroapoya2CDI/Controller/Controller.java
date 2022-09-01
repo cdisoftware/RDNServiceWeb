@@ -17,6 +17,8 @@ import com.cdi.com.Agroapoya2CDI.Entity.CValoracionOfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CValoracionOfertaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CiudadOfertaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.ConductorEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.EmailEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.EnvioCorreo_IndividualEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.EstadosOfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.INFOGENERALEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.JornadasOfertaEntity;
@@ -98,6 +100,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.cdi.com.Agroapoya2CDI.Services.MV_INSERT_AGRO_PERSONASVDOSService;
 import com.cdi.com.Agroapoya2CDI.Services.OfertasCarritoComprasService;
 import com.cdi.com.Agroapoya2CDI.Services.OfertasHistorialService;
+import com.cdi.com.Agroapoya2CDI.Services.OlvidoClaveService;
 import com.cdi.com.Agroapoya2CDI.Services.ProductoService;
 import com.cdi.com.Agroapoya2CDI.Services.RemitenteCorreoService;
 import com.cdi.com.Agroapoya2CDI.Services.SELECT_MNCPIOService;
@@ -310,6 +313,9 @@ public class Controller {
     
     @Autowired
     UsuarioAdminService serviceUsuarioAdminService;
+    
+    @Autowired
+    OlvidoClaveService serviceOlvidoClaveService;
     
     @GetMapping("/consultainfogeneral/{ID}/{subId}")
     public List<INFOGENERALEntity> ConsultaInfoGeneral(
@@ -697,13 +703,13 @@ public class Controller {
         return serviceCValoracionOfertaService.ConsultaCValoracionOferta(BANDERA, CD_CNSCTVO);
     }
     
-    @GetMapping("/enviocorreoindividual/{bandera}/{IdPlantilla}/{usucodig}/{correoPersona}")
+    @PostMapping("/enviocorreoindividual/{bandera}/{IdPlantilla}/{usucodig}")
     public String EnvioCorreoIndividual(
+            @RequestBody EnvioCorreo_IndividualEntity entidad,
             @PathVariable Integer bandera,
             @PathVariable Integer IdPlantilla,
-            @PathVariable Integer usucodig,
-            @PathVariable String correoPersona) {
-        return serviceEnvioCorreo_IndividualService.EnvioCorreoIndividual(bandera, IdPlantilla, usucodig, correoPersona);
+            @PathVariable Integer usucodig) {
+        return serviceEnvioCorreo_IndividualService.EnvioCorreoIndividual(entidad, bandera, IdPlantilla, usucodig);
     }
     
     @GetMapping("/remitentecorreo")
@@ -745,11 +751,17 @@ public class Controller {
             @PathVariable Integer id_prdcto) {
         return serviceOfertasHistorialService.ConsultaOfertasCarritoCompras(entidad, Bandera, cnctivoOferta, id_prdcto);
     }
-
+    
     @PostMapping("/consusuarioadmin/{Bandera}")
     public List<UsuarioAdminEntity> ConsultaUserAdmin(
             @RequestBody UsuarioAdminEntity entidad,
             @PathVariable Integer Bandera) {
         return serviceUsuarioAdminService.ConsultaUserAdmin(entidad, Bandera);
+    }
+    
+    @PostMapping(value = "/send")
+    @ResponseBody
+    public String SendEmail(@RequestBody EmailEntity emailBody) {
+        return serviceOlvidoClaveService.sendEmail(emailBody);
     }
 }

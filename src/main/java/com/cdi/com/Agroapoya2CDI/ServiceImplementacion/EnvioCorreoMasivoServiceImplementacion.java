@@ -96,21 +96,20 @@ public class EnvioCorreoMasivoServiceImplementacion implements CEnvioRealCorreoS
 
     public void sendMessage(Map<String, Object> mapMessage, Integer Bandera, Integer IdPlantilla) throws Exception {
 
-        String correoremitente = "agroapoya2@cdi.com.co";
-        String servicePath = "mail.cdi.com.co";
-        String contrasena = "Cdi.2022$";
+        String correoremitente = null;
+        String servicePath = null;
+        String contrasena = null;
 
         try {
             StoredProcedureQuery remitente = repositorio.createNamedStoredProcedureQuery("paC_RemitenteCorreo");
             remitente.getResultList();
             List<RemitenteCorreoEntity> remite = remitente.getResultList();
             String[] rem = new String[remite.size()];
-//            for (int i = 0; i < remite.size(); i++) {
-//                correoremitente = rem[i] = remite.get(i).getCorreoRemitente();
-//                servicePath = rem[i] = remite.get(i).getServicePath();
-//                contrasena = rem[i] = clsEncriptacion.Desencriptar(remite.get(i).getClave());
-//            }
-
+            for (int i = 0; i < remite.size(); i++) {
+                correoremitente = rem[i] = remite.get(i).getCorreoRemitente();
+                servicePath = rem[i] = remite.get(i).getServicePath();
+                contrasena = rem[i] = clsEncriptacion.Desencriptar(remite.get(i).getClave());
+            }
             Properties props = new Properties();
             props.setProperty("mail.transport.protocol", "smtp"); // usa el protocolo pop3
             props.setProperty("mail.host", servicePath); // servidor pop3
@@ -127,7 +126,6 @@ public class EnvioCorreoMasivoServiceImplementacion implements CEnvioRealCorreoS
             ts.sendMessage(message, message.getAllRecipients());
             ts.close();
         } catch (Exception e) {
-System.out.println("paso");
         }
     }
 
@@ -195,7 +193,7 @@ System.out.println("paso");
             message.saveChanges();
 
         } catch (Exception e) {
-            System.out.println("paso");
+
         }
         return message;
 
