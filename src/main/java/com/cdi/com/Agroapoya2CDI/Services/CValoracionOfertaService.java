@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface CValoracionOfertaService {
 
-    public List<CValoracionOfertaEntity> ConsultaCValoracionOferta(Integer BANDERA, Integer CD_CNSCTVO);
+    public List<CValoracionOfertaEntity> ConsultaCValoracionOferta(Integer BANDERA, Integer CD_CNSCTVO, Integer ID_SCTOR_OFRTA);
 }

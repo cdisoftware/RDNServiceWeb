@@ -18,13 +18,17 @@ public class CValoracionOfertaServiceImplementacion implements CValoracionOferta
     private EntityManager repositorio;
 
     @Override
-    public List<CValoracionOfertaEntity> ConsultaCValoracionOferta(Integer BANDERA, Integer CD_CNSCTVO) {
+    public List<CValoracionOfertaEntity> ConsultaCValoracionOferta(Integer BANDERA, Integer CD_CNSCTVO, Integer ID_SCTOR_OFRTA) {
         try {
             StoredProcedureQuery valor = repositorio.createNamedStoredProcedureQuery("paCValoracionOferta");
             valor.registerStoredProcedureParameter("BANDERA", Integer.class, ParameterMode.IN);
             valor.registerStoredProcedureParameter("CD_CNSCTVO", Integer.class, ParameterMode.IN);
+            valor.registerStoredProcedureParameter("ID_SCTOR_OFRTA", Integer.class, ParameterMode.IN);
+
             valor.setParameter("BANDERA", BANDERA);
             valor.setParameter("CD_CNSCTVO", CD_CNSCTVO);
+            valor.setParameter("ID_SCTOR_OFRTA", ID_SCTOR_OFRTA);
+
             return valor.getResultList();
         } catch (Exception ex) {
             List list = new ArrayList();

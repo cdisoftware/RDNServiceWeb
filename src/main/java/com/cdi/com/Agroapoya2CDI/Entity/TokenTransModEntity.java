@@ -13,23 +13,23 @@ import lombok.Data;
 @Data
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
-            name = "paC_OlvidoClave",
-            procedureName = "paC_OlvidoClave",
+            name = "paC_TokenTransMod",
+            procedureName = "paC_TokenTransMod",
             parameters = {
-                @StoredProcedureParameter(name = "Respuesta",
-                        mode = ParameterMode.OUT,
-                        type = String.class),
-                @StoredProcedureParameter(name = "FechaModificacion",
+                @StoredProcedureParameter(name = "respuesta",
                         mode = ParameterMode.OUT,
                         type = String.class)
             })
 })
-public class OlvidoClaveEntity {
+public class TokenTransModEntity {
 
     @Id
-    @JsonProperty("Respuesta")
-    public String Respuesta;
+    @JsonProperty("usucodig")
+    public Integer usucodig;
 
-    @JsonProperty("FechaMod")
-    public String FechaMod;
+    @JsonProperty("TipoUsu")
+    public Integer TipoUsu;
+
+    @JsonProperty("Token")
+    public String Token;
 }

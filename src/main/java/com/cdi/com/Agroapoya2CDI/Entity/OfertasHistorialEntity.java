@@ -164,4 +164,16 @@ public class OfertasHistorialEntity {
 
     @JsonProperty("evidenciaComentario")
     public String evidenciaComentario;
+
+    @JsonProperty("FechaCompra")
+    public String FechaCompra;
+
+    @JsonProperty("FechaEntrega")
+    public String FechaEntrega;
+
+    @JsonProperty("IdrEstadoCalifica")
+    public Integer IdrEstadoCalifica;
+
+    @JsonProperty("calificacionEstrella")
+    public Integer calificacionEstrella;
 }

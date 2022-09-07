@@ -72,9 +72,6 @@ public class CValoracionOfertaEntity {
     @JsonProperty("cntdad_grpos")
     public String cntdad_grpos;
 
-    @JsonProperty("unddes_xgrpo")
-    public String unddes_xgrpo;
-
     @JsonProperty("mnmo_unddes_prcpnte")
     public String mnmo_unddes_prcpnte;
 
@@ -84,8 +81,8 @@ public class CValoracionOfertaEntity {
     @JsonProperty("cntdad_cmpras_indvdles")
     public String cntdad_cmpras_indvdles;
 
-    @JsonProperty("vlor_fnal_lider")
-    public String vlor_fnal_lider;
+    @JsonProperty("vlor_arrnque_lider")
+    public String vlor_arrnque_lider;
 
     @JsonProperty("vlor_fnal_prtcpnte")
     public String vlor_fnal_prtcpnte;
@@ -107,5 +104,8 @@ public class CValoracionOfertaEntity {
 
     @JsonProperty("observaciones")
     public String observaciones;
+
+    @JsonProperty("ID_SCTOR_OFRTA")
+    public Integer ID_SCTOR_OFRTA;
 
 }

@@ -35,11 +35,11 @@ public class CValoracionOfertaModServiceImplementacion implements CValoracionOfe
             insertbackup.registerStoredProcedureParameter("PRCNTJE_DCTO_LIDER", String.class, ParameterMode.IN);
             insertbackup.registerStoredProcedureParameter("VLOR_DMNCLIO_GRPAL", String.class, ParameterMode.IN);
             insertbackup.registerStoredProcedureParameter("CNTDAD_GRPOS", String.class, ParameterMode.IN);
-            insertbackup.registerStoredProcedureParameter("UNDDES_XGRPO", String.class, ParameterMode.IN);
+            insertbackup.registerStoredProcedureParameter("MNMO_PRSNAS_XGRUPO", String.class, ParameterMode.IN);
             insertbackup.registerStoredProcedureParameter("MNMO_UNDDES_PRCPNTE", String.class, ParameterMode.IN);
             insertbackup.registerStoredProcedureParameter("MXMO_UNDDES_PRCPNTE", String.class, ParameterMode.IN);
             insertbackup.registerStoredProcedureParameter("CNTDAD_CMPRAS_INDVDLES", String.class, ParameterMode.IN);
-            insertbackup.registerStoredProcedureParameter("VLOR_FNAL_LIDER", String.class, ParameterMode.IN);
+            insertbackup.registerStoredProcedureParameter("VLOR_ARRNQUE_LIDER", String.class, ParameterMode.IN);
             insertbackup.registerStoredProcedureParameter("VLOR_FNAL_PRTCPNTE", String.class, ParameterMode.IN);
             insertbackup.registerStoredProcedureParameter("VGNCIA_DESDE", String.class, ParameterMode.IN);
             insertbackup.registerStoredProcedureParameter("VGNCIA_HASTA", String.class, ParameterMode.IN);
@@ -47,6 +47,7 @@ public class CValoracionOfertaModServiceImplementacion implements CValoracionOfe
             insertbackup.registerStoredProcedureParameter("HORA_HASTA", String.class, ParameterMode.IN);
             insertbackup.registerStoredProcedureParameter("FCHA_ENTRGA", String.class, ParameterMode.IN);
             insertbackup.registerStoredProcedureParameter("OBSERVACIONES", String.class, ParameterMode.IN);
+            insertbackup.registerStoredProcedureParameter("ID_SCTOR_OFRTA", Integer.class, ParameterMode.IN);
 
             insertbackup.setParameter("BANDERA", BANDERA);
             insertbackup.setParameter("CD_CNSCTVO", entidad.getCD_CNSCTVO());
@@ -64,11 +65,11 @@ public class CValoracionOfertaModServiceImplementacion implements CValoracionOfe
             insertbackup.setParameter("PRCNTJE_DCTO_LIDER", entidad.getPRCNTJE_DCTO_LIDER());
             insertbackup.setParameter("VLOR_DMNCLIO_GRPAL", entidad.getVLOR_DMNCLIO_GRPAL());
             insertbackup.setParameter("CNTDAD_GRPOS", entidad.getCNTDAD_GRPOS());
-            insertbackup.setParameter("UNDDES_XGRPO", entidad.getUNDDES_XGRPO());
+            insertbackup.setParameter("MNMO_PRSNAS_XGRUPO", entidad.getMNMO_PRSNAS_XGRUPO());
             insertbackup.setParameter("MNMO_UNDDES_PRCPNTE", entidad.getMNMO_UNDDES_PRCPNTE());
             insertbackup.setParameter("MXMO_UNDDES_PRCPNTE", entidad.getMXMO_UNDDES_PRCPNTE());
             insertbackup.setParameter("CNTDAD_CMPRAS_INDVDLES", entidad.getCNTDAD_CMPRAS_INDVDLES());
-            insertbackup.setParameter("VLOR_FNAL_LIDER", entidad.getVLOR_FNAL_LIDER());
+            insertbackup.setParameter("VLOR_ARRNQUE_LIDER", entidad.getVLOR_ARRNQUE_LIDER());
             insertbackup.setParameter("VLOR_FNAL_PRTCPNTE", entidad.getVLOR_FNAL_PRTCPNTE());
             insertbackup.setParameter("VGNCIA_DESDE", entidad.getVGNCIA_DESDE());
             insertbackup.setParameter("VGNCIA_HASTA", entidad.getVGNCIA_HASTA());
@@ -76,6 +77,8 @@ public class CValoracionOfertaModServiceImplementacion implements CValoracionOfe
             insertbackup.setParameter("HORA_HASTA", entidad.getHORA_HASTA());
             insertbackup.setParameter("FCHA_ENTRGA", entidad.getFCHA_ENTRGA());
             insertbackup.setParameter("OBSERVACIONES", entidad.getOBSERVACIONES());
+            insertbackup.setParameter("ID_SCTOR_OFRTA", entidad.getID_SCTOR_OFRTA());
+
             insertbackup.execute();
             return JSONObject.quote((String) insertbackup.getOutputParameterValue("Respuesta"));
         } catch (Exception ex) {

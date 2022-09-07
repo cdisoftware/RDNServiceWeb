@@ -17,6 +17,8 @@ import com.cdi.com.Agroapoya2CDI.Entity.CValoracionOfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CValoracionOfertaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CiudadOfertaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.ConductorEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CosteoOfertaEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CosteoOfertaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.EmailEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.EnvioCorreo_IndividualEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.EstadosOfertaEntity;
@@ -34,6 +36,7 @@ import com.cdi.com.Agroapoya2CDI.Entity.SectoresEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.SectoresModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.Select_TipoDocumentoEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.TipoViasEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.TokenTransModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.TransActivosEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.UploadFileResponse;
 import com.cdi.com.Agroapoya2CDI.Entity.UsuarioAdminEntity;
@@ -48,6 +51,8 @@ import com.cdi.com.Agroapoya2CDI.Entity.imagenesOfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.listaCondicionEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.listaEmpaqueEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.listaTamanoEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.loginClienteEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.loginTransEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.menuEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.mv_CiudadesActivasEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.mv_EnvioCorreoTransprtistaViejeEntity;
@@ -77,6 +82,8 @@ import com.cdi.com.Agroapoya2CDI.Services.CValoracionOfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.CValoracionOfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.CiudadOfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.ConductorService;
+import com.cdi.com.Agroapoya2CDI.Services.CosteoOfertaModService;
+import com.cdi.com.Agroapoya2CDI.Services.CosteoOfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.EnvioCorreo_IndividualService;
 import com.cdi.com.Agroapoya2CDI.Services.EstadosOfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.INFOGENERALService;
@@ -108,6 +115,7 @@ import com.cdi.com.Agroapoya2CDI.Services.SectoresModService;
 import com.cdi.com.Agroapoya2CDI.Services.SectoresService;
 import com.cdi.com.Agroapoya2CDI.Services.Select_TipoDocumentoService;
 import com.cdi.com.Agroapoya2CDI.Services.TipoViasService;
+import com.cdi.com.Agroapoya2CDI.Services.TokenTransModService;
 import com.cdi.com.Agroapoya2CDI.Services.TransActivosService;
 import com.cdi.com.Agroapoya2CDI.Services.UsuarioAdminService;
 import com.cdi.com.Agroapoya2CDI.Services.codigoPersonaModService;
@@ -121,6 +129,8 @@ import com.cdi.com.Agroapoya2CDI.Services.imagenesOfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.listaCondicionService;
 import com.cdi.com.Agroapoya2CDI.Services.listaEmpaqueService;
 import com.cdi.com.Agroapoya2CDI.Services.listaTamanoService;
+import com.cdi.com.Agroapoya2CDI.Services.loginClienteService;
+import com.cdi.com.Agroapoya2CDI.Services.loginTransService;
 import com.cdi.com.Agroapoya2CDI.Services.menuService;
 import com.cdi.com.Agroapoya2CDI.Services.mv_EnvioCorreoTransprtistaViejeService;
 import com.cdi.com.Agroapoya2CDI.Services.productosService;
@@ -129,6 +139,7 @@ import com.cdi.com.Agroapoya2CDI.Services.tipo_carro_pesoService;
 import java.io.File;
 import java.io.IOException;
 import org.json.JSONObject;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -317,6 +328,21 @@ public class Controller {
     @Autowired
     OlvidoClaveService serviceOlvidoClaveService;
     
+    @Autowired
+    loginTransService serviceloginTransService;
+    
+    @Autowired
+    TokenTransModService serviceTokenTransModService;
+    
+    @Autowired
+    CosteoOfertaService serviceCosteoOfertaService;
+    
+    @Autowired
+    CosteoOfertaModService serviceCosteoOfertaModService;
+    
+    @Autowired
+    loginClienteService serviceloginClienteService;
+    
     @GetMapping("/consultainfogeneral/{ID}/{subId}")
     public List<INFOGENERALEntity> ConsultaInfoGeneral(
             @PathVariable Integer ID,
@@ -423,7 +449,7 @@ public class Controller {
 
     //SUBIR IMAGENES
     @PostMapping("/uploadFile")
-    public String uploadFiles(@RequestParam("file") MultipartFile file) {
+    public String uploadOfertas(@RequestParam("file") MultipartFile file) {
         String fileName = null;
         try {
             fileName = fileStorageService.storeFile(file);
@@ -436,7 +462,55 @@ public class Controller {
                 .toUriString();
         fileDownloadUri = fileDownloadUri.replace(":8089/ImagenesAgroapoya2", "");
         try {
-            file.transferTo(new File("C:/inetpub/wwwroot/ImagenesAgroapoya2/" + fileName));
+            file.transferTo(new File("C:/inetpub/wwwroot/ImagenesAgroapoya2/ImagenesOfertas/" + fileName));
+        } catch (IOException | IllegalStateException ex) {
+            System.out.println("Error " + ex);
+        }
+        UploadFileResponse uploadfile = new UploadFileResponse(fileName, fileDownloadUri,
+                file.getContentType(), file.getSize());
+        uploadfile.getFileDownloadUri();
+        return JSONObject.quote("Archivo Subido Correctamente");
+    }
+    
+    @PostMapping("/uploadevidencia")
+    public String uploadEvidencia(@RequestParam("file") MultipartFile file) {
+        String fileName = null;
+        try {
+            fileName = fileStorageService.storeFile(file);
+        } catch (FileStorageException ex) {
+            System.out.println("Error " + ex);
+        }
+        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/ImagenesAgroapoya2/")
+                .path(fileName)
+                .toUriString();
+        fileDownloadUri = fileDownloadUri.replace(":8089/ImagenesAgroapoya2", "");
+        try {
+            file.transferTo(new File("C:/inetpub/wwwroot/ImagenesAgroapoya2/ImagenesEvidencia/" + fileName));
+        } catch (IOException | IllegalStateException ex) {
+            System.out.println("Error " + ex);
+        }
+        UploadFileResponse uploadfile = new UploadFileResponse(fileName, fileDownloadUri,
+                file.getContentType(), file.getSize());
+        uploadfile.getFileDownloadUri();
+        return JSONObject.quote("Archivo Subido Correctamente");
+    }
+    
+    @PostMapping("/uploadconductores")
+    public String uploadConductores(@RequestParam("file") MultipartFile file) {
+        String fileName = null;
+        try {
+            fileName = fileStorageService.storeFile(file);
+        } catch (FileStorageException ex) {
+            System.out.println("Error " + ex);
+        }
+        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/ImagenesAgroapoya2/")
+                .path(fileName)
+                .toUriString();
+        fileDownloadUri = fileDownloadUri.replace(":8089/ImagenesAgroapoya2", "");
+        try {
+            file.transferTo(new File("C:/inetpub/wwwroot/ImagenesAgroapoya2/ImagenesConductores/" + fileName));
         } catch (IOException | IllegalStateException ex) {
             System.out.println("Error " + ex);
         }
@@ -696,11 +770,12 @@ public class Controller {
         return serviceCValoracionOfertaModService.CValoracionOfertaMod(entidad, BANDERA);
     }
     
-    @GetMapping("/conscvaloracionoferta/{BANDERA}/{CD_CNSCTVO}")
+    @GetMapping("/conscvaloracionoferta/{BANDERA}/{CD_CNSCTVO}/{ID_SCTOR_OFRTA}")
     public List<CValoracionOfertaEntity> ConsultaCValoracionOferta(
             @PathVariable Integer BANDERA,
-            @PathVariable Integer CD_CNSCTVO) {
-        return serviceCValoracionOfertaService.ConsultaCValoracionOferta(BANDERA, CD_CNSCTVO);
+            @PathVariable Integer CD_CNSCTVO,
+            @PathVariable Integer ID_SCTOR_OFRTA) {
+        return serviceCValoracionOfertaService.ConsultaCValoracionOferta(BANDERA, CD_CNSCTVO, ID_SCTOR_OFRTA);
     }
     
     @PostMapping("/enviocorreoindividual/{bandera}/{IdPlantilla}/{usucodig}")
@@ -763,5 +838,40 @@ public class Controller {
     @ResponseBody
     public String SendEmail(@RequestBody EmailEntity emailBody) {
         return serviceOlvidoClaveService.sendEmail(emailBody);
+    }
+    
+    @PostMapping("/conslogintrans/{bandera}")
+    public List<loginTransEntity> ConsultaLoginTransportista(
+            @RequestBody loginTransEntity entidad,
+            @PathVariable Integer bandera) {
+        return serviceloginTransService.ConsultaLoginTransportista(entidad, bandera);
+    }
+    
+    @PutMapping("/acttokentransmod/{bandera}")
+    public String ActualizaTokenTransMod(
+            @RequestBody TokenTransModEntity entidad,
+            @PathVariable Integer bandera) {
+        return serviceTokenTransModService.ActualizaTokenTransMod(entidad, bandera);
+    }
+    
+    @GetMapping("/conscosteoferta/{bandera}/{CD_CNSCTVO}")
+    public List<CosteoOfertaEntity> ConsultaCosteoOferta(
+            @PathVariable Integer bandera,
+            @PathVariable String CD_CNSCTVO) {
+        return serviceCosteoOfertaService.ConsultaCosteoOferta(bandera, CD_CNSCTVO);
+    }
+
+    @PostMapping("/costeofertamod/{bandera}")
+    public String CosteOFertaMod(
+            @RequestBody CosteoOfertaModEntity entidad,
+            @PathVariable Integer bandera) {
+        return serviceCosteoOfertaModService.CosteOFertaMod(entidad, bandera);
+    }
+    
+      @PostMapping("/conslogincliente/{bandera}")
+    public List<loginClienteEntity> ConsultaLoginCliente(
+            @RequestBody loginClienteEntity entidad,
+            @PathVariable Integer bandera) {
+        return serviceloginClienteService.ConsultaLoginCliente(entidad, bandera);
     }
 }

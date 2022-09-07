@@ -11,15 +11,15 @@ import lombok.Data;
 @Data
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
-            name = "paA_UsuarioAdmin",
-            procedureName = "paA_UsuarioAdmin",
-            resultClasses = UsuarioAdminEntity.class)
+            name = "paC_loginCliente",
+            procedureName = "paC_loginCliente",
+            resultClasses = loginClienteEntity.class)
 })
-public class UsuarioAdminEntity {
+public class loginClienteEntity {
 
     @Id
-    @JsonProperty("Usucodig")
-    public Integer Usucodig;
+    @JsonProperty("USUCODIG")
+    public Integer USUCODIG;
 
     @JsonProperty("NombrePersona")
     public String NombrePersona;
@@ -27,18 +27,24 @@ public class UsuarioAdminEntity {
     @JsonProperty("ApellidoPersona")
     public String ApellidoPersona;
 
-    @JsonProperty("nombreCompleto")
-    public String nombreCompleto;
+    @JsonProperty("Celular")
+    public String Celular;
 
     @JsonProperty("CorreoPersona")
     public String CorreoPersona;
 
-    @JsonProperty("CelularPersona")
-    public String CelularPersona;
+    @JsonProperty("direccionPersona")
+    public String direccionPersona;
 
-    @JsonProperty("ComentarioRegistro")
-    public String ComentarioRegistro;
-    
-     @JsonProperty("Token")
+    @JsonProperty("Token")
     public String Token;
+
+    @JsonProperty("cordenadas")
+    public String cordenadas;
+
+    @JsonProperty("idTipoPersona")
+    public Integer idTipoPersona;
+
+    @JsonProperty("descripTipoPersona")
+    public String descripTipoPersona;
 }

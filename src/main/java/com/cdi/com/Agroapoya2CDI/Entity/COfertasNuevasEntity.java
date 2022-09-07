@@ -174,8 +174,10 @@ public class COfertasNuevasEntity {
 
     @JsonProperty("uniMiniParticipante")
     public Integer uniMiniParticipante;
-    
-     @JsonProperty("uniMaxParticipante")
+
+    @JsonProperty("uniMaxParticipante")
     public Integer uniMaxParticipante;
 
+    @JsonProperty("FechaEntrega")
+    public String FechaEntrega;
 }
