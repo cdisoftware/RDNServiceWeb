@@ -134,6 +134,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Entity.PConsultaCamposOblEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PConsultaChatEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PConsultaContactoChatEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PEncabezaAgendaPdfEntity;
+import com.cdi.com.CorferiasRuedaNegocios.Entity.PFormatoFechaEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PInfoContactoEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PLogWebEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PMascaraRegistroRdnEntity;
@@ -374,6 +375,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Services.PCuentaChatService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PCuentaNotificaService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PEncabezaAgendaPdfService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PFechaAgendamientoService;
+import com.cdi.com.CorferiasRuedaNegocios.Services.PFormatoFechaService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PInfoContactoService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PMascaraRegistroRdnService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PMesaChatMensModService;
@@ -1117,6 +1119,9 @@ public class Controller {
 
     @Autowired
     CReporteEvaProyeccionService serviceCReporteEvaProyeccionService;
+
+    @Autowired
+    PFormatoFechaService servicePFormatoFechaService;
 
     @GetMapping("/consultarpaises")
     public List<TtPaisEntity> ConsultarPaises() {
@@ -3984,6 +3989,13 @@ public class Controller {
             @PathVariable String Nombreempresa,
             @PathVariable String Nit) {
         return serviceCReporteEvaProyeccionService.ConsultaCReporteEvaProyeccion(Bandera, IdRuedaNegocio, Nombreempresa, Nit);
+    }
+
+    @GetMapping("/consultaformatofecha/{Bandera}/{TipoFormato}")
+    public List<PFormatoFechaEntity> ConsultaFormatoFecha(
+            @PathVariable Integer Bandera,
+            @PathVariable Integer TipoFormato) {
+        return servicePFormatoFechaService.ConsultaFormatoFecha(Bandera, TipoFormato);
     }
 
 }
