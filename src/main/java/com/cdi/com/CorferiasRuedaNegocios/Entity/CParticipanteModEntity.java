@@ -25,48 +25,51 @@ public class CParticipanteModEntity {
 
     @Id
     @JsonProperty("IdParticipante")
-    private Integer IdParticipante ;
+    public Integer IdParticipante;
 
     @JsonProperty("IdRuedaNegocio")
-    private Integer IdRuedaNegocio;
+    public Integer IdRuedaNegocio;
 
     @JsonProperty("IdPerfilRueda")
-    private Integer IdPerfilRueda ;
+    public Integer IdPerfilRueda;
 
     @JsonProperty("FechaRegistro")
-    private String FechaRegistro;
+    public String FechaRegistro;
 
     @JsonProperty("IdUsuarioC")
-    private Integer IdUsuarioC;
+    public Integer IdUsuarioC;
 
     @JsonProperty("AceptaTerminos")
-    private Integer AceptaTerminos;
+    public Integer AceptaTerminos;
 
     @JsonProperty("Ip")
-    private String Ip;
+    public String Ip;
 
     @JsonProperty("AgendaAdicional")
-    private Integer AgendaAdicional;
+    public Integer AgendaAdicional;
 
     @JsonProperty("NoCitasMin")
-    private Integer NoCitasMin;
+    public Integer NoCitasMin;
 
     @JsonProperty("NoCitasMax")
-    private Integer NoCitasMax;
+    public Integer NoCitasMax;
 
     @JsonProperty("SoloNacional")
-    private Integer SoloNacional;
+    public Integer SoloNacional;
 
     @JsonProperty("NacionalExp")
-    private Integer NacionalExp;
+    public Integer NacionalExp;
 
     @JsonProperty("TipoCita")
-    private Integer TipoCita;
+    public Integer TipoCita;
 
     @JsonProperty("Estado")
-    private Integer Estado;
+    public Integer Estado;
 
     @JsonProperty("Observaciones")
-    private String Observaciones;
+    public String Observaciones;
+
+    @JsonProperty("IdContacto")
+    public Integer IdContacto;
 
 }
