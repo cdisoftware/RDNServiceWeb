@@ -176,6 +176,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Entity.PTerminoPoliticaEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PTtListaPaisEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PTtListaTipoDocumentoEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PUbicaParticipanteEntity;
+import com.cdi.com.CorferiasRuedaNegocios.Entity.PValidaFechaSalaEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PValidaParticipanteEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PopcionesRtaPregunta;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PpreguntaRuedaEntity;
@@ -418,6 +419,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Services.PUbicaParticipanteService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaContactoService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaEvalService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaFechaCitaService;
+import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaFechaSalaService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaPaisRdnService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaParticipanteService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaPerfilPartService;
@@ -1122,6 +1124,9 @@ public class Controller {
 
     @Autowired
     PFormatoFechaService servicePFormatoFechaService;
+
+    @Autowired
+    PValidaFechaSalaService servicePValidaFechaSalaService;
 
     @GetMapping("/consultarpaises")
     public List<TtPaisEntity> ConsultarPaises() {
@@ -3998,4 +4003,11 @@ public class Controller {
         return servicePFormatoFechaService.ConsultaFormatoFecha(Bandera, TipoFormato);
     }
 
+    @GetMapping("/consultapvalidafechasala/{Bandera}/{IdRueda}/{IdAgenda}")
+    public List<PValidaFechaSalaEntity> ConsultaPValidaFechaSala(
+            @PathVariable Integer Bandera,
+            @PathVariable Integer IdRueda,
+            @PathVariable Integer IdAgenda) {
+        return servicePValidaFechaSalaService.ConsultaPValidaFechaSala(Bandera, IdRueda, IdAgenda);
+    }
 }

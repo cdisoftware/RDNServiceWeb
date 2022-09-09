@@ -37,6 +37,8 @@ public class CParticipanteModServiceImplementacion implements CParticipanteModSe
             rolconsola.registerStoredProcedureParameter("MinPermitida", Integer.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("MaxPermitida", Integer.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("Observaciones", String.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("IdContacto", Integer.class, ParameterMode.IN);
+
             rolconsola.setParameter("Bandera", Bandera);
             rolconsola.setParameter("IdParticipante", entidad.getIdParticipante());
             rolconsola.setParameter("IdRdn", entidad.getIdRuedaNegocio());
@@ -49,6 +51,8 @@ public class CParticipanteModServiceImplementacion implements CParticipanteModSe
             rolconsola.setParameter("MinPermitida", entidad.getNoCitasMin());
             rolconsola.setParameter("MaxPermitida", entidad.getNoCitasMax());
             rolconsola.setParameter("Observaciones", entidad.getObservaciones());
+            rolconsola.setParameter("IdContacto", entidad.getIdContacto());
+
             rolconsola.execute();
             return JSONObject.quote((String) rolconsola.getOutputParameterValue("Respuesta"));
         } catch (Exception ex) {
