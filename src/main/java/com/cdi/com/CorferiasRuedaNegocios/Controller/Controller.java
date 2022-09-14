@@ -136,6 +136,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Entity.PConsultaContactoChatEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PEncabezaAgendaPdfEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PFormatoFechaEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PInfoContactoEntity;
+import com.cdi.com.CorferiasRuedaNegocios.Entity.PLinkSalaCitaEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PLogWebEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PMascaraRegistroRdnEntity;
 import com.cdi.com.CorferiasRuedaNegocios.Entity.PMesaChatMensModEntity;
@@ -378,6 +379,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Services.PEncabezaAgendaPdfService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PFechaAgendamientoService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PFormatoFechaService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PInfoContactoService;
+import com.cdi.com.CorferiasRuedaNegocios.Services.PLinkSalaCitaService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PMascaraRegistroRdnService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PMesaChatMensModService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PMesaChatModService;
@@ -1127,6 +1129,9 @@ public class Controller {
 
     @Autowired
     PValidaFechaSalaService servicePValidaFechaSalaService;
+    
+    @Autowired
+    PLinkSalaCitaService servicePLinkSalaCitaService;
 
     @GetMapping("/consultarpaises")
     public List<TtPaisEntity> ConsultarPaises() {
@@ -4009,5 +4014,12 @@ public class Controller {
             @PathVariable Integer IdRueda,
             @PathVariable Integer IdAgenda) {
         return servicePValidaFechaSalaService.ConsultaPValidaFechaSala(Bandera, IdRueda, IdAgenda);
+    }
+     @GetMapping("/consultaplinksalacita/{bandera}/{IdRueda}/{IdAgenda}")
+    public List<PLinkSalaCitaEntity> ConsultaPLinkSalaCita(
+            @PathVariable Integer bandera,
+            @PathVariable Integer IdRueda,
+            @PathVariable Integer IdAgenda) {
+        return servicePLinkSalaCitaService.ConsultaPLinkSalaCita(bandera, IdRueda, IdAgenda);
     }
 }
