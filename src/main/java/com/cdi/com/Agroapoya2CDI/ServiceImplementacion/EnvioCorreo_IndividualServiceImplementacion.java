@@ -54,7 +54,7 @@ public class EnvioCorreo_IndividualServiceImplementacion implements EnvioCorreo_
     String imagenpiepagina;
 
     @Override
-    public String EnvioCorreoIndividual(EnvioCorreo_IndividualEntity entidad, Integer bandera, Integer IdPlantilla, Integer usucodig) {
+    public String EnvioCorreoIndividual(Integer bandera, Integer IdPlantilla, Integer usucodig, String correoPersona) {
 
         Map<String, Object> mapMessage = new HashMap<>();
         try {
@@ -68,7 +68,7 @@ public class EnvioCorreo_IndividualServiceImplementacion implements EnvioCorreo_
             rolconsola.setParameter("bandera", bandera);
             rolconsola.setParameter("IdPlantilla", IdPlantilla);
             rolconsola.setParameter("usucodig", usucodig);
-            rolconsola.setParameter("correoPersona", entidad.getEmailOpc());
+            rolconsola.setParameter("correoPersona", correoPersona);
 
             rolconsola.getResultList();
             List<EnvioCorreo_IndividualEntity> cuerpocorreo = rolconsola.getResultList();
@@ -91,7 +91,7 @@ public class EnvioCorreo_IndividualServiceImplementacion implements EnvioCorreo_
             String content = templateEngine.process("EnvioCorreos", context);
             mapMessage.put("subject", asunto);
             mapMessage.put("content", content);
-            sendMessage(mapMessage, bandera, IdPlantilla, usucodig, entidad.getEmailOpc());
+            sendMessage(mapMessage, bandera, IdPlantilla, usucodig, correoPersona);
             Respuesta = JSONObject.quote("Correo Enviado Correctamente");
 
         } catch (Exception e) {

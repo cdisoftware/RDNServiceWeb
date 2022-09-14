@@ -1,6 +1,8 @@
 package com.cdi.com.Agroapoya2CDI.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedStoredProcedureQueries;
@@ -10,7 +12,7 @@ import javax.persistence.StoredProcedureParameter;
 import lombok.Data;
 
 @Entity
-@Data
+
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
             name = "paC_OlvidoClave",
@@ -24,7 +26,9 @@ import lombok.Data;
                         type = String.class)
             })
 })
-public class OlvidoClaveEntity {
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Data
+public class OlvidoClaveEntity implements Serializable {
 
     @Id
     @JsonProperty("Respuesta")
