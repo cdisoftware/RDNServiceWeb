@@ -5,30 +5,30 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedStoredProcedureQueries;
 import javax.persistence.NamedStoredProcedureQuery;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import lombok.Data;
 
 @Entity
 @Data
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
-            name = "paCConductorSectorOferta",
-            procedureName = "paCConductorSectorOferta",
-            resultClasses = CConductorSectorOfertaEntity.class)
+            name = "paConductorOfertaMod",
+            procedureName = "paConductorOfertaMod",
+            parameters = {
+                @StoredProcedureParameter(name = "respuesta",
+                        mode = ParameterMode.OUT,
+                        type = String.class)
+            })
 })
-public class CConductorSectorOfertaEntity {
+public class ConductorOfertaModEntity {
 
     @Id
-    @JsonProperty("ID")
-    public Integer ID;
-
     @JsonProperty("CD_CNSCTVO")
     public Integer CD_CNSCTVO;
 
     @JsonProperty("ID_SCTOR_OFRTA")
     public Integer ID_SCTOR_OFRTA;
-
-    @JsonProperty("DSCRPCION_SCTOR")
-    public String DSCRPCION_SCTOR;
 
     @JsonProperty("ID_CNDCTOR")
     public Integer ID_CNDCTOR;
@@ -36,13 +36,9 @@ public class CConductorSectorOfertaEntity {
     @JsonProperty("USUCODIG_TRANS")
     public Integer USUCODIG_TRANS;
 
-    @JsonProperty("NMBRE_CNDCTOR")
-    public String NMBRE_CNDCTOR;
-
     @JsonProperty("VLOR_FLTE_PCTDO")
     public String VLOR_FLTE_PCTDO;
 
-    @JsonProperty("cantidad")
-    public Integer cantidad;
-
+    @JsonProperty("ESTADO")
+    public Integer ESTADO;
 }

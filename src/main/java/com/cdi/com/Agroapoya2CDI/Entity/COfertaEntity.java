@@ -104,4 +104,20 @@ public class COfertaEntity {
 
     @JsonProperty("vlor_flte_xunidad")
     public String vlor_flte_xunidad;
+
+    @JsonProperty("Nombre_estado")
+    public String Nombre_estado;
+
+    @JsonProperty("Condicion_entrega")
+    public String Condicion_entrega;
+
+    @JsonProperty("valor_Total_Ofr_formato")
+    public String valor_Total_Ofr_formato;
+
+    @JsonProperty("valor_unidad_formato")
+    public String valor_unidad_formato;
+
+    @JsonProperty("vlor_costeo")
+    public String vlor_costeo;
+
 }

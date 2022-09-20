@@ -23,10 +23,6 @@ public class SectoresModServiceImplementacion implements SectoresModService {
             respu.registerStoredProcedureParameter("USUCODIG", Integer.class, ParameterMode.IN);
             respu.registerStoredProcedureParameter("SCTOR_OFR", Integer.class, ParameterMode.IN);
             respu.registerStoredProcedureParameter("DSCRPCION_SCTOR", String.class, ParameterMode.IN);
-            respu.registerStoredProcedureParameter("LAT_NORTE", String.class, ParameterMode.IN);
-            respu.registerStoredProcedureParameter("LONG_NORTE", String.class, ParameterMode.IN);
-            respu.registerStoredProcedureParameter("LAT_SUR", String.class, ParameterMode.IN);
-            respu.registerStoredProcedureParameter("LONG_SUR", String.class, ParameterMode.IN);
             respu.registerStoredProcedureParameter("CD_RGION", String.class, ParameterMode.IN);
             respu.registerStoredProcedureParameter("CD_MNCPIO", String.class, ParameterMode.IN);
 
@@ -34,10 +30,6 @@ public class SectoresModServiceImplementacion implements SectoresModService {
             respu.setParameter("USUCODIG", entidad.getUSUCODIG());
             respu.setParameter("SCTOR_OFR", entidad.getSCTOR_OFR());
             respu.setParameter("DSCRPCION_SCTOR", entidad.getDSCRPCION_SCTOR());
-            respu.setParameter("LAT_NORTE", entidad.getLAT_NORTE());
-            respu.setParameter("LONG_NORTE", entidad.getLONG_NORTE());
-            respu.setParameter("LAT_SUR", entidad.getLAT_SUR());
-            respu.setParameter("LONG_SUR", entidad.getLONG_SUR());
             respu.setParameter("CD_RGION", entidad.getCD_RGION());
             respu.setParameter("CD_MNCPIO", entidad.getCD_MNCPIO());
             respu.execute();

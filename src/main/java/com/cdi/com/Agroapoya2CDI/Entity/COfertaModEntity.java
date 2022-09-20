@@ -81,4 +81,19 @@ public class COfertaModEntity {
     @JsonProperty("OBS_EDICION")
     public String OBS_EDICION;
 
+    @JsonProperty("IMAGEN1")
+    public String IMAGEN1;
+
+    @JsonProperty("IMAGEN2")
+    public String IMAGEN2;
+
+    @JsonProperty("IMAGEN3")
+    public String IMAGEN3;
+
+    @JsonProperty("IMAGEN4")
+    public String IMAGEN4;
+
+    @JsonProperty("IMAGEN5")
+    public String IMAGEN5;
+
 }

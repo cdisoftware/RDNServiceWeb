@@ -40,6 +40,11 @@ public class COfertaModServiceImplementacion implements COfertaModService {
             insertofrta.registerStoredProcedureParameter("CD_CNSCTVO", String.class, ParameterMode.IN);
             insertofrta.registerStoredProcedureParameter("CRCTRZCION", String.class, ParameterMode.IN);
             insertofrta.registerStoredProcedureParameter("OBS_EDICION", String.class, ParameterMode.IN);
+            insertofrta.registerStoredProcedureParameter("IMAGEN1", String.class, ParameterMode.IN);
+            insertofrta.registerStoredProcedureParameter("IMAGEN2", String.class, ParameterMode.IN);
+            insertofrta.registerStoredProcedureParameter("IMAGEN3", String.class, ParameterMode.IN);
+            insertofrta.registerStoredProcedureParameter("IMAGEN4", String.class, ParameterMode.IN);
+            insertofrta.registerStoredProcedureParameter("IMAGEN5", String.class, ParameterMode.IN);
 
             insertofrta.setParameter("bandera", bandera);
             insertofrta.setParameter("CD_PRDCTO", entidad.getCD_PRDCTO());
@@ -62,6 +67,11 @@ public class COfertaModServiceImplementacion implements COfertaModService {
             insertofrta.setParameter("CD_CNSCTVO", entidad.getCD_CNSCTVO());
             insertofrta.setParameter("CRCTRZCION", entidad.getCRCTRZCION());
             insertofrta.setParameter("OBS_EDICION", entidad.getOBS_EDICION());
+            insertofrta.setParameter("IMAGEN1", entidad.getIMAGEN1());
+            insertofrta.setParameter("IMAGEN2", entidad.getIMAGEN2());
+            insertofrta.setParameter("IMAGEN3", entidad.getIMAGEN3());
+            insertofrta.setParameter("IMAGEN4", entidad.getIMAGEN4());
+            insertofrta.setParameter("IMAGEN5", entidad.getIMAGEN5());
 
             insertofrta.execute();
             return JSONObject.quote((String) insertofrta.getOutputParameterValue("Respuesta"));

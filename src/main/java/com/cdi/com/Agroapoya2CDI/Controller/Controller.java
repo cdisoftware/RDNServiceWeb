@@ -2,24 +2,38 @@ package com.cdi.com.Agroapoya2CDI.Controller;
 
 import com.cdi.com.Agroapoya2CDI.Entity.AOfertasEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.AestadoOfertaModEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CATipoCamposCorreoEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CAplantillaCorreoEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CCiudadDistribucionOfertEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CConductorEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CConductorSectorOfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CConductorSectorOfertaModEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CConsultaEstadoOfertaEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CCordenadasSectorEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CCordenadasSectorModEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CDatosTransportistaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.COfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.COfertaImagenModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.COfertaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.COfertasNuevasEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CPersonasEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CSectorConductorEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CSectorOfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CSectorOfertaModEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CTipoCosteoOfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CValoracionOfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CValoracionOfertaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CiudadOfertaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.ConductorEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.ConductorOfertaModEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CorreoMomentoEnvioEntoty;
 import com.cdi.com.Agroapoya2CDI.Entity.CosteoOfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CosteoOfertaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CpersonaCampesinoModEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CpersonaClienteModEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CpersonaTransportistaModEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CtipoMomentoEnvioEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CtipoPlantillaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.EmailEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.EnvioCorreo_IndividualEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.EstadosOfertaEntity;
@@ -67,25 +81,39 @@ import com.cdi.com.Agroapoya2CDI.ServiceImplementacion.FileStorageService;
 import com.cdi.com.Agroapoya2CDI.Services.AOfertasService;
 import com.cdi.com.Agroapoya2CDI.Services.AestadoOfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.CALCULADORA_VALORPAGOService;
+import com.cdi.com.Agroapoya2CDI.Services.CATipoCamposCorreoService;
+import com.cdi.com.Agroapoya2CDI.Services.CAplantillaCorreoService;
 import com.cdi.com.Agroapoya2CDI.Services.CCiudadDistribucionOfertService;
 import com.cdi.com.Agroapoya2CDI.Services.CConductorSectorOfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.CConductorSectorOfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.CConductorService;
+import com.cdi.com.Agroapoya2CDI.Services.CConsultaEstadoOfertaService;
+import com.cdi.com.Agroapoya2CDI.Services.CCordenadasSectorModService;
+import com.cdi.com.Agroapoya2CDI.Services.CCordenadasSectorService;
+import com.cdi.com.Agroapoya2CDI.Services.CDatosTransportistaService;
 import com.cdi.com.Agroapoya2CDI.Services.CEnvioRealCorreoService;
 import com.cdi.com.Agroapoya2CDI.Services.COfertaImagenModService;
 import com.cdi.com.Agroapoya2CDI.Services.COfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.COfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.COfertasNuevasService;
 import com.cdi.com.Agroapoya2CDI.Services.CPersonasService;
+import com.cdi.com.Agroapoya2CDI.Services.CSectorConductorService;
 import com.cdi.com.Agroapoya2CDI.Services.CSectorOfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.CSectorOfertaService;
+import com.cdi.com.Agroapoya2CDI.Services.CTipoCosteoOfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.CValoracionOfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.CValoracionOfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.CiudadOfertaModService;
+import com.cdi.com.Agroapoya2CDI.Services.ConductorOfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.ConductorService;
+import com.cdi.com.Agroapoya2CDI.Services.CorreoMomentoEnvioService;
 import com.cdi.com.Agroapoya2CDI.Services.CosteoOfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.CosteoOfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.CpersonaCampesinoModService;
+import com.cdi.com.Agroapoya2CDI.Services.CpersonaClienteModService;
+import com.cdi.com.Agroapoya2CDI.Services.CpersonaTransportistaModService;
+import com.cdi.com.Agroapoya2CDI.Services.CtipoMomentoEnvioService;
+import com.cdi.com.Agroapoya2CDI.Services.CtipoPlantillaService;
 import com.cdi.com.Agroapoya2CDI.Services.EnvioCorreo_IndividualService;
 import com.cdi.com.Agroapoya2CDI.Services.EstadosOfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.INFOGENERALService;
@@ -368,6 +396,48 @@ public class Controller {
     
     @Autowired
     CpersonaCampesinoModService serviceCpersonaCampesinoModService;
+    
+    @Autowired
+    CCordenadasSectorModService serviceCCordenadasSectorModService;
+    
+    @Autowired
+    CConsultaEstadoOfertaService serviceCConsultaEstadoOfertaService;
+    
+    @Autowired
+    CCordenadasSectorService serviceCCordenadasSectorService;
+    
+    @Autowired
+    CSectorConductorService serviceCSectorConductorService;
+    
+    @Autowired
+    ConductorOfertaModService serviceConductorOfertaModService;
+    
+    @Autowired
+    CDatosTransportistaService serviceCDatosTransportistaService;
+    
+    @Autowired
+    CTipoCosteoOfertaService serviceCTipoCosteoOfertaService;
+    
+    @Autowired
+    CpersonaTransportistaModService serviceCpersonaTransportistaModService;
+    
+    @Autowired
+    CpersonaClienteModService serviceCpersonaClienteModService;
+    
+    @Autowired
+    CtipoPlantillaService serviceCtipoPlantillaService;
+    
+    @Autowired
+    CorreoMomentoEnvioService serviceCorreoMomentoEnvioService;
+    
+    @Autowired
+    CtipoMomentoEnvioService serviceCtipoMomentoEnvioService;
+    
+    @Autowired
+    CAplantillaCorreoService serviceCAplantillaCorreoService;
+    
+    @Autowired
+    CATipoCamposCorreoService serviceCATipoCamposCorreoService;
     
     @GetMapping("/consultainfogeneral/{ID}/{subId}")
     public List<INFOGENERALEntity> ConsultaInfoGeneral(
@@ -804,13 +874,14 @@ public class Controller {
         return serviceCValoracionOfertaService.ConsultaCValoracionOferta(BANDERA, CD_CNSCTVO, ID_SCTOR_OFRTA);
     }
     
-    @GetMapping("/enviocorreoindividual/{bandera}/{IdPlantilla}/{usucodig}/{correoPersona}")
+    @GetMapping("/enviocorreoindividual/{bandera}/{IdPlantilla}/{usucodig}/{correoPersona}/{Cd_cnctvo}")
     public String EnvioCorreoIndividual(
             @PathVariable Integer bandera,
             @PathVariable Integer IdPlantilla,
             @PathVariable Integer usucodig,
-            @PathVariable String correoPersona) {
-        return serviceEnvioCorreo_IndividualService.EnvioCorreoIndividual(bandera, IdPlantilla, usucodig, correoPersona);
+            @PathVariable String correoPersona,
+            @PathVariable Integer Cd_cnctvo) {
+        return serviceEnvioCorreo_IndividualService.EnvioCorreoIndividual(bandera, IdPlantilla, usucodig, correoPersona, Cd_cnctvo);
     }
     
     @GetMapping("/remitentecorreo")
@@ -941,12 +1012,8 @@ public class Controller {
     @GetMapping("/reporteSms/{mensaje}/{celular}")
     public String ConsultaNitXFeria(@PathVariable String mensaje, @PathVariable String celular) {
         JSONObject ObjectJson = new JSONObject();
-        String host = "https://rollbar.co";
-        URL url = null;
-        HttpURLConnection con = null;
         try {
-            url = new URL(host);
-            con = (HttpURLConnection) url.openConnection();
+            
             RestTemplate rt = new RestTemplate();
             HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
                 @Override
@@ -961,37 +1028,119 @@ public class Controller {
             parameters.add("mensaje", mensaje);
             parameters.add("celular", celular);
             
-            ResponseEntity<Object> response = rt.exchange("http://www.webusuario.com/recepcionsms?mensaje=" + mensaje + "&celular=" + celular, HttpMethod.POST, null, Object.class);
+            ResponseEntity<Object> response = rt.exchange("https://contacto-masivo.com/sms/back_sms/public/api/sendsms?mensaje=" + mensaje + "&celular=" + celular, HttpMethod.POST, null, Object.class);
             Object NitObject = response.getBody();
             com.fasterxml.jackson.databind.ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
             String json = ow.writeValueAsString(NitObject);
             ObjectJson = new JSONObject(json);
             JSONObject smsreport = ObjectJson.getJSONObject("infosms");
-            if ("{}".equals(smsreport.toString())) {
-                return "[]";
-            }
+            
             JSONArray smsit = smsreport.getJSONArray("infsms");
             return smsit.toString();
             
-        } catch (MalformedURLException mue) {
-            mue.printStackTrace();
-        } catch (UnknownHostException uhe) {
-            uhe.printStackTrace();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-            
-        } finally {
-            if (con != null) {
-                con.disconnect();
-            }
+        } catch (Exception ex) {
+            return "Error:" + ex.getMessage();
         }
-        return null;
     }
-
+    
     @PostMapping("/personacampesinamod/{bandera}")
     public String CPersonaCampeMod(
             @RequestBody CpersonaCampesinoModEntity entidad,
             @PathVariable Integer bandera) {
         return serviceCpersonaCampesinoModService.CPersonaCampeMod(entidad, bandera);
+    }
+    
+    @PostMapping("/cordenadassectormod/{BANDERA}")
+    public String CordenadasSectorMod(
+            @RequestBody CCordenadasSectorModEntity entidad,
+            @PathVariable Integer BANDERA) {
+        return serviceCCordenadasSectorModService.CordenadasSectorMod(entidad, BANDERA);
+    }
+    
+    @GetMapping("/consultestadoferta/{bandera}/{CD_CNSCTVO}")
+    public List<CConsultaEstadoOfertaEntity> ConsultaCEstadoOferta(
+            @PathVariable Integer bandera,
+            @PathVariable String CD_CNSCTVO) {
+        return serviceCConsultaEstadoOfertaService.ConsultaCEstadoOferta(bandera, CD_CNSCTVO);
+    }
+    
+    @GetMapping("/consccordenadasector/{BANDERA}/{ID_SCTOR_OFRTA}")
+    public List<CCordenadasSectorEntity> ConsultaCordenadasSector(
+            @PathVariable Integer BANDERA,
+            @PathVariable Integer ID_SCTOR_OFRTA) {
+        return serviceCCordenadasSectorService.ConsultaCordenadasSector(BANDERA, ID_SCTOR_OFRTA);
+    }
+    
+    @GetMapping("/conscsectorconductor/{bandera}/{cd_cnctivo}")
+    public List<CSectorConductorEntity> ConsultaSectorConductor(
+            @PathVariable Integer bandera,
+            @PathVariable Integer cd_cnctivo) {
+        return serviceCSectorConductorService.ConsultaSectorConductor(bandera, cd_cnctivo);
+    }
+    
+    @PostMapping("/consconductorofertamod/{BANDERA}")
+    public String ConsuctorOfertMod(
+            @RequestBody ConductorOfertaModEntity entidad,
+            @PathVariable Integer BANDERA) {
+        return serviceConductorOfertaModService.ConsuctorOfertMod(entidad, BANDERA);
+    }
+    
+    @GetMapping("/conscdatostransportista/{bandera}/{usucodig}")
+    public List<CDatosTransportistaEntity> ConsultaCDatosTransportista(
+            @PathVariable Integer bandera,
+            @PathVariable String usucodig) {
+        return serviceCDatosTransportistaService.ConsultaCDatosTransportista(bandera, usucodig);
+    }
+    
+    @GetMapping("/consctipocosteoferta/{bandera}")
+    public List<CTipoCosteoOfertaEntity> ConsultaCTipoCosteoOferta(
+            @PathVariable Integer bandera) {
+        return serviceCTipoCosteoOfertaService.ConsultaCTipoCosteoOferta(bandera);
+    }
+    
+    @PostMapping("/modpersonatransportista/{bandera}")
+    public String ModPersonaTransportista(
+            @RequestBody CpersonaTransportistaModEntity entidad,
+            @PathVariable Integer bandera) {
+        return serviceCpersonaTransportistaModService.ModPersonaTransportista(entidad, bandera);
+    }
+    
+    @PostMapping("/modcpersonacliente/{bandera}/{banderaDos}")
+    public String ModCPersonaCliente(
+            @RequestBody CpersonaClienteModEntity entidad,
+            @PathVariable Integer bandera,
+            @PathVariable Integer banderaDos) {
+        return serviceCpersonaClienteModService.ModCPersonaCliente(entidad, bandera, banderaDos);
+    }
+    
+    @GetMapping("/consctipoplantilla/{Bandera}")
+    public List<CtipoPlantillaEntity> ConsultaTipoPlantillas(
+            @PathVariable Integer Bandera) {
+        return serviceCtipoPlantillaService.ConsultaTipoPlantillas(Bandera);
+    }
+    
+    @GetMapping("/conscorreomomentoenvio/{Bandera}")
+    public List<CorreoMomentoEnvioEntoty> ConsultaCorreoMomentoEnvio(
+            @PathVariable Integer Bandera) {
+        return serviceCorreoMomentoEnvioService.ConsultaCorreoMomentoEnvio(Bandera);
+    }
+    
+    @GetMapping("/consctipomomentoenvio/{Bandera}")
+    public List<CtipoMomentoEnvioEntity> ConsultaTipoMomentoEnvio(
+            @PathVariable Integer Bandera) {
+        return serviceCtipoMomentoEnvioService.ConsultaTipoMomentoEnvio(Bandera);
+    }
+    
+    @PostMapping("/consaplantillacorreo/{Bandera}")
+    public List<CAplantillaCorreoEntity> ConsultaReporteAuditoria(
+            @RequestBody CAplantillaCorreoEntity entidad,
+            @PathVariable Integer Bandera) {
+        return serviceCAplantillaCorreoService.ConsultaAplantillaCorreo(entidad, Bandera);
+    }
+
+    @GetMapping("/conscatipocamposcorreo/{Bandera}")
+    public List<CATipoCamposCorreoEntity> ConsultaTipoCamposCorreo(
+            @PathVariable Integer Bandera) {
+        return serviceCATipoCamposCorreoService.ConsultaTipoCamposCorreo(Bandera);
     }
 }

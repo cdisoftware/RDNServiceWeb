@@ -54,7 +54,7 @@ public class EnvioCorreo_IndividualServiceImplementacion implements EnvioCorreo_
     String imagenpiepagina;
 
     @Override
-    public String EnvioCorreoIndividual(Integer bandera, Integer IdPlantilla, Integer usucodig, String correoPersona) {
+    public String EnvioCorreoIndividual(Integer bandera, Integer IdPlantilla, Integer usucodig, String correoPersona, Integer Cd_cnctvo) {
 
         Map<String, Object> mapMessage = new HashMap<>();
         try {
@@ -64,11 +64,13 @@ public class EnvioCorreo_IndividualServiceImplementacion implements EnvioCorreo_
             rolconsola.registerStoredProcedureParameter("IdPlantilla", Integer.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("usucodig", Integer.class, ParameterMode.IN);
             rolconsola.registerStoredProcedureParameter("correoPersona", String.class, ParameterMode.IN);
+            rolconsola.registerStoredProcedureParameter("Cd_cnctvo", Integer.class, ParameterMode.IN);
 
             rolconsola.setParameter("bandera", bandera);
             rolconsola.setParameter("IdPlantilla", IdPlantilla);
             rolconsola.setParameter("usucodig", usucodig);
             rolconsola.setParameter("correoPersona", correoPersona);
+            rolconsola.setParameter("Cd_cnctvo", Cd_cnctvo);
 
             rolconsola.getResultList();
             List<EnvioCorreo_IndividualEntity> cuerpocorreo = rolconsola.getResultList();
@@ -91,7 +93,7 @@ public class EnvioCorreo_IndividualServiceImplementacion implements EnvioCorreo_
             String content = templateEngine.process("EnvioCorreos", context);
             mapMessage.put("subject", asunto);
             mapMessage.put("content", content);
-            sendMessage(mapMessage, bandera, IdPlantilla, usucodig, correoPersona);
+            sendMessage(mapMessage, bandera, IdPlantilla, usucodig, correoPersona, Cd_cnctvo);
             Respuesta = JSONObject.quote("Correo Enviado Correctamente");
 
         } catch (Exception e) {
@@ -101,7 +103,7 @@ public class EnvioCorreo_IndividualServiceImplementacion implements EnvioCorreo_
     }
 
     public void sendMessage(Map<String, Object> mapMessage, Integer bandera, Integer IdPlantilla, Integer usucodig,
-            String correoPersona) throws Exception {
+            String correoPersona, Integer Cd_cnctvo) throws Exception {
         try {
             String correoremitente = null;
             String servicePath = null;

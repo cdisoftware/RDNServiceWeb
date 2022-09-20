@@ -13,30 +13,26 @@ import lombok.Data;
 @Data
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
-            name = "paT_SectoresMod",
-            procedureName = "paT_SectoresMod",
+            name = "paCCordenadasSectorMod",
+            procedureName = "paCCordenadasSectorMod",
             parameters = {
-                @StoredProcedureParameter(name = "respuesta",
+                @StoredProcedureParameter(name = "Respuesta",
                         mode = ParameterMode.OUT,
                         type = String.class)
             })
 })
-public class SectoresModEntity {
+public class CCordenadasSectorModEntity {
 
     @Id
-    @JsonProperty("SCTOR_OFR")
-    public Integer SCTOR_OFR;
+    @JsonProperty("ID")
+    public Integer ID;
 
-    @JsonProperty("USUCODIG")
-    public Integer USUCODIG;
+    @JsonProperty("ID_SCTOR_OFRTA")
+    public Integer ID_SCTOR_OFRTA;
 
-    @JsonProperty("DSCRPCION_SCTOR")
-    public String DSCRPCION_SCTOR;
+    @JsonProperty("LTTUD")
+    public String LTTUD;
 
-    @JsonProperty("CD_RGION")
-    public String CD_RGION;
-
-    @JsonProperty("CD_MNCPIO")
-    public String CD_MNCPIO;
-
+    @JsonProperty("LNGTUD")
+    public String LNGTUD;
 }

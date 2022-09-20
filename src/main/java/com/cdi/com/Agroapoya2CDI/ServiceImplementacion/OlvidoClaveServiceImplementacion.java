@@ -49,42 +49,29 @@ public class OlvidoClaveServiceImplementacion implements OlvidoClaveService {
         }
     }
 
-    private String sendEmailTool(String email, String subject, String codigo, String fecha) throws Exception {
-//        String correoremitente = "agroapoya2@cdi.com.co";
-//        String servicePath = "mail.cdi.com.co";
-//        String contrasena = "Cdi.2022$";
-//
-//        Properties props = new Properties();
-//        props.setProperty("mail.transport.protocol", "smtp"); // usa el protocolo pop3
-//        props.setProperty("mail.host", servicePath); // servidor pop3
-//        props.setProperty("mail.smtp.auth", "true");
-//        props.put("mail.smtp.starttls.enable", "true");
-//
-//        Session session = Session.getInstance(props);
-//        session.setDebug(true);
-//        Transport ts = session.getTransport();
-//        ts.connect(servicePath, correoremitente, contrasena);
+    private String constructHTMLTemplate() {
+        Context context = new Context();
+        context.setVariable("sampleText", "My text sample here");
+        return templateEngine.process("CorreoVerificacion", context);
+    }
 
+    private String sendEmailTool(String email, String subject, String codigo, String fecha) throws Exception {
         try {
             if (!"Usuario no existe".equals(codigo)) {
-
                 MimeMessage message = sender.createMimeMessage();
-
-                MimeMessageHelper helper = new MimeMessageHelper(message);
+                MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED, "UTF-8");
                 Context context = new Context();
                 context.setVariable("codigo", codigo);
-                String emailContent = templateEngine.process("CorreoVerificacion", context);
+
+                String processedHTMLTemplate = this.constructHTMLTemplate();
                 try {
 
+                    helper.setFrom("agroapoya2@cdi.com.co");
                     helper.setTo(email);
-                    helper.setText(emailContent, true);
                     helper.setSubject(subject);
+                    helper.setText(processedHTMLTemplate, true);
 
-//                    message.setFrom(new InternetAddress(correoremitente));
-//                    message.setRecipients(Message.RecipientType.TO, email);
-                    System.out.print("entra");
                     sender.send(message);
-                    System.out.print("entra");
                     return "[{\"codigo\":\"" + codigo + "\",\"fecha\":\"" + fecha + "\"}]";
 
                 } catch (Exception e) {

@@ -33,6 +33,9 @@ public class CSectorOfertaEntity {
     @JsonProperty("VLOR_FLTE_SGRDO")
     public String VLOR_FLTE_SGRDO;
 
+    @JsonProperty("VLOR_FLTE_SGRDOForm")
+    public String VLOR_FLTE_SGRDOForm;
+
     @JsonProperty("LAT_NORTE")
     public String LAT_NORTE;
 
