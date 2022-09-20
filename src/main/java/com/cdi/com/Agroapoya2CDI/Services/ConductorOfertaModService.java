@@ -4,5 +4,5 @@ import com.cdi.com.Agroapoya2CDI.Entity.ConductorOfertaModEntity;
 
 public interface ConductorOfertaModService {
 
-    public String ConsuctorOfertMod(ConductorOfertaModEntity entidad, Integer BANDERA);
+    public String ModConductorOfert(ConductorOfertaModEntity entidad, Integer BANDERA);
 }

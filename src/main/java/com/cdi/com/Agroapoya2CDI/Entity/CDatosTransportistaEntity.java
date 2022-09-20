@@ -33,4 +33,19 @@ public class CDatosTransportistaEntity {
     @JsonProperty("DRCCION")
     public String DRCCION;
 
+    @JsonProperty("CONDUCTOR")
+    public String CONDUCTOR;
+
+    @JsonProperty("DIRECCION")
+    public String DIRECCION;
+
+    @JsonProperty("TEL_CNDCTOR")
+    public String TEL_CNDCTOR;
+
+    @JsonProperty("CIUDAD_TRANS")
+    public String CIUDAD_TRANS;
+
+    @JsonProperty("CIUDAD_COND")
+    public String CIUDAD_COND;
+
 }

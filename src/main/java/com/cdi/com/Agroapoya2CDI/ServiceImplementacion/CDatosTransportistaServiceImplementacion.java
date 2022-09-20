@@ -18,13 +18,17 @@ public class CDatosTransportistaServiceImplementacion implements CDatosTransport
     private EntityManager repositorio;
 
     @Override
-    public List<CDatosTransportistaEntity> ConsultaCDatosTransportista(Integer bandera, String usucodig) {
+    public List<CDatosTransportistaEntity> ConsultaCDatosTransportista(Integer bandera, String usucodig, Integer IdConductor) {
         try {
             StoredProcedureQuery tpoDoc = repositorio.createNamedStoredProcedureQuery("paCDatosTransportista");
             tpoDoc.registerStoredProcedureParameter("bandera", Integer.class, ParameterMode.IN);
             tpoDoc.registerStoredProcedureParameter("usucodig", String.class, ParameterMode.IN);
+            tpoDoc.registerStoredProcedureParameter("IdConductor", Integer.class, ParameterMode.IN);
+
             tpoDoc.setParameter("bandera", bandera);
             tpoDoc.setParameter("usucodig", usucodig);
+            tpoDoc.setParameter("IdConductor", IdConductor);
+
             return tpoDoc.getResultList();
         } catch (Exception ex) {
             List list = new ArrayList();

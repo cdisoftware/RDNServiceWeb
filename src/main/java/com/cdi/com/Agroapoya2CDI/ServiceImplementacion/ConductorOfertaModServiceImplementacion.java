@@ -16,7 +16,7 @@ public class ConductorOfertaModServiceImplementacion implements ConductorOfertaM
     private EntityManager repositorio;
 
     @Override
-    public String ConsuctorOfertMod(ConductorOfertaModEntity entidad, Integer BANDERA) {
+    public String ModConductorOfert(ConductorOfertaModEntity entidad, Integer BANDERA) {
         try {
             StoredProcedureQuery mod = repositorio.createNamedStoredProcedureQuery("paConductorOfertaMod");
             mod.registerStoredProcedureParameter("BANDERA", Integer.class, ParameterMode.IN);

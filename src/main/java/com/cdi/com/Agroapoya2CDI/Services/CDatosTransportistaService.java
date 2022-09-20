@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface CDatosTransportistaService {
 
-    public List<CDatosTransportistaEntity> ConsultaCDatosTransportista(Integer bandera, String usucodig);
+    public List<CDatosTransportistaEntity> ConsultaCDatosTransportista(Integer bandera, String usucodig, Integer IdConductor);
 }

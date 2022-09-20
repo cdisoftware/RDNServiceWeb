@@ -45,4 +45,10 @@ public class CConductorSectorOfertaEntity {
     @JsonProperty("cantidad")
     public Integer cantidad;
 
+    @JsonProperty("ESTADO")
+    public Integer ESTADO;
+
+    @JsonProperty("NOM_ESTADO")
+    public String NOM_ESTADO;
+
 }
