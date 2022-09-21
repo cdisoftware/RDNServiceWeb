@@ -427,6 +427,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaParticipanteService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaPerfilPartService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaRdnContactoService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaRespPartService;
+import com.cdi.com.CorferiasRuedaNegocios.Services.PValidaTipoPermisoPartService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PopcionesRtaPreguntaService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.PpreguntaRuedaService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.TtCamposRuedaService;
@@ -1129,9 +1130,12 @@ public class Controller {
 
     @Autowired
     PValidaFechaSalaService servicePValidaFechaSalaService;
-    
+
     @Autowired
     PLinkSalaCitaService servicePLinkSalaCitaService;
+
+    @Autowired
+    PValidaTipoPermisoPartService servicePValidaTipoPermisoPartService;
 
     @GetMapping("/consultarpaises")
     public List<TtPaisEntity> ConsultarPaises() {
@@ -4015,11 +4019,21 @@ public class Controller {
             @PathVariable Integer IdAgenda) {
         return servicePValidaFechaSalaService.ConsultaPValidaFechaSala(Bandera, IdRueda, IdAgenda);
     }
-     @GetMapping("/consultaplinksalacita/{bandera}/{IdRueda}/{IdAgenda}")
+
+    @GetMapping("/consultaplinksalacita/{bandera}/{IdRueda}/{IdAgenda}")
     public List<PLinkSalaCitaEntity> ConsultaPLinkSalaCita(
             @PathVariable Integer bandera,
             @PathVariable Integer IdRueda,
             @PathVariable Integer IdAgenda) {
         return servicePLinkSalaCitaService.ConsultaPLinkSalaCita(bandera, IdRueda, IdAgenda);
+    }
+
+    @GetMapping("/consultavalidatipopermisopart/{IdParticipante}/{IdContacto}/{IdRueda}/{IdAccion}")
+    public String ConsultaPValidaTipoPermisoPart(
+            @PathVariable Integer IdParticipante,
+            @PathVariable Integer IdContacto,
+            @PathVariable Integer IdRueda,
+            @PathVariable Integer IdAccion) {
+        return servicePValidaTipoPermisoPartService.ConsultaPValidaTipoPermisoPart(IdParticipante, IdContacto, IdRueda, IdAccion);
     }
 }
