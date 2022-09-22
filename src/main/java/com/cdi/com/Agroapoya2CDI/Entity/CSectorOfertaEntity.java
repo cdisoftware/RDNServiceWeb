@@ -48,4 +48,7 @@ public class CSectorOfertaEntity {
     @JsonProperty("LONG_SUR")
     public String LONG_SUR;
 
+    @JsonProperty("COD_OFERTA_SECTOR")
+    public String COD_OFERTA_SECTOR;
+
 }

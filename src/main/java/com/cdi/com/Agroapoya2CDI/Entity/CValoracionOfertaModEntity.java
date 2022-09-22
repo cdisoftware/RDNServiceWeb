@@ -88,24 +88,6 @@ public class CValoracionOfertaModEntity {
     @JsonProperty("VLOR_FNAL_PRTCPNTE")
     public String VLOR_FNAL_PRTCPNTE;
 
-    @JsonProperty("VGNCIA_DESDE")
-    public String VGNCIA_DESDE;
-
-    @JsonProperty("VGNCIA_HASTA")
-    public String VGNCIA_HASTA;
-
-    @JsonProperty("HORA_DESDE")
-    public String HORA_DESDE;
-
-    @JsonProperty("HORA_HASTA")
-    public String HORA_HASTA;
-
-    @JsonProperty("FCHA_ENTRGA")
-    public String FCHA_ENTRGA;
-
-    @JsonProperty("OBSERVACIONES")
-    public String OBSERVACIONES;
-
     @JsonProperty("ID_SCTOR_OFRTA")
     public Integer ID_SCTOR_OFRTA;
 

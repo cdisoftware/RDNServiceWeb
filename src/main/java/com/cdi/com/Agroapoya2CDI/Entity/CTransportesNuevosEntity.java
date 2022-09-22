@@ -96,4 +96,16 @@ public class CTransportesNuevosEntity {
     @JsonProperty("NumeroConductores")
     public Integer NumeroConductores;
 
+    @JsonProperty("NumeroConductoresNOActivos")
+    public Integer NumeroConductoresNOActivos;
+
+    @JsonProperty("numConduteresReal")
+    public Integer numConduteresReal;
+
+    @JsonProperty("Imagen")
+    public String Imagen;
+
+    @JsonProperty("coordenadasLlegada")
+    public String coordenadasLlegada;
+
 }

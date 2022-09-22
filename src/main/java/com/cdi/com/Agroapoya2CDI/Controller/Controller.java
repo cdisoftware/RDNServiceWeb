@@ -5,6 +5,9 @@ import com.cdi.com.Agroapoya2CDI.Entity.AestadoOfertaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CAPlantillaCorreoModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CATipoCamposCorreoEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CAplantillaCorreoEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CCalculaPrecioFinGrupalEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CCalculaPrecioFinIndividualEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CCalculaPrecioFinMixtaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CCiudadDistribucionOfertEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CConductorEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CConductorSectorOfertaEntity;
@@ -19,6 +22,7 @@ import com.cdi.com.Agroapoya2CDI.Entity.COfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.COfertaImagenModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.COfertaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.COfertasNuevasEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CPersonaTransEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CPersonasEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CSectorConductorEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CSectorOfertaEntity;
@@ -27,9 +31,13 @@ import com.cdi.com.Agroapoya2CDI.Entity.CTipoCosteoOfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CTransportesNuevosEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CValoracionOfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CValoracionOfertaModEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CVigenciaOfertaEntoty;
+import com.cdi.com.Agroapoya2CDI.Entity.CVigenciaOfertaModEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CconductoresTransportesNuevosEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CiudadOfertaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.ConductorEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.ConductorOfertaModEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.ConductorSectorModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CorreoMomentoEnvioEntoty;
 import com.cdi.com.Agroapoya2CDI.Entity.CosteoOfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CosteoOfertaModEntity;
@@ -87,6 +95,9 @@ import com.cdi.com.Agroapoya2CDI.Services.CALCULADORA_VALORPAGOService;
 import com.cdi.com.Agroapoya2CDI.Services.CAPlantillaCorreoModService;
 import com.cdi.com.Agroapoya2CDI.Services.CATipoCamposCorreoService;
 import com.cdi.com.Agroapoya2CDI.Services.CAplantillaCorreoService;
+import com.cdi.com.Agroapoya2CDI.Services.CCalculaPrecioFinGrupalService;
+import com.cdi.com.Agroapoya2CDI.Services.CCalculaPrecioFinIndividualService;
+import com.cdi.com.Agroapoya2CDI.Services.CCalculaPrecioFinMixtaService;
 import com.cdi.com.Agroapoya2CDI.Services.CCiudadDistribucionOfertService;
 import com.cdi.com.Agroapoya2CDI.Services.CConductorSectorOfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.CConductorSectorOfertaService;
@@ -102,16 +113,22 @@ import com.cdi.com.Agroapoya2CDI.Services.COfertaImagenModService;
 import com.cdi.com.Agroapoya2CDI.Services.COfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.COfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.COfertasNuevasService;
+import com.cdi.com.Agroapoya2CDI.Services.CPersonaTransService;
 import com.cdi.com.Agroapoya2CDI.Services.CPersonasService;
 import com.cdi.com.Agroapoya2CDI.Services.CSectorConductorService;
 import com.cdi.com.Agroapoya2CDI.Services.CSectorOfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.CSectorOfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.CTipoCosteoOfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.CTransportesNuevosService;
+import com.cdi.com.Agroapoya2CDI.Services.CValidaCambioEtapaService;
 import com.cdi.com.Agroapoya2CDI.Services.CValoracionOfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.CValoracionOfertaService;
+import com.cdi.com.Agroapoya2CDI.Services.CVigenciaOfertaModService;
+import com.cdi.com.Agroapoya2CDI.Services.CVigenciaOfertaService;
+import com.cdi.com.Agroapoya2CDI.Services.CconductoresTransportesNuevosService;
 import com.cdi.com.Agroapoya2CDI.Services.CiudadOfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.ConductorOfertaModService;
+import com.cdi.com.Agroapoya2CDI.Services.ConductorSectorModService;
 import com.cdi.com.Agroapoya2CDI.Services.ConductorService;
 import com.cdi.com.Agroapoya2CDI.Services.CorreoMomentoEnvioService;
 import com.cdi.com.Agroapoya2CDI.Services.CosteoOfertaModService;
@@ -449,6 +466,33 @@ public class Controller {
 
     @Autowired
     CTransportesNuevosService serviceCTransportesNuevosService;
+
+    @Autowired
+    CconductoresTransportesNuevosService serviceCconductoresTransportesNuevosService;
+
+    @Autowired
+    ConductorSectorModService serviceConductorSectorModService;
+
+    @Autowired
+    CPersonaTransService serviceCPersonaTransService;
+
+    @Autowired
+    CValidaCambioEtapaService serviceCValidaCambioEtapaService;
+
+    @Autowired
+    CVigenciaOfertaModService serviceCVigenciaOfertaModService;
+
+    @Autowired
+    CVigenciaOfertaService serviceCVigenciaOfertaService;
+
+    @Autowired
+    CCalculaPrecioFinIndividualService serviceCCalculaPrecioFinIndividualService;
+
+    @Autowired
+    CCalculaPrecioFinGrupalService serviceCCalculaPrecioFinGrupalService;
+
+    @Autowired
+    CCalculaPrecioFinMixtaService serviceCCalculaPrecioFinMixtaService;
 
     @GetMapping("/consultainfogeneral/{ID}/{subId}")
     public List<INFOGENERALEntity> ConsultaInfoGeneral(
@@ -1183,5 +1227,87 @@ public class Controller {
             @PathVariable Integer usucodigTrans,
             @PathVariable Integer id_conductor) {
         return serviceCTransportesNuevosService.ConsultaCTransportesNuevos(Bandera, usucodigTrans, id_conductor);
+    }
+
+    @GetMapping("/consconductortransportesnuevos/{Bandera}/{usucodigTrans}/{CD_CNSCTVO}")
+    public List<CconductoresTransportesNuevosEntity> ConsultaConductoresTransportes(
+            @PathVariable Integer Bandera,
+            @PathVariable Integer usucodigTrans,
+            @PathVariable Integer CD_CNSCTVO) {
+        return serviceCconductoresTransportesNuevosService.ConsultaConductoresTransportes(Bandera, usucodigTrans, CD_CNSCTVO);
+    }
+
+    @PostMapping("/modconductorsector/{Bandera}")
+    public String ModConductorSector(
+            @RequestBody ConductorSectorModEntity entidad,
+            @PathVariable Integer Bandera) {
+        return serviceConductorSectorModService.ModConductorSector(entidad, Bandera);
+    }
+
+    @GetMapping("/conscpersonatrans/{bandera}/{usucodig}/{id_conductor}")
+    public List<CPersonaTransEntity> ConsultaCPersonaTrans(
+            @PathVariable Integer bandera,
+            @PathVariable Integer usucodig,
+            @PathVariable Integer id_conductor) {
+        return serviceCPersonaTransService.ConsultaCPersonaTrans(bandera, usucodig, id_conductor);
+    }
+
+    @GetMapping("/conscvalidacambioetapa/{Bandera}/{CD_CNSCTVO}/{FASE_SIGUIENTE}")
+    public String ConsultaCValidaCambioEtapa(
+            @PathVariable Integer Bandera,
+            @PathVariable Integer CD_CNSCTVO,
+            @PathVariable Integer FASE_SIGUIENTE) {
+        return serviceCValidaCambioEtapaService.ConsultaCValidaCambioEtapa(Bandera, CD_CNSCTVO, FASE_SIGUIENTE);
+    }
+
+    @PostMapping("/modcvigenciaoferta/{BANDERA}")
+    public String ModCVigenciaOferta(
+            @RequestBody CVigenciaOfertaModEntity entidad,
+            @PathVariable Integer BANDERA) {
+        return serviceCVigenciaOfertaModService.ModCVigenciaOferta(entidad, BANDERA);
+    }
+
+    @GetMapping("/conscvigenciaoferta/{BANDERA}/{CD_CNSCTVO}")
+    public List<CVigenciaOfertaEntoty> ConsultaCVigenciaOferta(
+            @PathVariable Integer BANDERA,
+            @PathVariable Integer CD_CNSCTVO) {
+        return serviceCVigenciaOfertaService.ConsultaCVigenciaOferta(BANDERA, CD_CNSCTVO);
+    }
+
+    @GetMapping("/conscalculapreciofinindividual/{BANDERA}/{CD_CNSCTVO}/{ID_SCTOR_OFRTA}/{tpo_cmsion_indvdual}/{vlor_cmsion_indvdual}")
+    public List<CCalculaPrecioFinIndividualEntity> ConsultaCalculaPrecioFinIndiv(
+            @PathVariable Integer BANDERA,
+            @PathVariable Integer CD_CNSCTVO,
+            @PathVariable Integer ID_SCTOR_OFRTA,
+            @PathVariable Integer tpo_cmsion_indvdual,
+            @PathVariable Integer vlor_cmsion_indvdual) {
+        return serviceCCalculaPrecioFinIndividualService.ConsultaCalculaPrecioFinIndiv(BANDERA, CD_CNSCTVO, ID_SCTOR_OFRTA, tpo_cmsion_indvdual, vlor_cmsion_indvdual);
+    }
+
+    @GetMapping("/conscalculapreciofingrupal/{BANDERA}/{CD_CNSCTVO}/{ID_SCTOR_OFRTA}/{tpo_cmsion_grupal}/{vlor_cmsion_grupal}/{vlor_dmcilio_grupal}/{mnmo_prsnas_xgrupo}")
+    public List<CCalculaPrecioFinGrupalEntity> ConsultaCCalculaPrecioFinGrupal(
+            @PathVariable Integer BANDERA,
+            @PathVariable Integer CD_CNSCTVO,
+            @PathVariable Integer ID_SCTOR_OFRTA,
+            @PathVariable Integer tpo_cmsion_grupal,
+            @PathVariable Integer vlor_cmsion_grupal,
+            @PathVariable Integer vlor_dmcilio_grupal,
+            @PathVariable Integer mnmo_prsnas_xgrupo) {
+        return serviceCCalculaPrecioFinGrupalService.ConsultaCCalculaPrecioFinGrupal(BANDERA, CD_CNSCTVO, ID_SCTOR_OFRTA, tpo_cmsion_grupal, vlor_cmsion_grupal, vlor_dmcilio_grupal, mnmo_prsnas_xgrupo);
+    }
+
+    @GetMapping("/conscalculapreciofinmixta/{BANDERA}/{CD_CNSCTVO}/{ID_SCTOR_OFRTA}/{tpo_cmsion_indvdual}/{vlor_cmsion_indvdual}/{tpo_cmsion_grupal}/{vlor_cmsion_grupal}/{vlor_dmcilio_indvdual}/{vlor_dmcilio_grupal}/{mnmo_prsnas_xgrupo}")
+    public List<CCalculaPrecioFinMixtaEntity> ConsultaCalcPrecioFinMixta(
+            @PathVariable Integer BANDERA,
+            @PathVariable Integer CD_CNSCTVO,
+            @PathVariable Integer ID_SCTOR_OFRTA,
+            @PathVariable Integer tpo_cmsion_indvdual,
+            @PathVariable Integer vlor_cmsion_indvdual,
+            @PathVariable Integer tpo_cmsion_grupal,
+            @PathVariable Integer vlor_cmsion_grupal,
+            @PathVariable Integer vlor_dmcilio_indvdual,
+            @PathVariable Integer vlor_dmcilio_grupal,
+            @PathVariable Integer mnmo_prsnas_xgrupo) {
+        return serviceCCalculaPrecioFinMixtaService.ConsultaCalcPrecioFinMixta(BANDERA, CD_CNSCTVO, ID_SCTOR_OFRTA, tpo_cmsion_indvdual, vlor_cmsion_indvdual, tpo_cmsion_grupal, vlor_cmsion_grupal, vlor_dmcilio_indvdual, vlor_dmcilio_grupal, mnmo_prsnas_xgrupo);
     }
 }
