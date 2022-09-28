@@ -5,23 +5,17 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedStoredProcedureQueries;
 import javax.persistence.NamedStoredProcedureQuery;
-import javax.persistence.ParameterMode;
-import javax.persistence.StoredProcedureParameter;
 import lombok.Data;
 
 @Entity
 @Data
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
-            name = "paC_conductorMod",
-            procedureName = "paC_conductorMod",
-            parameters = {
-                @StoredProcedureParameter(name = "respuesta",
-                        mode = ParameterMode.OUT,
-                        type = String.class)
-            })
+            name = "paC_ConductorCond",
+            procedureName = "paC_ConductorCond",
+            resultClasses = CConductorCondEntity.class)
 })
-public class conductorModEntity {
+public class CConductorCondEntity {
 
     @Id
     @JsonProperty("ID_CNDCTOR")
@@ -36,6 +30,9 @@ public class conductorModEntity {
     @JsonProperty("TIPO_DOCUMENTO")
     public Integer TIPO_DOCUMENTO;
 
+    @JsonProperty("desTipoDoc")
+    public String desTipoDoc;
+
     @JsonProperty("NUMERO_ID")
     public String NUMERO_ID;
 
@@ -46,10 +43,16 @@ public class conductorModEntity {
     public String TEL_CNDCTOR;
 
     @JsonProperty("CD_DPTO")
-    public String CD_DPTO;
+    public Integer CD_DPTO;
+
+    @JsonProperty("desDepto")
+    public String desDepto;
 
     @JsonProperty("CD_CDAD")
-    public String CD_CDAD;
+    public Integer CD_CDAD;
+
+    @JsonProperty("DSCRPCION")
+    public String DSCRPCION;
 
     @JsonProperty("DIRECCION")
     public String DIRECCION;
@@ -57,9 +60,18 @@ public class conductorModEntity {
     @JsonProperty("COORDENADAS")
     public String COORDENADAS;
 
-    @JsonProperty("observacion")
-    public String observacion;
-    
+    @JsonProperty("id_carroceria")
+    public Integer id_carroceria;
+
+    @JsonProperty("desCarroceria")
+    public String desCarroceria;
+
+    @JsonProperty("id_pesoCargaCarro")
+    public Integer id_pesoCargaCarro;
+
+    @JsonProperty("desPeso")
+    public String desPeso;
+
     @JsonProperty("CorreoConductor")
     public String CorreoConductor;
 

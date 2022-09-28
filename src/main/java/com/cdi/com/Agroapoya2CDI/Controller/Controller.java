@@ -8,7 +8,10 @@ import com.cdi.com.Agroapoya2CDI.Entity.CAplantillaCorreoEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CCalculaPrecioFinGrupalEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CCalculaPrecioFinIndividualEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CCalculaPrecioFinMixtaEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CCalificaAppEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CCambiaEstadoOfertaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CCiudadDistribucionOfertEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CConductorCondEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CConductorEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CConductorSectorOfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CConductorSectorOfertaModEntity;
@@ -47,6 +50,7 @@ import com.cdi.com.Agroapoya2CDI.Entity.CpersonaTransportistaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CtipoMomentoEnvioEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CtipoPlantillaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.EmailEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.EnvioCorreo_IndividualEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.EstadosOfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.INFOGENERALEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.JornadasOfertaEntity;
@@ -98,7 +102,10 @@ import com.cdi.com.Agroapoya2CDI.Services.CAplantillaCorreoService;
 import com.cdi.com.Agroapoya2CDI.Services.CCalculaPrecioFinGrupalService;
 import com.cdi.com.Agroapoya2CDI.Services.CCalculaPrecioFinIndividualService;
 import com.cdi.com.Agroapoya2CDI.Services.CCalculaPrecioFinMixtaService;
+import com.cdi.com.Agroapoya2CDI.Services.CCalificaAppService;
+import com.cdi.com.Agroapoya2CDI.Services.CCambiaEstadoOfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.CCiudadDistribucionOfertService;
+import com.cdi.com.Agroapoya2CDI.Services.CConductorCondService;
 import com.cdi.com.Agroapoya2CDI.Services.CConductorSectorOfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.CConductorSectorOfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.CConductorService;
@@ -493,6 +500,15 @@ public class Controller {
 
     @Autowired
     CCalculaPrecioFinMixtaService serviceCCalculaPrecioFinMixtaService;
+
+    @Autowired
+    CCambiaEstadoOfertaModService serviceCCambiaEstadoOfertaModService;
+
+    @Autowired
+    CCalificaAppService serviceCCalificaAppService;
+
+    @Autowired
+    CConductorCondService serviceCConductorCondService;
 
     @GetMapping("/consultainfogeneral/{ID}/{subId}")
     public List<INFOGENERALEntity> ConsultaInfoGeneral(
@@ -929,14 +945,11 @@ public class Controller {
         return serviceCValoracionOfertaService.ConsultaCValoracionOferta(BANDERA, CD_CNSCTVO, ID_SCTOR_OFRTA);
     }
 
-    @GetMapping("/enviocorreoindividual/{bandera}/{IdPlantilla}/{usucodig}/{correoPersona}/{Cd_cnctvo}")
+    @PostMapping("/enviocorreoindividual/{bandera}")
     public String EnvioCorreoIndividual(
-            @PathVariable Integer bandera,
-            @PathVariable Integer IdPlantilla,
-            @PathVariable Integer usucodig,
-            @PathVariable String correoPersona,
-            @PathVariable Integer Cd_cnctvo) {
-        return serviceEnvioCorreo_IndividualService.EnvioCorreoIndividual(bandera, IdPlantilla, usucodig, correoPersona, Cd_cnctvo);
+            @RequestBody EnvioCorreo_IndividualEntity entidad,
+            @PathVariable Integer bandera) {
+        return serviceEnvioCorreo_IndividualService.EnvioCorreoIndividual(entidad, bandera);
     }
 
     @GetMapping("/remitentecorreo")
@@ -1310,4 +1323,25 @@ public class Controller {
             @PathVariable Integer mnmo_prsnas_xgrupo) {
         return serviceCCalculaPrecioFinMixtaService.ConsultaCalcPrecioFinMixta(BANDERA, CD_CNSCTVO, ID_SCTOR_OFRTA, tpo_cmsion_indvdual, vlor_cmsion_indvdual, tpo_cmsion_grupal, vlor_cmsion_grupal, vlor_dmcilio_indvdual, vlor_dmcilio_grupal, mnmo_prsnas_xgrupo);
     }
+
+    @PostMapping("/modccambiaestadoferta/{Bandera}")
+    public String ModCCambiaEstadoOferta(
+            @RequestBody CCambiaEstadoOfertaModEntity entidad,
+            @PathVariable Integer Bandera) {
+        return serviceCCambiaEstadoOfertaModService.ModCCambiaEstadoOferta(entidad, Bandera);
+    }
+
+    @PostMapping("/conscalificapp")
+    public String ConsultaCalificaApp(
+            @RequestBody CCalificaAppEntity entidad) {
+        return serviceCCalificaAppService.ConsultaCalificaApp(entidad);
+    }
+
+    @GetMapping("/consconductorcond/{bandera}/{id_conductor}")
+    public List<CConductorCondEntity> ConsultaCConductorCond(
+            @PathVariable Integer bandera,
+            @PathVariable Integer id_conductor) {
+        return serviceCConductorCondService.ConsultaCConductorCond(bandera, id_conductor);
+    }
+
 }

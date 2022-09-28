@@ -42,4 +42,13 @@ public class EnvioCorreo_IndividualEntity {
 
     @JsonProperty("EmailOpc")
     public String EmailOpc;
+
+    @JsonProperty("usucodig")
+    public Integer usucodig;
+
+    @JsonProperty("Cd_cnctvo")
+    public Integer Cd_cnctvo;
+
+    @JsonProperty("id_conductor")
+    public Integer id_conductor;
 }

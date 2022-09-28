@@ -1,11 +1,10 @@
-
 package com.cdi.com.Agroapoya2CDI.Entity;
 
-
 public class EmailEntity {
-        private String email;
-    private String content;
-    private String subject;
+
+    public String email;
+    public String content;
+    public String subject;
 
     public String getEmail() {
         return email;

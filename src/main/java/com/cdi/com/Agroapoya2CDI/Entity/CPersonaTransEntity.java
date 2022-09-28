@@ -69,4 +69,7 @@ public class CPersonaTransEntity {
     @JsonProperty("NMBRE_ID")
     public String NMBRE_ID;
 
+    @JsonProperty("CMPLMNTO_DRRCCION")
+    public String CMPLMNTO_DRRCCION;
+
 }

@@ -23,7 +23,7 @@ public class clsEncriptacion {
         String base64EncryptedString = "";
 
         Base64.Encoder encoder = Base64.getEncoder();
-        byte[] encoded = encoder.encode(texto.getBytes());
+        byte[] encoded = encoder.encode(secretKey.getBytes());
         return new String(encoded);
 
     }
