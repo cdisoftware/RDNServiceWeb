@@ -43,8 +43,8 @@ public class CEvaluacionModServiceImplementacion implements CEvaluacionModServic
 
             rolconsola.setParameter("Bandera", Bandera);
             rolconsola.setParameter("Idioma", Idioma);
-            rolconsola.setParameter("IdUsuario", entidad.getIdUsuarioC());
-            rolconsola.setParameter("IdEvaluacion", entidad.getIdEvaluacion());
+            rolconsola.setParameter("IdUsuario", IdUsuario);
+            rolconsola.setParameter("IdEvaluacion", IdEvaluacion);
             rolconsola.setParameter("IdRuedaNegocio", entidad.getIdRuedaNegocio());
             rolconsola.setParameter("Nombre", entidad.getNombreEvaluacion());
             rolconsola.setParameter("FechaActivacion", entidad.getFechaActivacion());
@@ -91,8 +91,8 @@ public class CEvaluacionModServiceImplementacion implements CEvaluacionModServic
 
             rolconsola.setParameter("Bandera", Bandera);
             rolconsola.setParameter("Idioma", Idioma);
-            rolconsola.setParameter("IdUsuario", entidad.getIdUsuarioC());
-            rolconsola.setParameter("IdEvaluacion", entidad.getIdEvaluacion());
+            rolconsola.setParameter("IdUsuario", IdUsuario);
+            rolconsola.setParameter("IdEvaluacion", IdEvaluacion);
             rolconsola.setParameter("IdRuedaNegocio", entidad.getIdRuedaNegocio());
             rolconsola.setParameter("Nombre", entidad.getNombreEvaluacion());
             rolconsola.setParameter("FechaActivacion", entidad.getFechaActivacion());

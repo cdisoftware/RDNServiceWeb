@@ -17,29 +17,29 @@ import lombok.Data;
 })
 public class PParticipanteContactoEntity {
 
-    
     @JsonProperty("IdParticipante")
-    private Integer IdParticipante;
+    public Integer IdParticipante;
 
     @Id
     @JsonProperty("IdContacto")
-    private Integer IdContacto;
+    public Integer IdContacto;
 
     @JsonProperty("NombreCompleto")
-    private String NombreCompleto;
+    public String NombreCompleto;
 
     @JsonProperty("Email")
-    private String Email;
+    public String Email;
 
     @JsonProperty("Telefono")
-    private Integer Telefono;
+    public Integer Telefono;
 
     @JsonProperty("Dependencia")
-    private String Dependencia;
+    public String Dependencia;
 
     @JsonProperty("Cargo")
-    private String Cargo;
+    public String Cargo;
 
     @JsonProperty("EmailOpc")
-    private String EmailOpc;
+    public String EmailOpc;
+
 }

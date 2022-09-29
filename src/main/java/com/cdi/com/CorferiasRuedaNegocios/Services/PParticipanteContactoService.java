@@ -8,5 +8,5 @@ import java.util.List;
 public interface PParticipanteContactoService {
     
    public List<PParticipanteContactoEntity> ConsultaParticipanteContacto(Integer Bandera,
-           Integer IdParticipante,String Idioma);
+           Integer IdParticipante,String Idioma, Integer IdRuedaNegocio);
 }

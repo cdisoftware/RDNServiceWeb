@@ -2356,13 +2356,14 @@ public class Controller {
                 IdCiudad, Url, IdSector, Sugerido, IdUsuario, Nit, IdCategoria, NombreProductoClave);
     }
 
-    @GetMapping("/consultaparticipantecontacto/{Bandera}/{IdParticipante}/{Idioma}")
+    @GetMapping("/consultaparticipantecontacto/{Bandera}/{IdParticipante}/{Idioma}/{IdRuedaNegocio}")
     public List<PParticipanteContactoEntity> ConsultaParticipanteContacto(
             @PathVariable Integer Bandera,
             @PathVariable Integer IdParticipante,
-            @PathVariable String Idioma) {
+            @PathVariable String Idioma,
+            @PathVariable Integer IdRuedaNegocio) {
         return servicePParticipanteContactoService.ConsultaParticipanteContacto(Bandera,
-                IdParticipante, Idioma);
+                IdParticipante, Idioma, IdRuedaNegocio);
     }
 
     @GetMapping("/consultaparticipanteproducto/{Bandera}/{IdRueda}/{IdParticipante}/{Idioma}")
