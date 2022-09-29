@@ -50,12 +50,14 @@ public class OlvidoClaveServiceImplementacion implements OlvidoClaveService {
             String codigo = (String) clave.getOutputParameterValue("Respuesta");
             String fecha = (String) clave.getOutputParameterValue("FechaModificacion");
             String subject = "Codigo Agroapoya2";
-            sendMessage(mapMessage, emailentity, subject, codigo, fecha);
+            if (!"Usuario no existe".equals(codigo)) {
+                sendMessage(mapMessage, emailentity, subject, codigo, fecha);
+            }
+            return "[{\"codigo\":\"" + codigo + "\",\"fecha\":\"" + fecha + "\"}]";
         } catch (Exception ex) {
-
-            return JSONObject.quote("No fue posible ejecutar los datos, verifique el Log para validar la inconsistencia");
+            return JSONObject.quote("No fue posible ejecutar los datos sendEmail, verifique el Log para validar la inconsistencia");
         }
-        return null;
+
     }
 
     public void sendMessage(Map<String, Object> mapMessage, EmailEntity emailentity, String subject, String codigo, String fecha) throws Exception {
@@ -90,7 +92,7 @@ public class OlvidoClaveServiceImplementacion implements OlvidoClaveService {
             ts.close();
 
         } catch (Exception ex) {
-            System.out.print(ex);
+            System.out.print("Error en sendMessage: " + ex);
         }
     }
 
@@ -101,44 +103,21 @@ public class OlvidoClaveServiceImplementacion implements OlvidoClaveService {
             message.setFrom(new InternetAddress(correoremitente));
             message.setRecipients(Message.RecipientType.TO, email);
             message.setSubject(subject.toString());
-
-            MimeBodyPart text = new MimeBodyPart();
-            text.setContent(mapMessage.get("content"), "text/html;charset=UTF-8");
-            MimeMultipart mp1 = new MimeMultipart();
-            mp1.addBodyPart(text);
-            MimeMultipart mp2 = new MimeMultipart();
-
-            MimeBodyPart content = new MimeBodyPart();
-            content.setContent(mp1);
-            mp2.addBodyPart(content);
-            mp2.setSubType("mixed");
-            message.setContent(mp2);
-            message.saveChanges();
-//            if (!"Usuario no existe".equals(codigo)) {
-//
-//                MimeMessageHelper helper = new MimeMessageHelper(message);
-//                Context context = new Context();
-//                context.setVariable("codigo", codigo);
-//                String emailContent = templateEngine.process("CorreoVerificacion", context);
-//                try {
-//
-//                    helper.setTo(email);
-//                    helper.setText(emailContent, true);
-//                    helper.setSubject(subject);
-//                    System.out.print("ENTRA 1");
-//                    return "[{\"codigo\":\"" + codigo + "\",\"fecha\":\"" + fecha + "\"}]";
-//
-//                } catch (Exception e) {
-//                    System.out.print("ENTRA 3");
-//                }
-//            } else {
-//                return "[{\"resultado\":\"Usuario no existe\"}]";
-//            }
+            MimeMessageHelper helper = new MimeMessageHelper(message);
+            Context context = new Context();
+            context.setVariable("codigo", codigo);
+            String emailContent = templateEngine.process("CorreoVerificacion", context);
+            try {
+                helper.setTo(email);
+                helper.setText(emailContent, true);
+                helper.setSubject(subject);
+            } catch (Exception e) {
+                System.out.print("Error en agregando el contenido al mensaje: " + e);
+            }
         } catch (Exception ex) {
-            System.out.print(ex);
+            System.out.print("Error en sendEmailTool: " + ex);
         }
         return message;
-
     }
 
 }

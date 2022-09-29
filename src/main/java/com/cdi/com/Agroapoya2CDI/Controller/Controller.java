@@ -21,6 +21,7 @@ import com.cdi.com.Agroapoya2CDI.Entity.CCordenadasSectorModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CDatosTransportistaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CDocumentoCorreoEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CDocumentoCorreoModEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CNuevasOfertasEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.COfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.COfertaImagenModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.COfertaModEntity;
@@ -116,6 +117,7 @@ import com.cdi.com.Agroapoya2CDI.Services.CDatosTransportistaService;
 import com.cdi.com.Agroapoya2CDI.Services.CDocumentoCorreoModService;
 import com.cdi.com.Agroapoya2CDI.Services.CDocumentoCorreoService;
 import com.cdi.com.Agroapoya2CDI.Services.CEnvioRealCorreoService;
+import com.cdi.com.Agroapoya2CDI.Services.CNuevasOfertasService;
 import com.cdi.com.Agroapoya2CDI.Services.COfertaImagenModService;
 import com.cdi.com.Agroapoya2CDI.Services.COfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.COfertaService;
@@ -509,6 +511,9 @@ public class Controller {
 
     @Autowired
     CConductorCondService serviceCConductorCondService;
+
+    @Autowired
+    CNuevasOfertasService serviceCNuevasOfertasService;
 
     @GetMapping("/consultainfogeneral/{ID}/{subId}")
     public List<INFOGENERALEntity> ConsultaInfoGeneral(
@@ -1096,7 +1101,7 @@ public class Controller {
             parameters.add("mensaje", mensaje);
             parameters.add("celular", celular);
 
-            ResponseEntity<Object> response = rt.exchange("https://contacto-masivo.com/sms/back_sms/public/api/sendsms?mensaje=" + mensaje + "&celular=" + celular, HttpMethod.POST, null, Object.class);
+            ResponseEntity<Object> response = rt.exchange("http://www.webusuario.com/recepcionsms?mensaje=" + mensaje + "&celular=" + celular, HttpMethod.POST, null, Object.class);
             Object NitObject = response.getBody();
             com.fasterxml.jackson.databind.ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
             String json = ow.writeValueAsString(NitObject);
@@ -1342,6 +1347,14 @@ public class Controller {
             @PathVariable Integer bandera,
             @PathVariable Integer id_conductor) {
         return serviceCConductorCondService.ConsultaCConductorCond(bandera, id_conductor);
+    }
+
+    @GetMapping("/conscnuevasofertas/{Bandera}/{Usucodig}/{Cd_cnctvo}")
+    public List<CNuevasOfertasEntity> ConsultaCConductorCond(
+            @PathVariable Integer Bandera,
+            @PathVariable Integer Usucodig,
+            @PathVariable Integer Cd_cnctvo) {
+        return serviceCNuevasOfertasService.ConsultaCNuevasOfertas(Bandera, Usucodig, Cd_cnctvo);
     }
 
 }
