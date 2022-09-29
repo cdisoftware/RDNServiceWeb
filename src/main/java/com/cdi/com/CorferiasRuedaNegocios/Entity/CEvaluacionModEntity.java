@@ -24,49 +24,37 @@ import lombok.Data;
 public class CEvaluacionModEntity {
 
     @Id
-    @JsonProperty("IdEvaluacion")
-    private Integer IdEvaluacion;
-
-    @JsonProperty("IdUsuarioC")
-    private Integer IdUsuarioC;
-
     @JsonProperty("IdRuedaNegocio")
-    private Integer IdRuedaNegocio;
-
-    @JsonProperty("IdPerfilRueda")
-    private Integer IdPerfilRueda;
+    public Integer IdRuedaNegocio;
 
     @JsonProperty("NombreEvaluacion")
-    private String NombreEvaluacion;
-
-    @JsonProperty("Estado")
-    private Integer Estado;
-
-    @JsonProperty("RequiereFirma")
-    private Integer RequiereFirma;
-
-    @JsonProperty("Imagen")
-    private String Imagen;
-
-    @JsonProperty("FechaInactiva")
-    private String FechaInactiva;
+    public String NombreEvaluacion;
 
     @JsonProperty("FechaActivacion")
-    private String FechaActivacion;
+    public String FechaActivacion;
+
+    @JsonProperty("FechaInactiva")
+    public String FechaInactiva;
+
+    @JsonProperty("IdPerfilRueda")
+    public Integer IdPerfilRueda;
+
+    @JsonProperty("RequiereFirma")
+    public Integer RequiereFirma;
+
+    @JsonProperty("Estado")
+    public Integer Estado;
 
     @JsonProperty("Publicar")
-    private Integer Publicar;
+    public Integer Publicar;
 
-    @JsonProperty("FechaPublicacion")
-    private String FechaPublicacion;
+    @JsonProperty("Imagen")
+    public String Imagen;
 
     @JsonProperty("IdTipoEvaEnc")
-    private Integer IdTipoEvaEnc;
-
-    @JsonProperty("Codigo")
-    private String Codigo;
+    public Integer IdTipoEvaEnc;
 
     @JsonProperty("ImagenBit")
-    private String ImagenBit;
+    public String ImagenBit;
 
 }
