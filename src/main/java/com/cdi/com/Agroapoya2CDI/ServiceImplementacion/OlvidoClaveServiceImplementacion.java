@@ -45,7 +45,9 @@ public class OlvidoClaveServiceImplementacion implements OlvidoClaveService {
         try {
             StoredProcedureQuery clave = repositorio.createNamedStoredProcedureQuery("paC_OlvidoClave");
             clave.registerStoredProcedureParameter("Correo", String.class, ParameterMode.IN);
+            clave.registerStoredProcedureParameter("TipoUsu", Integer.class, ParameterMode.IN);
             clave.setParameter("Correo", emailentity.getEmail());
+            clave.setParameter("TipoUsu", emailentity.getTipoUsu());
             clave.execute();
             String codigo = (String) clave.getOutputParameterValue("Respuesta");
             String fecha = (String) clave.getOutputParameterValue("FechaModificacion");

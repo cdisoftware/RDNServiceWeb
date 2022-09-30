@@ -56,9 +56,10 @@ public class EnvioCorreoMasivoServiceImplementacion implements CEnvioRealCorreoS
     String imagenpiepagina;
 
     @Override
-    public String ConsultaEnvioRealCorreo(Integer bandera, Integer IdPlantilla, Integer IdTipoUsuario) {
+    public String ConsultaEnvioRealCorreo(Integer bandera, Integer IdPlantilla, Integer IdTipoUsuario, Integer cd_cnctvo) {
 
         Map<String, Object> mapMessage = new HashMap<>();
+       
         try {
             Context context = new Context();
             StoredProcedureQuery cuerpo = repositorio.createNamedStoredProcedureQuery("paCEnvioRealCorreo_Consulta");

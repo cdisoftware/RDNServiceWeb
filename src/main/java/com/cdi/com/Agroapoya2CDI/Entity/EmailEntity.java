@@ -5,6 +5,7 @@ public class EmailEntity {
     public String email;
     public String content;
     public String subject;
+    public Integer TipoUsu;
 
     public String getEmail() {
         return email;
@@ -30,8 +31,16 @@ public class EmailEntity {
         this.subject = subject;
     }
 
+    public Integer getTipoUsu() {
+        return TipoUsu;
+    }
+
+    public void setTipoUsu(Integer TipoUsu) {
+        this.TipoUsu = TipoUsu;
+    }
+
     @Override
     public String toString() {
-        return "EmailBody [email=" + email + ", content=" + content + ", subject=" + subject + "]";
+        return "EmailBody [email=" + email + ", content=" + content + ", subject=" + subject + ", TipoUsu=" + TipoUsu + "]";
     }
 }
