@@ -36,8 +36,8 @@ public class CComprasModEntity {
     @JsonProperty("Usucodig")
     public Integer Usucodig;
 
-    @JsonProperty("Id_grupo")
-    public Integer Id_grupo;
+    @JsonProperty("CodGrupo")
+    public String CodGrupo;
 
     @JsonProperty("TipoComra")
     public Integer TipoComra;
@@ -48,6 +48,6 @@ public class CComprasModEntity {
     @JsonProperty("IdSector")
     public Integer IdSector;
 
-    @JsonProperty("UrlCdgoCmpatir")
-    public String UrlCdgoCmpatir;
+    @JsonProperty("idCliente")
+    public Integer idCliente;
 }

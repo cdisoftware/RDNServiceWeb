@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface entregasConductorService {
 
-    public List<entregasConductorEntity> ConsultaEntregasConductor(Integer bandera, Integer ID_CNDCTOR, Integer ID_ENTREGA);
+    public List<entregasConductorEntity> ConsultaEntregasConductor(Integer bandera, Integer ID_CNDCTOR, Integer id_Sector);
 }

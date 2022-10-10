@@ -147,6 +147,7 @@ public class EnvioCorreo_IndividualServiceImplementacion implements EnvioCorreo_
             message.setFrom(new InternetAddress(correoremitente));
             message.setRecipients(Message.RecipientType.TO, destinatario);
             message.setSubject(mapMessage.get("subject").toString());
+            //message.setText("blabla");
 
             StoredProcedureQuery adjuntos = repositorio.createNamedStoredProcedureQuery("paC_DocuEnvioCorreo");
             adjuntos.registerStoredProcedureParameter("Bandera", Integer.class, ParameterMode.IN);

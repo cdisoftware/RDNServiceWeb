@@ -18,16 +18,18 @@ public class CNuevasOfertasServiceImplementacion implements CNuevasOfertasServic
     private EntityManager repositorio;
 
     @Override
-    public List<CNuevasOfertasEntity> ConsultaCNuevasOfertas(Integer Bandera, Integer Usucodig, Integer Cd_cnctvo) {
+    public List<CNuevasOfertasEntity> ConsultaCNuevasOfertas(Integer Bandera, Integer Usucodig, Integer Cd_cnctvo, Integer Id_Sector) {
         try {
             StoredProcedureQuery newOfert = repositorio.createNamedStoredProcedureQuery("paC_NuevasOfertas");
             newOfert.registerStoredProcedureParameter("Bandera", Integer.class, ParameterMode.IN);
             newOfert.registerStoredProcedureParameter("Usucodig", Integer.class, ParameterMode.IN);
             newOfert.registerStoredProcedureParameter("Cd_cnctvo", Integer.class, ParameterMode.IN);
+            newOfert.registerStoredProcedureParameter("Id_Sector", Integer.class, ParameterMode.IN);
 
             newOfert.setParameter("Bandera", Bandera);
             newOfert.setParameter("Usucodig", Usucodig);
             newOfert.setParameter("Cd_cnctvo", Cd_cnctvo);
+            newOfert.setParameter("Id_Sector", Id_Sector);
 
             return newOfert.getResultList();
         } catch (Exception ex) {

@@ -119,4 +119,13 @@ public class TransActivosEntity {
 
     @JsonProperty("UnidadesTotales")
     public Integer UnidadesTotales;
+    
+    @JsonProperty("etapasOfera")
+    public String etapasOfera;
+    
+    @JsonProperty("CD_CNSCTVO")
+    public Integer CD_CNSCTVO;
+    
+    @JsonProperty("IdSector")
+    public Integer IdSector;
 }

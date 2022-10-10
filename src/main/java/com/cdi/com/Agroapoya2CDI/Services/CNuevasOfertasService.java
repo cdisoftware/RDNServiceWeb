@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface CNuevasOfertasService {
 
-    public List<CNuevasOfertasEntity> ConsultaCNuevasOfertas(Integer Bandera, Integer Usucodig, Integer Cd_cnctvo);
+    public List<CNuevasOfertasEntity> ConsultaCNuevasOfertas(Integer Bandera, Integer Usucodig, Integer Cd_cnctvo, Integer Id_Sector);
 }
