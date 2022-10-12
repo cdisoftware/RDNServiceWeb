@@ -119,8 +119,11 @@ public class COfertaEntity {
 
     @JsonProperty("vlor_costeo")
     public String vlor_costeo;
-    
-     @JsonProperty("OBS_EDICION")
+
+    @JsonProperty("OBS_EDICION")
     public String OBS_EDICION;
+
+    @JsonProperty("COD_OFR_PUBLICO")
+    public String COD_OFR_PUBLICO;
 
 }

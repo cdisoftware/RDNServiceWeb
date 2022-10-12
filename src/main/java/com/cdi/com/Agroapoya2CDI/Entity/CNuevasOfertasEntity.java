@@ -129,4 +129,7 @@ public class CNuevasOfertasEntity {
     @JsonProperty("ParticipanteText")
     public String ParticipanteText;
 
+    @JsonProperty("CRCTRZCION")
+    public String CRCTRZCION;
+
 }

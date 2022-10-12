@@ -129,4 +129,10 @@ public class CComprasEntity {
     @JsonProperty("FechaEntrega")
     public String FechaEntrega;
 
+    @JsonProperty("CalificacionProd")
+    public String CalificacionProd;
+
+    @JsonProperty("ComentarioProd")
+    public String ComentarioProd;
+
 }
