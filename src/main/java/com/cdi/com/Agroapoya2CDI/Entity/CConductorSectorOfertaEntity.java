@@ -51,4 +51,10 @@ public class CConductorSectorOfertaEntity {
     @JsonProperty("NOM_ESTADO")
     public String NOM_ESTADO;
 
+    @JsonProperty("PESO_KG")
+    public String PESO_KG;
+
+    @JsonProperty("VLOR_FLTE_SGRDO")
+    public String VLOR_FLTE_SGRDO;
+
 }

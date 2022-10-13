@@ -27,6 +27,7 @@ public class CVigenciaOfertaModServiceImplementacion implements CVigenciaOfertaM
             modvigci.registerStoredProcedureParameter("HORA_HASTA", String.class, ParameterMode.IN);
             modvigci.registerStoredProcedureParameter("FCHA_ENTRGA", String.class, ParameterMode.IN);
             modvigci.registerStoredProcedureParameter("OBSERVACIONES", String.class, ParameterMode.IN);
+            modvigci.registerStoredProcedureParameter("ID_SCTOR_OFRTA", Integer.class, ParameterMode.IN);
 
             modvigci.setParameter("BANDERA", BANDERA);
             modvigci.setParameter("CD_CNSCTVO", entidad.getCD_CNSCTVO());
@@ -36,6 +37,7 @@ public class CVigenciaOfertaModServiceImplementacion implements CVigenciaOfertaM
             modvigci.setParameter("HORA_HASTA", entidad.getHORA_HASTA());
             modvigci.setParameter("FCHA_ENTRGA", entidad.getFCHA_ENTRGA());
             modvigci.setParameter("OBSERVACIONES", entidad.getOBSERVACIONES());
+            modvigci.setParameter("ID_SCTOR_OFRTA", entidad.getID_SCTOR_OFRTA());
 
             modvigci.execute();
             return JSONObject.quote((String) modvigci.getOutputParameterValue("Respuesta"));

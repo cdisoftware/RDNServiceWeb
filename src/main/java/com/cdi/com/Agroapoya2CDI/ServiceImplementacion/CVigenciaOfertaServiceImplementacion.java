@@ -18,13 +18,17 @@ public class CVigenciaOfertaServiceImplementacion implements CVigenciaOfertaServ
     private EntityManager repositorio;
 
     @Override
-    public List<CVigenciaOfertaEntoty> ConsultaCVigenciaOferta(Integer BANDERA, Integer CD_CNSCTVO) {
+    public List<CVigenciaOfertaEntoty> ConsultaCVigenciaOferta(Integer BANDERA, Integer CD_CNSCTVO, Integer ID_SCTOR_OFRTA) {
         try {
             StoredProcedureQuery ofertvig = repositorio.createNamedStoredProcedureQuery("paCVigenciaOferta");
             ofertvig.registerStoredProcedureParameter("BANDERA", Integer.class, ParameterMode.IN);
             ofertvig.registerStoredProcedureParameter("CD_CNSCTVO", Integer.class, ParameterMode.IN);
+            ofertvig.registerStoredProcedureParameter("ID_SCTOR_OFRTA", Integer.class, ParameterMode.IN);
+
             ofertvig.setParameter("BANDERA", BANDERA);
             ofertvig.setParameter("CD_CNSCTVO", CD_CNSCTVO);
+            ofertvig.setParameter("ID_SCTOR_OFRTA", ID_SCTOR_OFRTA);
+
             return ofertvig.getResultList();
         } catch (Exception ex) {
             List list = new ArrayList();

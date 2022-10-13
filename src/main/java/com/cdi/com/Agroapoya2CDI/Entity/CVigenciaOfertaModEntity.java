@@ -45,4 +45,7 @@ public class CVigenciaOfertaModEntity {
     @JsonProperty("OBSERVACIONES")
     public String OBSERVACIONES;
 
+    @JsonProperty("ID_SCTOR_OFRTA")
+    public Integer ID_SCTOR_OFRTA;
+
 }

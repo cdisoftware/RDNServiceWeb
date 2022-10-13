@@ -99,4 +99,7 @@ public class entregasConductorEntity {
     @JsonProperty("ID_CLNTE")
     public Integer ID_CLNTE;
 
+    @JsonProperty("Vlor_PagarForm")
+    public String Vlor_PagarForm;
+
 }

@@ -25,12 +25,16 @@ public class evidenciaModServiceImplementacion implements evidenciaModService {
             mod.registerStoredProcedureParameter("Entregado", Integer.class, ParameterMode.IN);
             mod.registerStoredProcedureParameter("imagen", String.class, ParameterMode.IN);
             mod.registerStoredProcedureParameter("Observacion", String.class, ParameterMode.IN);
+            mod.registerStoredProcedureParameter("Coordenadas", String.class, ParameterMode.IN);
+
             mod.setParameter("bandera", bandera);
             mod.setParameter("id_conductor", id_conductor);
             mod.setParameter("id_factura", id_factura);
             mod.setParameter("Entregado", Entregado);
             mod.setParameter("imagen", entidad.getImagen());
             mod.setParameter("Observacion", entidad.getObservacion());
+            mod.setParameter("Coordenadas", entidad.getCoordenadas());
+
             mod.execute();
             return JSONObject.quote((String) mod.getOutputParameterValue("respuesta"));
         } catch (Exception ex) {
