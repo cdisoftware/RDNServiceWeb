@@ -50,6 +50,7 @@ import com.cdi.com.Agroapoya2CDI.Entity.CalculadoraPagosClienteEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CalificaProdModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CconductoresTransportesNuevosEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CiudadOfertaModEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.ClientePagosTransEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.ConductorEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.ConductorOfertaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.ConductorSectorModEntity;
@@ -160,6 +161,7 @@ import com.cdi.com.Agroapoya2CDI.Services.CalculadoraPagosClienteService;
 import com.cdi.com.Agroapoya2CDI.Services.CalificaProdModService;
 import com.cdi.com.Agroapoya2CDI.Services.CconductoresTransportesNuevosService;
 import com.cdi.com.Agroapoya2CDI.Services.CiudadOfertaModService;
+import com.cdi.com.Agroapoya2CDI.Services.ClientePagosTransService;
 import com.cdi.com.Agroapoya2CDI.Services.ConductorOfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.ConductorSectorModService;
 import com.cdi.com.Agroapoya2CDI.Services.ConductorService;
@@ -582,6 +584,9 @@ public class Controller {
 
     @Autowired
     CEstadoTransporteModService serviceCEstadoTransporteModService;
+    
+    @Autowired
+    ClientePagosTransService serviceClientePagosTransService;
 
     @GetMapping("/consultainfogeneral/{ID}/{subId}")
     public List<INFOGENERALEntity> ConsultaInfoGeneral(
@@ -1551,4 +1556,13 @@ public class Controller {
             @PathVariable Integer Bandera) {
         return serviceCEstadoTransporteModService.ActualizaCEstadoTransporte(entidad, Bandera);
     }
+      @GetMapping("/consclientepagostrans/{Bandera}/{Cd_csnctivo}/{IdSector}/{idConductor}")
+    public List<ClientePagosTransEntity> ConsultaClientePagosTrans(
+            @PathVariable Integer Bandera,
+            @PathVariable Integer Cd_csnctivo,
+            @PathVariable Integer IdSector,
+            @PathVariable Integer idConductor) {
+        return serviceClientePagosTransService.ConsultaClientePagosTrans(Bandera, Cd_csnctivo, IdSector, idConductor);
+    }
+    
 }
