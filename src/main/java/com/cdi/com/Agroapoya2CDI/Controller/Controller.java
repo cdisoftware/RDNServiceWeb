@@ -584,7 +584,7 @@ public class Controller {
 
     @Autowired
     CEstadoTransporteModService serviceCEstadoTransporteModService;
-    
+
     @Autowired
     ClientePagosTransService serviceClientePagosTransService;
 
@@ -1326,12 +1326,13 @@ public class Controller {
         return serviceCTransportesNuevosService.ConsultaCTransportesNuevos(Bandera, usucodigTrans, id_conductor);
     }
 
-    @GetMapping("/consconductortransportesnuevos/{Bandera}/{usucodigTrans}/{CD_CNSCTVO}")
+    @GetMapping("/consconductortransportesnuevos/{Bandera}/{usucodigTrans}/{CD_CNSCTVO}/{IdSector}")
     public List<CconductoresTransportesNuevosEntity> ConsultaConductoresTransportes(
             @PathVariable Integer Bandera,
             @PathVariable Integer usucodigTrans,
-            @PathVariable Integer CD_CNSCTVO) {
-        return serviceCconductoresTransportesNuevosService.ConsultaConductoresTransportes(Bandera, usucodigTrans, CD_CNSCTVO);
+            @PathVariable Integer CD_CNSCTVO,
+            @PathVariable Integer IdSector) {
+        return serviceCconductoresTransportesNuevosService.ConsultaConductoresTransportes(Bandera, usucodigTrans, CD_CNSCTVO, IdSector);
     }
 
     @PostMapping("/modconductorsector/{Bandera}")
@@ -1556,7 +1557,8 @@ public class Controller {
             @PathVariable Integer Bandera) {
         return serviceCEstadoTransporteModService.ActualizaCEstadoTransporte(entidad, Bandera);
     }
-      @GetMapping("/consclientepagostrans/{Bandera}/{Cd_csnctivo}/{IdSector}/{idConductor}")
+
+    @GetMapping("/consclientepagostrans/{Bandera}/{Cd_csnctivo}/{IdSector}/{idConductor}")
     public List<ClientePagosTransEntity> ConsultaClientePagosTrans(
             @PathVariable Integer Bandera,
             @PathVariable Integer Cd_csnctivo,
@@ -1564,5 +1566,5 @@ public class Controller {
             @PathVariable Integer idConductor) {
         return serviceClientePagosTransService.ConsultaClientePagosTrans(Bandera, Cd_csnctivo, IdSector, idConductor);
     }
-    
+
 }

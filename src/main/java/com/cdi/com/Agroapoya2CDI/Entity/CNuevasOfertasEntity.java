@@ -18,6 +18,9 @@ import lombok.Data;
 public class CNuevasOfertasEntity {
 
     @Id
+    @JsonProperty("id")
+    public Integer id;
+
     @JsonProperty("cd_cnsctvo")
     public Integer cd_cnsctvo;
 

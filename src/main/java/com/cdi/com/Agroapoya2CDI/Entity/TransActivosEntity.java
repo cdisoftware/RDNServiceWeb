@@ -134,4 +134,10 @@ public class TransActivosEntity {
 
     @JsonProperty("DesEstadoTranspo")
     public String DesEstadoTranspo;
+
+    @JsonProperty("PesoTotalCarga")
+    public String PesoTotalCarga;
+
+    @JsonProperty("numClientes")
+    public Integer numClientes;
 }

@@ -18,16 +18,18 @@ public class CconductoresTransportesNuevosServiceImplementacion implements Ccond
     private EntityManager repositorio;
 
     @Override
-    public List<CconductoresTransportesNuevosEntity> ConsultaConductoresTransportes(Integer Bandera, Integer usucodigTrans, Integer CD_CNSCTVO) {
+    public List<CconductoresTransportesNuevosEntity> ConsultaConductoresTransportes(Integer Bandera, Integer usucodigTrans, Integer CD_CNSCTVO, Integer IdSector) {
         try {
             StoredProcedureQuery tpoDoc = repositorio.createNamedStoredProcedureQuery("paC_conductoresTransportesNuevos");
             tpoDoc.registerStoredProcedureParameter("Bandera", Integer.class, ParameterMode.IN);
             tpoDoc.registerStoredProcedureParameter("usucodigTrans", Integer.class, ParameterMode.IN);
             tpoDoc.registerStoredProcedureParameter("CD_CNSCTVO", Integer.class, ParameterMode.IN);
+            tpoDoc.registerStoredProcedureParameter("IdSector", Integer.class, ParameterMode.IN);
 
             tpoDoc.setParameter("Bandera", Bandera);
             tpoDoc.setParameter("usucodigTrans", usucodigTrans);
             tpoDoc.setParameter("CD_CNSCTVO", CD_CNSCTVO);
+            tpoDoc.setParameter("IdSector", IdSector);
 
             return tpoDoc.getResultList();
         } catch (Exception ex) {
