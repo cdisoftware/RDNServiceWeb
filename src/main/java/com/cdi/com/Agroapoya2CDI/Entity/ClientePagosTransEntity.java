@@ -50,4 +50,13 @@ public class ClientePagosTransEntity {
 
     @JsonProperty("ImagenEvidencia")
     public String ImagenEvidencia;
+
+    @JsonProperty("IdTipoPagos")
+    public Integer IdTipoPagos;
+
+    @JsonProperty("DescriTipoPago")
+    public String DescriTipoPago;
+
+    @JsonProperty("ObservacionPago")
+    public String ObservacionPago;
 }

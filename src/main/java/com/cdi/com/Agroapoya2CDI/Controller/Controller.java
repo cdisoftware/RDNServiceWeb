@@ -38,6 +38,7 @@ import com.cdi.com.Agroapoya2CDI.Entity.CSectorOfertaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CTipoCosteoModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CTipoCosteoOfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CTipoNoEntrgaEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CTipoPagosTransEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CTransportesNuevosEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CUnidadesDisponiblesEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CUnidadesDisponiblesListaEntity;
@@ -139,6 +140,7 @@ import com.cdi.com.Agroapoya2CDI.Services.COfertaImagenModService;
 import com.cdi.com.Agroapoya2CDI.Services.COfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.COfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.COfertasNuevasService;
+import com.cdi.com.Agroapoya2CDI.Services.CPagosTransTotalesService;
 import com.cdi.com.Agroapoya2CDI.Services.CPersonaMenuService;
 import com.cdi.com.Agroapoya2CDI.Services.CPersonaTransService;
 import com.cdi.com.Agroapoya2CDI.Services.CPersonasService;
@@ -148,6 +150,7 @@ import com.cdi.com.Agroapoya2CDI.Services.CSectorOfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.CTipoCosteoModService;
 import com.cdi.com.Agroapoya2CDI.Services.CTipoCosteoOfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.CTipoNoEntrgaService;
+import com.cdi.com.Agroapoya2CDI.Services.CTipoPagosTransService;
 import com.cdi.com.Agroapoya2CDI.Services.CTransportesNuevosService;
 import com.cdi.com.Agroapoya2CDI.Services.CUnidadesDisponiblesListaService;
 import com.cdi.com.Agroapoya2CDI.Services.CUnidadesDisponiblesService;
@@ -178,6 +181,7 @@ import com.cdi.com.Agroapoya2CDI.Services.CtokenPersonaModService;
 import com.cdi.com.Agroapoya2CDI.Services.CultimaUbicacionService;
 import com.cdi.com.Agroapoya2CDI.Services.EnvioCorreo_IndividualService;
 import com.cdi.com.Agroapoya2CDI.Services.EnvioSMSNuevaEntregaService;
+import com.cdi.com.Agroapoya2CDI.Services.EnviosmsIndividualService;
 import com.cdi.com.Agroapoya2CDI.Services.EstadosOfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.INFOGENERALService;
 import com.cdi.com.Agroapoya2CDI.Services.JornadasOfertaService;
@@ -587,6 +591,15 @@ public class Controller {
 
     @Autowired
     ClientePagosTransService serviceClientePagosTransService;
+
+    @Autowired
+    CTipoPagosTransService serviceCTipoPagosTransService;
+
+    @Autowired
+    CPagosTransTotalesService serviceCPagosTransTotalesService;
+
+    @Autowired
+    EnviosmsIndividualService serviceEnviosmsIndividualService;
 
     @GetMapping("/consultainfogeneral/{ID}/{subId}")
     public List<INFOGENERALEntity> ConsultaInfoGeneral(
@@ -1567,4 +1580,29 @@ public class Controller {
         return serviceClientePagosTransService.ConsultaClientePagosTrans(Bandera, Cd_csnctivo, IdSector, idConductor);
     }
 
+    @GetMapping("/consctipopagostrans/{Bandera}/{Usucodig}")
+    public List<CTipoPagosTransEntity> ConsultaCTipoPagosTrans(
+            @PathVariable Integer Bandera,
+            @PathVariable Integer Usucodig) {
+        return serviceCTipoPagosTransService.ConsultaCTipoPagosTrans(Bandera, Usucodig);
+    }
+
+    @GetMapping("/conscpagostranstotales/{Bandera}/{Cd_csnctivo}/{IdSector}/{idConductor}")
+    public String ConsultaCPagosTransTotales(
+            @PathVariable Integer Bandera,
+            @PathVariable Integer Cd_csnctivo,
+            @PathVariable Integer IdSector,
+            @PathVariable Integer idConductor) {
+        return serviceCPagosTransTotalesService.ConsultaCPagosTransTotales(Bandera, Cd_csnctivo, IdSector, idConductor);
+    }
+
+    @GetMapping("/enviosmsindividual/{Bandera}/{Usucodig}/{cd_cnctivo}/{idSector}/{idCliente}")
+    public String EnvioSmsIndividual(
+            @PathVariable Integer Bandera,
+            @PathVariable Integer Usucodig,
+            @PathVariable Integer cd_cnctivo,
+            @PathVariable Integer idSector,
+            @PathVariable Integer idCliente) {
+        return serviceEnviosmsIndividualService.EnvioSmsIndividual(Bandera, Usucodig, cd_cnctivo, idSector, idCliente);
+    }
 }

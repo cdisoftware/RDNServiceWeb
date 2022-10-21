@@ -13,32 +13,17 @@ import lombok.Data;
 @Data
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
-            name = "paC_evidenciaMod",
-            procedureName = "paC_evidenciaMod",
+            name = "paC_PagosTransTotales",
+            procedureName = "paC_PagosTransTotales",
             parameters = {
-                @StoredProcedureParameter(name = "respuesta",
+                @StoredProcedureParameter(name = "Respuesta",
                         mode = ParameterMode.OUT,
                         type = String.class)
             })
 })
-public class evidenciaModEntity {
+public class CPagosTransTotalesEntity {
 
     @Id
-    @JsonProperty("imagen")
-    public String imagen;
-
-    @JsonProperty("Observacion")
-    public String Observacion;
-
-    @JsonProperty("Coordenadas")
-    public String Coordenadas;
-
-    @JsonProperty("ObservacionesDos")
-    public String ObservacionesDos;
-
-    @JsonProperty("ObservacionesPago")
-    public String ObservacionesPago;
-
-    @JsonProperty("idTipoPago")
-    public Integer idTipoPago;
+    @JsonProperty("Respuesta")
+    public String Respuesta;
 }

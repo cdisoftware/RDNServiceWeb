@@ -26,6 +26,9 @@ public class evidenciaModServiceImplementacion implements evidenciaModService {
             mod.registerStoredProcedureParameter("imagen", String.class, ParameterMode.IN);
             mod.registerStoredProcedureParameter("Observacion", String.class, ParameterMode.IN);
             mod.registerStoredProcedureParameter("Coordenadas", String.class, ParameterMode.IN);
+            mod.registerStoredProcedureParameter("ObservacionesDos", String.class, ParameterMode.IN);
+            mod.registerStoredProcedureParameter("ObservacionesPago", String.class, ParameterMode.IN);
+            mod.registerStoredProcedureParameter("idTipoPago", Integer.class, ParameterMode.IN);
 
             mod.setParameter("bandera", bandera);
             mod.setParameter("id_conductor", id_conductor);
@@ -34,6 +37,9 @@ public class evidenciaModServiceImplementacion implements evidenciaModService {
             mod.setParameter("imagen", entidad.getImagen());
             mod.setParameter("Observacion", entidad.getObservacion());
             mod.setParameter("Coordenadas", entidad.getCoordenadas());
+            mod.setParameter("ObservacionesDos", entidad.getObservacionesDos());
+            mod.setParameter("ObservacionesPago", entidad.getObservacionesPago());
+            mod.setParameter("idTipoPago", entidad.getIdTipoPago());
 
             mod.execute();
             return JSONObject.quote((String) mod.getOutputParameterValue("respuesta"));
