@@ -50,4 +50,7 @@ public class CComprasModEntity {
 
     @JsonProperty("idCliente")
     public Integer idCliente;
+
+    @JsonProperty("Toppings")
+    public String Toppings;
 }

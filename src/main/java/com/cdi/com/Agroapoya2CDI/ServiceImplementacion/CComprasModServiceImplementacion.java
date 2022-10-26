@@ -29,6 +29,8 @@ public class CComprasModServiceImplementacion implements CComprasModService {
             mod.registerStoredProcedureParameter("TipoUsuarioCompra", Integer.class, ParameterMode.IN);
             mod.registerStoredProcedureParameter("IdSector", Integer.class, ParameterMode.IN);
             mod.registerStoredProcedureParameter("idCliente", Integer.class, ParameterMode.IN);
+            mod.registerStoredProcedureParameter("Toppings", String.class, ParameterMode.IN);
+
             mod.setParameter("Bandera", Bandera);
             mod.setParameter("Cd_cnsctivo", entidad.getCd_cnsctivo());
             mod.setParameter("Unidades", entidad.getUnidades());
@@ -39,6 +41,8 @@ public class CComprasModServiceImplementacion implements CComprasModService {
             mod.setParameter("TipoUsuarioCompra", entidad.getTipoUsuarioCompra());
             mod.setParameter("IdSector", entidad.getIdSector());
             mod.setParameter("idCliente", entidad.getIdCliente());
+            mod.setParameter("Toppings", entidad.getToppings());
+
             mod.execute();
             return JSONObject.quote((String) mod.getOutputParameterValue("Respuesta"));
         } catch (Exception ex) {
