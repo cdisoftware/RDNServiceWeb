@@ -36,4 +36,10 @@ public class CListadoToppingEntity {
     @JsonProperty("Estado")
     public Integer Estado;
 
+    @JsonProperty("descTipotopping")
+    public String descTipotopping;
+
+    @JsonProperty("CanInicial")
+    public String CanInicial;
+
 }

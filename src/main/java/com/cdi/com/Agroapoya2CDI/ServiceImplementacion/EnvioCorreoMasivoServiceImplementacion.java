@@ -59,7 +59,7 @@ public class EnvioCorreoMasivoServiceImplementacion implements CEnvioRealCorreoS
     public String ConsultaEnvioRealCorreo(Integer bandera, Integer IdPlantilla, Integer IdTipoUsuario, Integer cd_cnctvo) {
 
         Map<String, Object> mapMessage = new HashMap<>();
-       
+
         try {
             Context context = new Context();
             StoredProcedureQuery cuerpo = repositorio.createNamedStoredProcedureQuery("paCEnvioRealCorreo_Consulta");
@@ -87,6 +87,7 @@ public class EnvioCorreoMasivoServiceImplementacion implements CEnvioRealCorreoS
                 mapMessage.put("subject", asunto);
                 mapMessage.put("content", content);
                 sendMessage(mapMessage, bandera, IdPlantilla);
+
             }
             Respuesta = JSONObject.quote("Correo Enviado Correctamente");
         } catch (Exception e) {

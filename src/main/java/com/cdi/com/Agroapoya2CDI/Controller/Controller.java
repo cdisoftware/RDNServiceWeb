@@ -35,14 +35,19 @@ import com.cdi.com.Agroapoya2CDI.Entity.COfertasNuevasEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CPersonaMenuEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CPersonaTransEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CPersonasEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CReporteUsuariosEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CReporteVentasEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CSectorConductorEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CSectorOfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CSectorOfertaModEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CTipoClienteEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CTipoConductorEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CTipoCosteoModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CTipoCosteoOfertaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CTipoNoEntrgaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CTipoPagosTransEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CTipoToppinEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CTipoTransporEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CToppingModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CTransportesNuevosEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CUnidadesDisponiblesEntity;
@@ -69,6 +74,7 @@ import com.cdi.com.Agroapoya2CDI.Entity.CpersonaClienteModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CpersonaTransportistaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CtipoMomentoEnvioEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CtipoPlantillaEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CtipoUsuarioEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CtokenPersonaModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CultimaUbicacionEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.EmailEntity;
@@ -152,14 +158,19 @@ import com.cdi.com.Agroapoya2CDI.Services.CPagosTransTotalesService;
 import com.cdi.com.Agroapoya2CDI.Services.CPersonaMenuService;
 import com.cdi.com.Agroapoya2CDI.Services.CPersonaTransService;
 import com.cdi.com.Agroapoya2CDI.Services.CPersonasService;
+import com.cdi.com.Agroapoya2CDI.Services.CReporteUsuarioService;
+import com.cdi.com.Agroapoya2CDI.Services.CReporteVentasService;
 import com.cdi.com.Agroapoya2CDI.Services.CSectorConductorService;
 import com.cdi.com.Agroapoya2CDI.Services.CSectorOfertaModService;
 import com.cdi.com.Agroapoya2CDI.Services.CSectorOfertaService;
+import com.cdi.com.Agroapoya2CDI.Services.CTipoClienteService;
+import com.cdi.com.Agroapoya2CDI.Services.CTipoConductorService;
 import com.cdi.com.Agroapoya2CDI.Services.CTipoCosteoModService;
 import com.cdi.com.Agroapoya2CDI.Services.CTipoCosteoOfertaService;
 import com.cdi.com.Agroapoya2CDI.Services.CTipoNoEntrgaService;
 import com.cdi.com.Agroapoya2CDI.Services.CTipoPagosTransService;
 import com.cdi.com.Agroapoya2CDI.Services.CTipoToppinService;
+import com.cdi.com.Agroapoya2CDI.Services.CTipoTransporService;
 import com.cdi.com.Agroapoya2CDI.Services.CToppingModService;
 import com.cdi.com.Agroapoya2CDI.Services.CTransportesNuevosService;
 import com.cdi.com.Agroapoya2CDI.Services.CUnidadesDisponiblesListaService;
@@ -187,6 +198,7 @@ import com.cdi.com.Agroapoya2CDI.Services.CpersonaClienteModService;
 import com.cdi.com.Agroapoya2CDI.Services.CpersonaTransportistaModService;
 import com.cdi.com.Agroapoya2CDI.Services.CtipoMomentoEnvioService;
 import com.cdi.com.Agroapoya2CDI.Services.CtipoPlantillaService;
+import com.cdi.com.Agroapoya2CDI.Services.CtipoUsuarioService;
 import com.cdi.com.Agroapoya2CDI.Services.CtokenPersonaModService;
 import com.cdi.com.Agroapoya2CDI.Services.CultimaUbicacionService;
 import com.cdi.com.Agroapoya2CDI.Services.EnvioCorreo_IndividualService;
@@ -626,6 +638,24 @@ public class Controller {
     @Autowired
     CListadoToppingService serviceCListadoToppingService;
 
+    @Autowired
+    CReporteUsuarioService serviceCReporteUsuarioService;
+
+    @Autowired
+    CtipoUsuarioService serviceCtipoUsuarioService;
+
+    @Autowired
+    CTipoClienteService serviceCTipoClienteService;
+
+    @Autowired
+    CTipoTransporService serviceCTipoTransporService;
+
+    @Autowired
+    CTipoConductorService serviceCTipoConductorService;
+    
+    @Autowired
+    CReporteVentasService serviceCReporteVentasService;
+
     @GetMapping("/consultainfogeneral/{ID}/{subId}")
     public List<INFOGENERALEntity> ConsultaInfoGeneral(
             @PathVariable Integer ID,
@@ -1062,13 +1092,14 @@ public class Controller {
         return serviceestadoEntregaService.ConsultaEstadoEntrega(bandera);
     }
 
-    @GetMapping("/consentregasconductor/{bandera}/{ID_CNDCTOR}/{id_Sector}/{cd_cnctivo}")
+    @GetMapping("/consentregasconductor/{bandera}/{ID_CNDCTOR}/{id_Sector}/{cd_cnctivo}/{coordernadas}")
     public List<entregasConductorEntity> ConsultaEntregasConductor(
             @PathVariable Integer bandera,
             @PathVariable Integer ID_CNDCTOR,
             @PathVariable Integer id_Sector,
-            @PathVariable Integer cd_cnctivo) {
-        return serviceentregasConductorService.ConsultaEntregasConductor(bandera, ID_CNDCTOR, id_Sector, cd_cnctivo);
+            @PathVariable Integer cd_cnctivo,
+            @PathVariable String coordernadas) {
+        return serviceentregasConductorService.ConsultaEntregasConductor(bandera, ID_CNDCTOR, id_Sector, cd_cnctivo, coordernadas);
     }
 
     @GetMapping("/consevidencia/{bandera}/{id_evidencia}/{id_factura}")
@@ -1532,8 +1563,9 @@ public class Controller {
         return serviceCValidaCodigoService.ConsultaCValidaCodigo(entidad, Bandera);
     }
 
-    @GetMapping("/conscalculadorapagoscliente/{Bandera}/{Operacion}/{Formato}/{Cd_Cnsctvo}/{Id_Sector}/{Unidades}/{Usucodig}/{CodGrupo}")
+    @PostMapping("/conscalculadorapagoscliente/{Bandera}/{Operacion}/{Formato}/{Cd_Cnsctvo}/{Id_Sector}/{Unidades}/{Usucodig}/{CodGrupo}")
     public List<CalculadoraPagosClienteEntity> ConsultaCalculadoraPagosClient(
+            @RequestBody CalculadoraPagosClienteEntity entidad,
             @PathVariable Integer Bandera,
             @PathVariable Integer Operacion,
             @PathVariable Integer Formato,
@@ -1542,7 +1574,7 @@ public class Controller {
             @PathVariable Integer Unidades,
             @PathVariable Integer Usucodig,
             @PathVariable String CodGrupo) {
-        return serviceCalculadoraPagosClienteService.ConsultaCalculadoraPagosClient(Bandera, Operacion, Formato, Cd_Cnsctvo, Id_Sector, Unidades, Usucodig, CodGrupo);
+        return serviceCalculadoraPagosClienteService.ConsultaCalculadoraPagosClient(entidad, Bandera, Operacion, Formato, Cd_Cnsctvo, Id_Sector, Unidades, Usucodig, CodGrupo);
     }
 
     @GetMapping("/consunidadesdisponibleslista/{Bandera}/{Usucodig}/{Cd_csctvo}/{Id_Sector}")
@@ -1665,5 +1697,45 @@ public class Controller {
             @PathVariable Integer Id_Sector,
             @PathVariable Integer cd_cnctivo) {
         return serviceCListadoToppingService.ConsultaCListadoTopping(Bandera, Id_Sector, cd_cnctivo);
+    }
+
+    @PostMapping("/conscreporteusuarios/{Bandera}")
+    public List<CReporteUsuariosEntity> ConsultaCReporteUsuario(
+            @RequestBody CReporteUsuariosEntity entidad,
+            @PathVariable Integer Bandera) {
+        return serviceCReporteUsuarioService.ConsultaCReporteUsuario(entidad, Bandera);
+    }
+
+    @GetMapping("/consctipousuario/{Bandera}")
+    public List<CtipoUsuarioEntity> ConsultaCTipoUsuario(
+            @PathVariable Integer Bandera) {
+        return serviceCtipoUsuarioService.ConsultaCTipoUsuario(Bandera);
+    }
+
+    @GetMapping("/consctipocliente/{Bandera}")
+    public List<CTipoClienteEntity> ConsultaCTipoCliente(
+            @PathVariable Integer Bandera) {
+        return serviceCTipoClienteService.ConsultaCTipoCliente(Bandera);
+    }
+
+    @GetMapping("/consctipotransport/{Bandera}")
+    public List<CTipoTransporEntity> ConsultaCTipoTranspor(
+            @PathVariable Integer Bandera) {
+        return serviceCTipoTransporService.ConsultaCTipoTranspor(Bandera);
+    }
+
+    @GetMapping("/consctipoconductor/{Bandera}/{UsucodigTrans}")
+    public List<CTipoConductorEntity> ConsultaCTipoConductor(
+            @PathVariable Integer Bandera,
+            @PathVariable Integer UsucodigTrans) {
+        return serviceCTipoConductorService.ConsultaCTipoConductor(Bandera, UsucodigTrans);
+    }
+    @PostMapping("/conscreporteventas/{Bandera}/{ID_CNDCTOR}/{id_Sector}")
+    public List<CReporteVentasEntity> ConsultaCReporteVentas(
+            @RequestBody CReporteVentasEntity entidad,
+            @PathVariable Integer Bandera,
+            @PathVariable Integer ID_CNDCTOR,
+            @PathVariable Integer id_Sector) {
+        return serviceCReporteVentasService.ConsultaCReporteVentas(entidad, Bandera, ID_CNDCTOR, id_Sector);
     }
 }

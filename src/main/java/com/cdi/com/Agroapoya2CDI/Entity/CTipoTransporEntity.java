@@ -11,14 +11,16 @@ import lombok.Data;
 @Data
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
-            name = "paC_CalculadoraPagosCliente",
-            procedureName = "paC_CalculadoraPagosCliente",
-            resultClasses = CalculadoraPagosClienteEntity.class)
+            name = "paC_TipoTranspor",
+            procedureName = "paC_TipoTranspor",
+            resultClasses = CTipoTransporEntity.class)
 })
-public class CalculadoraPagosClienteEntity {
+public class CTipoTransporEntity {
 
     @Id
-    @JsonProperty("RtaValor")
-    public String RtaValor;
+    @JsonProperty("Usucodig")
+    public Integer Usucodig;
 
+    @JsonProperty("Coordenadas")
+    public String Coordenadas;
 }
