@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface CTipoTransporService {
 
-    public List<CTipoTransporEntity> ConsultaCTipoTranspor(Integer Bandera);
+    public List<CTipoTransporEntity> ConsultaCTipoTranspor(Integer Bandera, Integer Usucodig);
 }

@@ -54,6 +54,7 @@ public class EnvioCorreoMasivoServiceImplementacion implements CEnvioRealCorreoS
     String contenido;
     String imagenencabezado;
     String imagenpiepagina;
+    Integer IdPlantilla;
 
     @Override
     public String ConsultaEnvioRealCorreo(Integer bandera, Integer IdPlantilla, Integer IdTipoUsuario, Integer cd_cnctvo) {
@@ -64,8 +65,8 @@ public class EnvioCorreoMasivoServiceImplementacion implements CEnvioRealCorreoS
             Context context = new Context();
             StoredProcedureQuery cuerpo = repositorio.createNamedStoredProcedureQuery("paCEnvioRealCorreo_Consulta");
             cuerpo.registerStoredProcedureParameter("CodigoProceso", Integer.class, ParameterMode.IN);
-            codigoproceso = IdTipoUsuario;
-            cuerpo.setParameter("CodigoProceso", IdTipoUsuario);
+            codigoproceso = cd_cnctvo;
+            cuerpo.setParameter("CodigoProceso", cd_cnctvo);
             cuerpo.getResultList();
             List<CEnvioRealCorreo_ConsultaEntity> cuerpocorreo = cuerpo.getResultList();
 

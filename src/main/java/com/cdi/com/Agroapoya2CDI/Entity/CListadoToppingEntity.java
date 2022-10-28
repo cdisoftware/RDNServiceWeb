@@ -42,4 +42,10 @@ public class CListadoToppingEntity {
     @JsonProperty("CanInicial")
     public String CanInicial;
 
+    @JsonProperty("cantidadReserva")
+    public String cantidadReserva;
+    
+     @JsonProperty("cant_disponible")
+    public String cant_disponible;
+
 }

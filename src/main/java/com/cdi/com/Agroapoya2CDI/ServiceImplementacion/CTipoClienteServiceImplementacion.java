@@ -18,11 +18,15 @@ public class CTipoClienteServiceImplementacion implements CTipoClienteService {
     private EntityManager repositorio;
 
     @Override
-    public List<CTipoClienteEntity> ConsultaCTipoCliente(Integer Bandera) {
+    public List<CTipoClienteEntity> ConsultaCTipoCliente(Integer Bandera, Integer Usucodig) {
         try {
             StoredProcedureQuery tipClient = repositorio.createNamedStoredProcedureQuery("paC_TipoCliente");
             tipClient.registerStoredProcedureParameter("Bandera", Integer.class, ParameterMode.IN);
+            tipClient.registerStoredProcedureParameter("Usucodig", Integer.class, ParameterMode.IN);
+
             tipClient.setParameter("Bandera", Bandera);
+            tipClient.setParameter("Usucodig", Usucodig);
+
             return tipClient.getResultList();
         } catch (Exception ex) {
             List list = new ArrayList();

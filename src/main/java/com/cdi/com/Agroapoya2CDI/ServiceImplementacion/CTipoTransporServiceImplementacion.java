@@ -18,11 +18,15 @@ public class CTipoTransporServiceImplementacion implements CTipoTransporService 
     private EntityManager repositorio;
 
     @Override
-    public List<CTipoTransporEntity> ConsultaCTipoTranspor(Integer Bandera) {
+    public List<CTipoTransporEntity> ConsultaCTipoTranspor(Integer Bandera, Integer Usucodig) {
         try {
             StoredProcedureQuery tipTrans = repositorio.createNamedStoredProcedureQuery("paC_TipoTranspor");
             tipTrans.registerStoredProcedureParameter("Bandera", Integer.class, ParameterMode.IN);
+            tipTrans.registerStoredProcedureParameter("Usucodig", Integer.class, ParameterMode.IN);
+
             tipTrans.setParameter("Bandera", Bandera);
+            tipTrans.setParameter("Usucodig", Usucodig);
+
             return tipTrans.getResultList();
         } catch (Exception ex) {
             List list = new ArrayList();

@@ -24,8 +24,10 @@ import com.cdi.com.Agroapoya2CDI.Entity.CCordenadasSectorModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CDatosTransportistaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CDocumentoCorreoEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CDocumentoCorreoModEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CEnvioRealCorreo_ConsultaEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CEstadoTransporteModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CListadoToppingEntity;
+import com.cdi.com.Agroapoya2CDI.Entity.CMisToppingsEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CNovedadModEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.CNuevasOfertasEntity;
 import com.cdi.com.Agroapoya2CDI.Entity.COfertaEntity;
@@ -148,6 +150,7 @@ import com.cdi.com.Agroapoya2CDI.Services.CDocumentoCorreoService;
 import com.cdi.com.Agroapoya2CDI.Services.CEnvioRealCorreoService;
 import com.cdi.com.Agroapoya2CDI.Services.CEstadoTransporteModService;
 import com.cdi.com.Agroapoya2CDI.Services.CListadoToppingService;
+import com.cdi.com.Agroapoya2CDI.Services.CMisToppingsService;
 import com.cdi.com.Agroapoya2CDI.Services.CNovedadModService;
 import com.cdi.com.Agroapoya2CDI.Services.CNuevasOfertasService;
 import com.cdi.com.Agroapoya2CDI.Services.COfertaImagenModService;
@@ -652,9 +655,12 @@ public class Controller {
 
     @Autowired
     CTipoConductorService serviceCTipoConductorService;
-    
+
     @Autowired
     CReporteVentasService serviceCReporteVentasService;
+    
+    @Autowired
+    CMisToppingsService serviceCMisToppingsService;
 
     @GetMapping("/consultainfogeneral/{ID}/{subId}")
     public List<INFOGENERALEntity> ConsultaInfoGeneral(
@@ -1712,16 +1718,18 @@ public class Controller {
         return serviceCtipoUsuarioService.ConsultaCTipoUsuario(Bandera);
     }
 
-    @GetMapping("/consctipocliente/{Bandera}")
+    @GetMapping("/consctipocliente/{Bandera}/{Usucodig}")
     public List<CTipoClienteEntity> ConsultaCTipoCliente(
-            @PathVariable Integer Bandera) {
-        return serviceCTipoClienteService.ConsultaCTipoCliente(Bandera);
+            @PathVariable Integer Bandera,
+            @PathVariable Integer Usucodig) {
+        return serviceCTipoClienteService.ConsultaCTipoCliente(Bandera, Usucodig);
     }
 
-    @GetMapping("/consctipotransport/{Bandera}")
+    @GetMapping("/consctipotransport/{Bandera}/{Usucodig}")
     public List<CTipoTransporEntity> ConsultaCTipoTranspor(
-            @PathVariable Integer Bandera) {
-        return serviceCTipoTransporService.ConsultaCTipoTranspor(Bandera);
+            @PathVariable Integer Bandera,
+            @PathVariable Integer Usucodig) {
+        return serviceCTipoTransporService.ConsultaCTipoTranspor(Bandera, Usucodig);
     }
 
     @GetMapping("/consctipoconductor/{Bandera}/{UsucodigTrans}")
@@ -1730,6 +1738,7 @@ public class Controller {
             @PathVariable Integer UsucodigTrans) {
         return serviceCTipoConductorService.ConsultaCTipoConductor(Bandera, UsucodigTrans);
     }
+
     @PostMapping("/conscreporteventas/{Bandera}/{ID_CNDCTOR}/{id_Sector}")
     public List<CReporteVentasEntity> ConsultaCReporteVentas(
             @RequestBody CReporteVentasEntity entidad,
@@ -1738,4 +1747,12 @@ public class Controller {
             @PathVariable Integer id_Sector) {
         return serviceCReporteVentasService.ConsultaCReporteVentas(entidad, Bandera, ID_CNDCTOR, id_Sector);
     }
+    
+      @GetMapping("/conscmistoppings/{Bandera}/{IdCliente}")
+    public List<CMisToppingsEntity> ConsultaCMisToppings(
+            @PathVariable Integer Bandera,
+            @PathVariable Integer IdCliente) {
+        return serviceCMisToppingsService.ConsultaCMisToppings(Bandera, IdCliente);
+    }
+    
 }
