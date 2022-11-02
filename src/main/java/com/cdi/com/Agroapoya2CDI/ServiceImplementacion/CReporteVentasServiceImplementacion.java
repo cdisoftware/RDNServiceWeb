@@ -18,32 +18,18 @@ public class CReporteVentasServiceImplementacion implements CReporteVentasServic
     private EntityManager repositorio;
 
     @Override
-    public List<CReporteVentasEntity> ConsultaCReporteVentas(CReporteVentasEntity entidad, Integer Bandera, Integer ID_CNDCTOR, Integer id_Sector) {
+    public List<CReporteVentasEntity> ConsultaCReporteVentas(Integer Bandera, Integer cd_cnscutivo, Integer IdSector) {
         try {
-            StoredProcedureQuery tpoDoc = repositorio.createNamedStoredProcedureQuery("paC_ReporteVentas");
-            tpoDoc.registerStoredProcedureParameter("Bandera", Integer.class, ParameterMode.IN);
-            tpoDoc.registerStoredProcedureParameter("ID_CNDCTOR", Integer.class, ParameterMode.IN);
-            tpoDoc.registerStoredProcedureParameter("id_Sector", Integer.class, ParameterMode.IN);
-            tpoDoc.registerStoredProcedureParameter("cd_cnctivo", Integer.class, ParameterMode.IN);
-            tpoDoc.registerStoredProcedureParameter("NombrePersona", String.class, ParameterMode.IN);
-            tpoDoc.registerStoredProcedureParameter("Usucodig", Integer.class, ParameterMode.IN);
-            tpoDoc.registerStoredProcedureParameter("IdTpoPago", Integer.class, ParameterMode.IN);
-            tpoDoc.registerStoredProcedureParameter("IdTpoCompra", Integer.class, ParameterMode.IN);
-            tpoDoc.registerStoredProcedureParameter("IdTpoUsuCompra", Integer.class, ParameterMode.IN);
-            tpoDoc.registerStoredProcedureParameter("IdEstdEntrega", Integer.class, ParameterMode.IN);
-            tpoDoc.registerStoredProcedureParameter("IdEstadoPago", Integer.class, ParameterMode.IN);
-            tpoDoc.setParameter("Bandera", Bandera);
-            tpoDoc.setParameter("ID_CNDCTOR", ID_CNDCTOR);
-            tpoDoc.setParameter("id_Sector", id_Sector);
-            tpoDoc.setParameter("cd_cnctivo", entidad.getCD_CNSCTVO());
-            tpoDoc.setParameter("NombrePersona", entidad.getNOMBRES_PERSONA());
-            tpoDoc.setParameter("Usucodig", entidad.getUsucodigCliente());
-            tpoDoc.setParameter("IdTpoPago", entidad.getTipoPago());
-            tpoDoc.setParameter("IdTpoCompra", entidad.getTipo_compra());
-            tpoDoc.setParameter("IdTpoUsuCompra", entidad.getTipo_usuarioCompra());
-            tpoDoc.setParameter("IdEstdEntrega", entidad.getESTDO());
-            tpoDoc.setParameter("IdEstadoPago", entidad.getIdEstdPago());
-            return tpoDoc.getResultList();
+            StoredProcedureQuery repotVentas = repositorio.createNamedStoredProcedureQuery("paC_ReporteVentas");
+            repotVentas.registerStoredProcedureParameter("Bandera", Integer.class, ParameterMode.IN);
+            repotVentas.registerStoredProcedureParameter("cd_cnscutivo", Integer.class, ParameterMode.IN);
+            repotVentas.registerStoredProcedureParameter("IdSector", Integer.class, ParameterMode.IN);
+
+            repotVentas.setParameter("Bandera", Bandera);
+            repotVentas.setParameter("cd_cnscutivo", cd_cnscutivo);
+            repotVentas.setParameter("IdSector", IdSector);
+
+            return repotVentas.getResultList();
         } catch (Exception ex) {
             List list = new ArrayList();
             list.add(0, JSONObject.quote("No fue posible ejecutar los datos, verifique el Log para validar la inconsistencia"));

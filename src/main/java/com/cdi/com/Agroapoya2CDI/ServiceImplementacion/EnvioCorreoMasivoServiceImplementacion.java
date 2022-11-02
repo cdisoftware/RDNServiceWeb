@@ -54,7 +54,6 @@ public class EnvioCorreoMasivoServiceImplementacion implements CEnvioRealCorreoS
     String contenido;
     String imagenencabezado;
     String imagenpiepagina;
-    Integer IdPlantilla;
 
     @Override
     public String ConsultaEnvioRealCorreo(Integer bandera, Integer IdPlantilla, Integer IdTipoUsuario, Integer cd_cnctvo) {
@@ -87,7 +86,7 @@ public class EnvioCorreoMasivoServiceImplementacion implements CEnvioRealCorreoS
                 String content = templateEngine.process("EnvioCorreos", context);
                 mapMessage.put("subject", asunto);
                 mapMessage.put("content", content);
-                sendMessage(mapMessage, bandera, IdPlantilla);
+                sendMessage(mapMessage, bandera, IdPlantilla, IdTipoUsuario, cd_cnctvo);
 
             }
             Respuesta = JSONObject.quote("Correo Enviado Correctamente");
@@ -97,7 +96,7 @@ public class EnvioCorreoMasivoServiceImplementacion implements CEnvioRealCorreoS
         return Respuesta;
     }
 
-    public void sendMessage(Map<String, Object> mapMessage, Integer Bandera, Integer IdPlantilla) throws Exception {
+    public void sendMessage(Map<String, Object> mapMessage, Integer Bandera, Integer IdPlantilla, Integer IdTipoUsuario, Integer cd_cnctvo) throws Exception {
 
         String correoremitente = null;
         String servicePath = null;
@@ -124,7 +123,7 @@ public class EnvioCorreoMasivoServiceImplementacion implements CEnvioRealCorreoS
             Transport ts = session.getTransport();
             ts.connect(servicePath, correoremitente, contrasena);
             // Crear correo electrónico
-            Message message = createMixedMail(session, mapMessage, correoremitente, Bandera, IdPlantilla);
+            Message message = createMixedMail(session, mapMessage, correoremitente, Bandera, IdPlantilla, IdTipoUsuario, cd_cnctvo);
             //enviar correo electrónico 
             ts.sendMessage(message, message.getAllRecipients());
             ts.close();
@@ -133,7 +132,7 @@ public class EnvioCorreoMasivoServiceImplementacion implements CEnvioRealCorreoS
     }
 
     public MimeMessage createMixedMail(Session session, Map<String, Object> mapMessage, String correoremitente,
-            Integer Bandera, Integer IdPlantilla) throws Exception {
+            Integer Bandera, Integer IdPlantilla, Integer IdTipoUsuario, Integer cd_cnctvo) throws Exception {
 
         MimeMessage message = new MimeMessage(session);
 

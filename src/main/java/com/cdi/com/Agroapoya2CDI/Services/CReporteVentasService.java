@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface CReporteVentasService {
 
-    public List<CReporteVentasEntity> ConsultaCReporteVentas(CReporteVentasEntity entidad, Integer Bandera, Integer ID_CNDCTOR, Integer id_Sector);
+    public List<CReporteVentasEntity> ConsultaCReporteVentas(Integer Bandera, Integer cd_cnscutivo, Integer IdSector);
 }

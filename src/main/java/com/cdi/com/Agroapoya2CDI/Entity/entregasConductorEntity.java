@@ -102,4 +102,7 @@ public class entregasConductorEntity {
     @JsonProperty("Vlor_PagarForm")
     public String Vlor_PagarForm;
 
+    @JsonProperty("distanciaEvi")
+    public String distanciaEvi;
+
 }

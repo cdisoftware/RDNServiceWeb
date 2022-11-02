@@ -24,6 +24,9 @@ public class CReporteVentasEntity {
     @JsonProperty("CD_CNSCTVO")
     public Integer CD_CNSCTVO;
 
+    @JsonProperty("IdSector")
+    public Integer IdSector;
+
     @JsonProperty("usucodigCliente")
     public Integer usucodigCliente;
 
@@ -94,7 +97,7 @@ public class CReporteVentasEntity {
     public String PLCA;
 
     @JsonProperty("COD_PEDIDO")
-    public Integer COD_PEDIDO;
+    public String COD_PEDIDO;
 
     @JsonProperty("ID_CLNTE")
     public Integer ID_CLNTE;
@@ -102,8 +105,8 @@ public class CReporteVentasEntity {
     @JsonProperty("Vlor_PagarForm")
     public String Vlor_PagarForm;
 
-    @JsonProperty("IdEstdPago")
-    public Integer IdEstdPago;
+    @JsonProperty("EstadoPago")
+    public Integer EstadoPago;
 
     @JsonProperty("DESCRIPCION_ESTADO")
     public String DESCRIPCION_ESTADO;
