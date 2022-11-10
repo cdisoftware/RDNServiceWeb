@@ -18,13 +18,17 @@ public class menuServiceImplementacion implements menuService {
     private EntityManager repositorio;
 
     @Override
-    public List<menuEntity> ConsultaMenu(Integer Bandera, Integer IdTipoUsuario) {
+    public List<menuEntity> ConsultaMenu(Integer Bandera, Integer IdTipoUsuario, Integer Usucodig) {
         try {
             StoredProcedureQuery menu = repositorio.createNamedStoredProcedureQuery("paT_menu");
             menu.registerStoredProcedureParameter("Bandera", Integer.class, ParameterMode.IN);
             menu.registerStoredProcedureParameter("IdTipoUsuario", Integer.class, ParameterMode.IN);
+            menu.registerStoredProcedureParameter("Usucodig", Integer.class, ParameterMode.IN);
+
             menu.setParameter("Bandera", Bandera);
             menu.setParameter("IdTipoUsuario", IdTipoUsuario);
+            menu.setParameter("Usucodig", Usucodig);
+
             return menu.getResultList();
         } catch (Exception ex) {
             List list = new ArrayList();

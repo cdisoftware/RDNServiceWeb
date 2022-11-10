@@ -13,17 +13,23 @@ import lombok.Data;
 @Data
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
-            name = "paCEnvioRealCorreo",
-            procedureName = "paCEnvioRealCorreo",
+            name = "paC_tableroMod",
+            procedureName = "paC_tableroMod",
             parameters = {
                 @StoredProcedureParameter(name = "Respuesta",
                         mode = ParameterMode.OUT,
-                        type = Integer.class)
+                        type = String.class)
             })
 })
-public class CEnvioRealCorreoEntity {
+public class CtableroModEntity {
 
     @Id
-    @JsonProperty("Respuesta")
-    public Integer Respuesta;
+    @JsonProperty("UsucodigTrans")
+    public Integer UsucodigTrans;
+
+    @JsonProperty("IdConductor")
+    public Integer IdConductor;
+
+    @JsonProperty("IdPlataforma")
+    public Integer IdPlataforma;
 }

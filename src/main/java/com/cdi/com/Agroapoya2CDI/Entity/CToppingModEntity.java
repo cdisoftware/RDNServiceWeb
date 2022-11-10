@@ -48,4 +48,7 @@ public class CToppingModEntity {
     @JsonProperty("cantidadReserva")
     public Integer cantidadReserva;
 
+    @JsonProperty("imagen")
+    public String imagen;
+
 }

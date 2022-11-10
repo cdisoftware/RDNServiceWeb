@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface menuService {
 
-    public List<menuEntity> ConsultaMenu(Integer Bandera, Integer IdTipoUsuario);
+    public List<menuEntity> ConsultaMenu(Integer Bandera, Integer IdTipoUsuario, Integer Usucodig);
 }

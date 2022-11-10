@@ -11,18 +11,18 @@ import lombok.Data;
 @Data
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
-            name = "paT_menu",
-            procedureName = "paT_menu",
-            resultClasses = menuEntity.class)
+            name = "paT_SubMenu",
+            procedureName = "paT_SubMenu",
+            resultClasses = TSubMenuEntity.class)
 })
-public class menuEntity {
+public class TSubMenuEntity {
 
     @Id
+    @JsonProperty("IdSubMenu")
+    public Integer IdSubMenu;
+
     @JsonProperty("IdMenu")
     public Integer IdMenu;
-
-    @JsonProperty("IdTipoUsuario")
-    public Integer IdTipoUsuario;
 
     @JsonProperty("Nombre")
     public String Nombre;
@@ -33,9 +33,6 @@ public class menuEntity {
     @JsonProperty("Icono")
     public String Icono;
 
-    @JsonProperty("pathMenu")
-    public String pathMenu;
-
-    @JsonProperty("SubMenu")
-    public Integer SubMenu;
+    @JsonProperty("PathMenu")
+    public String PathMenu;
 }

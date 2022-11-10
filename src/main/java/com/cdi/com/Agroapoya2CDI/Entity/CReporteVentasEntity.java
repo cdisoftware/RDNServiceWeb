@@ -111,4 +111,12 @@ public class CReporteVentasEntity {
     @JsonProperty("DESCRIPCION_ESTADO")
     public String DESCRIPCION_ESTADO;
 
+    @JsonProperty("DESC_TOPPINGS")
+    public String DESC_TOPPINGS;
+
+    @JsonProperty("TOTAL_TOPPINGS")
+    public String TOTAL_TOPPINGS;
+
+    @JsonProperty("NOM_SECTOR")
+    public String NOM_SECTOR;
 }

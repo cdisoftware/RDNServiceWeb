@@ -44,8 +44,11 @@ public class CListadoToppingEntity {
 
     @JsonProperty("cantidadReserva")
     public String cantidadReserva;
-    
-     @JsonProperty("cant_disponible")
+
+    @JsonProperty("cant_disponible")
     public String cant_disponible;
+
+    @JsonProperty("imagen")
+    public String imagen;
 
 }

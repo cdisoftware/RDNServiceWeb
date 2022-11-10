@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://appweb.dane.gov.co/sipsaWS/SrvSipsaUpraBeanService?WSDL" uri="wsdl/appweb.dane.gov.co/sipsaWS/SrvSipsaUpraBeanService.wsdl"/>
+    <system systemId="http://appweb.dane.gov.co:80/sipsaWS/SrvSipsaUpraBeanService?xsd=1" uri="wsdl/appweb.dane.gov.co_80/sipsaWS/SrvSipsaUpraBeanService.xsd_1.xsd"/>
+</catalog>

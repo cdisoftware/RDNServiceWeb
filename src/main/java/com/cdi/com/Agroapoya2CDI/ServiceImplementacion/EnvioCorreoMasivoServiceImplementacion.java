@@ -56,16 +56,32 @@ public class EnvioCorreoMasivoServiceImplementacion implements CEnvioRealCorreoS
     String imagenpiepagina;
 
     @Override
-    public String ConsultaEnvioRealCorreo(Integer bandera, Integer IdPlantilla, Integer IdTipoUsuario, Integer cd_cnctvo) {
+    public String ConsultaEnvioRealCorreo(Integer bandera, Integer IdPlantilla, Integer IdTipoUsuario, Integer cd_cnctvo, Integer IdSector) {
 
         Map<String, Object> mapMessage = new HashMap<>();
 
+        StoredProcedureQuery insertCD = repositorio.createNamedStoredProcedureQuery("paCEnvioRealCorreo");
+        insertCD.registerStoredProcedureParameter("bandera", Integer.class, ParameterMode.IN);
+        insertCD.registerStoredProcedureParameter("IdPlantilla", Integer.class, ParameterMode.IN);
+        insertCD.registerStoredProcedureParameter("IdTipoUsuario", Integer.class, ParameterMode.IN);
+        insertCD.registerStoredProcedureParameter("cd_cnctvo", Integer.class, ParameterMode.IN);
+        insertCD.registerStoredProcedureParameter("IdSector", Integer.class, ParameterMode.IN);
+
+        insertCD.setParameter("bandera", bandera);
+        insertCD.setParameter("IdPlantilla", IdPlantilla);
+        insertCD.setParameter("IdTipoUsuario", IdTipoUsuario);
+        insertCD.setParameter("cd_cnctvo", cd_cnctvo);
+        insertCD.setParameter("IdSector", IdSector);
+
+        insertCD.execute();
+        Integer respu = (Integer) insertCD.getOutputParameterValue("Respuesta");
+        //System.out.println(respu + "Codigo generado");
         try {
             Context context = new Context();
             StoredProcedureQuery cuerpo = repositorio.createNamedStoredProcedureQuery("paCEnvioRealCorreo_Consulta");
             cuerpo.registerStoredProcedureParameter("CodigoProceso", Integer.class, ParameterMode.IN);
-            codigoproceso = cd_cnctvo;
-            cuerpo.setParameter("CodigoProceso", cd_cnctvo);
+
+            cuerpo.setParameter("CodigoProceso", respu);
             cuerpo.getResultList();
             List<CEnvioRealCorreo_ConsultaEntity> cuerpocorreo = cuerpo.getResultList();
 
@@ -86,7 +102,7 @@ public class EnvioCorreoMasivoServiceImplementacion implements CEnvioRealCorreoS
                 String content = templateEngine.process("EnvioCorreos", context);
                 mapMessage.put("subject", asunto);
                 mapMessage.put("content", content);
-                sendMessage(mapMessage, bandera, IdPlantilla, IdTipoUsuario, cd_cnctvo);
+                sendMessage(mapMessage, bandera, IdPlantilla);
 
             }
             Respuesta = JSONObject.quote("Correo Enviado Correctamente");
@@ -96,7 +112,7 @@ public class EnvioCorreoMasivoServiceImplementacion implements CEnvioRealCorreoS
         return Respuesta;
     }
 
-    public void sendMessage(Map<String, Object> mapMessage, Integer Bandera, Integer IdPlantilla, Integer IdTipoUsuario, Integer cd_cnctvo) throws Exception {
+    public void sendMessage(Map<String, Object> mapMessage, Integer Bandera, Integer IdPlantilla) throws Exception {
 
         String correoremitente = null;
         String servicePath = null;
@@ -123,7 +139,7 @@ public class EnvioCorreoMasivoServiceImplementacion implements CEnvioRealCorreoS
             Transport ts = session.getTransport();
             ts.connect(servicePath, correoremitente, contrasena);
             // Crear correo electrónico
-            Message message = createMixedMail(session, mapMessage, correoremitente, Bandera, IdPlantilla, IdTipoUsuario, cd_cnctvo);
+            Message message = createMixedMail(session, mapMessage, correoremitente, Bandera, IdPlantilla);
             //enviar correo electrónico 
             ts.sendMessage(message, message.getAllRecipients());
             ts.close();
@@ -132,7 +148,7 @@ public class EnvioCorreoMasivoServiceImplementacion implements CEnvioRealCorreoS
     }
 
     public MimeMessage createMixedMail(Session session, Map<String, Object> mapMessage, String correoremitente,
-            Integer Bandera, Integer IdPlantilla, Integer IdTipoUsuario, Integer cd_cnctvo) throws Exception {
+            Integer Bandera, Integer IdPlantilla) throws Exception {
 
         MimeMessage message = new MimeMessage(session);
 
