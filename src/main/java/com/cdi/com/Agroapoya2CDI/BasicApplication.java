@@ -21,6 +21,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @PropertySource("dev.properties")
 @Profile("dev")
 
+//@PropertySource("prod.properties")
+//@Profile("prod")
+
 public class BasicApplication {
 
 	public static void main(String[] args) {
