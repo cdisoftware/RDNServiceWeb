@@ -73,7 +73,7 @@ public class MasivoEnvioMailServiceImplementacion implements EnvioMailService {
             cuerpo.setParameter("CodigoProceso", IdEnvioCorreo);
             cuerpo.getResultList();
             List<CMasivoEnvioCorreoEntity> cuerpocorreo = cuerpo.getResultList();
-            
+
             String[] rem = new String[cuerpocorreo.size()];
             for (int i = 0; i < cuerpocorreo.size(); i++) {
                 IdPlantilla = cuerpocorreo.get(i).getIdPlantilla();
@@ -81,13 +81,13 @@ public class MasivoEnvioMailServiceImplementacion implements EnvioMailService {
                 asunto = rem[i] = cuerpocorreo.get(i).getAsunto();
                 destinatario = rem[i] = cuerpocorreo.get(i).getEmail();
                 contenido = rem[i] = cuerpocorreo.get(i).getHtml();
-                imagenpiepagina = rem[i] = cuerpocorreo.get(i).getImagenPie();                
+                imagenpiepagina = rem[i] = cuerpocorreo.get(i).getImagenPie();
                 context.setVariable("imagenencabezado", imagenencabezado);
                 context.setVariable("destinatario", destinatario);
                 context.setVariable("asunto", asunto);
                 context.setVariable("contenido", contenido);
                 context.setVariable("imagenpiepagina", imagenpiepagina);
-                
+
                 String content = templateEngine.process("EnvioCorreos", context);
                 mapMessage.put("subject", asunto);
                 mapMessage.put("content", content);
@@ -159,7 +159,7 @@ public class MasivoEnvioMailServiceImplementacion implements EnvioMailService {
         try {
 
             // Establecer la información básica del correo
-            message.setFrom(new InternetAddress(correoremitente));            
+            message.setFrom(new InternetAddress(correoremitente));
             message.setRecipients(Message.RecipientType.TO, destinatario);
             //Integer idplantilla = cuerpocorreo.get(0).getIdPlantilla();
             message.setSubject(mapMessage.get("subject").toString());
@@ -226,5 +226,23 @@ public class MasivoEnvioMailServiceImplementacion implements EnvioMailService {
         }
         return message;
 
+    }
+
+    @Override
+    public String EnviarCorreoCancela(Integer bandera, String Idioma, Integer IdContacto, Integer IdRueda) {
+        StoredProcedureQuery CorreoCancela = repositorio.createNamedStoredProcedureQuery("PaCEnvioCorreoCancela");
+        CorreoCancela.registerStoredProcedureParameter("bandera", Integer.class, ParameterMode.IN);
+        CorreoCancela.registerStoredProcedureParameter("Idioma", String.class, ParameterMode.IN);
+        CorreoCancela.registerStoredProcedureParameter("IdContacto", Integer.class, ParameterMode.IN);
+        CorreoCancela.registerStoredProcedureParameter("IdRueda", Integer.class, ParameterMode.IN);        
+        CorreoCancela.setParameter("bandera", bandera);
+        CorreoCancela.setParameter("Idioma", Idioma);
+        CorreoCancela.setParameter("IdContacto", IdContacto);
+        CorreoCancela.setParameter("IdRueda", IdRueda);
+        CorreoCancela.execute();
+        Integer CodigoPro = Integer.parseInt(CorreoCancela.getOutputParameterValue("Respuesta").toString().trim());
+        EnviarCorreo(bandera, Idioma, CodigoPro);
+        return JSONObject.quote((String) CorreoCancela.getOutputParameterValue("Respuesta"));
+        
     }
 }

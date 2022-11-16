@@ -3341,6 +3341,12 @@ public class Controller {
             @PathVariable Integer IdEnvioCorreo) {
         return serviceEnvioMailService.EnviarCorreo(bandera, Idioma, IdEnvioCorreo);
     }
+    
+    @GetMapping("/CorreoCancela/{bandera}/{Idioma}/{IdContacto}/{IdRueda}")
+    public String MasivoenvioCorreoCancela(@PathVariable Integer bandera,@PathVariable String Idioma,
+            @PathVariable Integer IdContacto, @PathVariable Integer IdRueda){
+        return serviceEnvioMailService.EnviarCorreoCancela(bandera, Idioma, IdContacto, IdRueda);
+    }
 
     @GetMapping("/correoindividual/{bandera}/{IdContacto}/{IdRueda}/{IdAgenda}/{IdModulo}/{IdEstado}/{Idioma}")
     public String IndividualEnvioCorreo(
