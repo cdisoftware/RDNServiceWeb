@@ -137,5 +137,8 @@ public class CComprasEntity {
 
     @JsonProperty("Caracterizacion")
     public String Caracterizacion;
+    
+    @JsonProperty("CodigoMostrar")
+    public String CodigoMostrar;
 
 }
