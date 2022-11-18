@@ -440,6 +440,7 @@ import com.cdi.com.CorferiasRuedaNegocios.Services.TtTipoCitaService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.TtTipoEnvioCorreoService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.TtTipoEvaEncService;
 import com.cdi.com.CorferiasRuedaNegocios.Services.TtUbicacionService;
+import com.cdi.com.CorferiasRuedaNegocios.Services.paCAsignaMesasLoteService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
@@ -1136,6 +1137,9 @@ public class Controller {
 
     @Autowired
     PValidaTipoPermisoPartService servicePValidaTipoPermisoPartService;
+    
+    @Autowired
+    paCAsignaMesasLoteService paCAsignaMesasLoteService;
 
     @GetMapping("/consultarpaises")
     public List<TtPaisEntity> ConsultarPaises() {
@@ -4042,5 +4046,10 @@ public class Controller {
             @PathVariable Integer IdRueda,
             @PathVariable Integer IdAccion) {
         return servicePValidaTipoPermisoPartService.ConsultaPValidaTipoPermisoPart(IdParticipante, IdContacto, IdRueda, IdAccion);
+    }
+    
+    @GetMapping("/asignamesa/{bandera}/{idrueda}")
+    public String asignamesa(@PathVariable Integer bandera, @PathVariable Integer idrueda){
+        return paCAsignaMesasLoteService.AsignaMesa(bandera, idrueda);
     }
 }
