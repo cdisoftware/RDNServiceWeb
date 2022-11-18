@@ -1719,14 +1719,16 @@ public class Controller {
         return serviceCPagosTransTotalesService.ConsultaCPagosTransTotales(Bandera, Cd_csnctivo, IdSector, idConductor);
     }
 
-    @GetMapping("/enviosmsindividual/{Bandera}/{Usucodig}/{cd_cnctivo}/{idSector}/{idCliente}")
+    @GetMapping("/enviosmsindividual/{Bandera}/{Usucodig}/{cd_cnctivo}/{idSector}/{idCliente}/{TelefonoP}/{Codigo}")
     public String EnvioSmsIndividual(
             @PathVariable Integer Bandera,
             @PathVariable Integer Usucodig,
             @PathVariable Integer cd_cnctivo,
             @PathVariable Integer idSector,
-            @PathVariable Integer idCliente) {
-        return serviceEnviosmsIndividualService.EnvioSmsIndividual(Bandera, Usucodig, cd_cnctivo, idSector, idCliente);
+            @PathVariable Integer idCliente,            
+            @PathVariable String TelefonoP,
+            @PathVariable String Codigo) {
+        return serviceEnviosmsIndividualService.EnvioSmsIndividual(Bandera, Usucodig, cd_cnctivo, idSector, idCliente, TelefonoP, Codigo);
     }
 
     @GetMapping("/conscagrotiponovedad/{Bandera}/{IdNovedad}")

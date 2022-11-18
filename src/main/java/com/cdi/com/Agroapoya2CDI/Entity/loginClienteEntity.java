@@ -47,4 +47,16 @@ public class loginClienteEntity {
 
     @JsonProperty("descripTipoPersona")
     public String descripTipoPersona;
+    
+    @JsonProperty("COD_DPTO")
+    public String COD_DPTO;
+    
+    @JsonProperty("NOM_DPTO")
+    public String NOM_DPTO;
+    
+    @JsonProperty("COD_MUN")
+    public String COD_MUN;
+    
+    @JsonProperty("NOMBRE_MUN")
+    public String NOMBRE_MUN;
 }
