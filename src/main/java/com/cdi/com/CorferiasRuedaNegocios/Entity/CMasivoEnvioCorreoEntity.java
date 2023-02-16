@@ -16,7 +16,16 @@ import lombok.Data;
     @NamedStoredProcedureQuery(
             name = "paCEnvioRealCorreo_Consulta",
             procedureName = "paCEnvioRealCorreo_Consulta",
-            resultClasses = CMasivoEnvioCorreoEntity.class)
+            resultClasses = CMasivoEnvioCorreoEntity.class),
+    @NamedStoredProcedureQuery(
+            name = "PaCEnvioCorreoCancela",
+            procedureName = "PaCEnvioCorreoCancela",
+            parameters = {
+                @StoredProcedureParameter(name = "Respuesta",
+                        mode = ParameterMode.OUT,
+                        type = String.class)
+            }
+    )
 
 })
 

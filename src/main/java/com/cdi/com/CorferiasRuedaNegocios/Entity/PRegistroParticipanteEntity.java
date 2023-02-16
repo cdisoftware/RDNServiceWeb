@@ -29,13 +29,13 @@ public class PRegistroParticipanteEntity implements Serializable {
     private String NoIdentificacion ;
 
     @JsonProperty("IdPais")
-    private Integer IdPais;
+    private String IdPais;
 
     @JsonProperty("IdDepartamento")
-    private Integer IdDepartamento;
+    private String IdDepartamento;
 
     @JsonProperty("IdCiudad")
-    private Integer IdCiudad;
+    private String IdCiudad;
 
     @JsonProperty("Telefono")
     private String Telefono;

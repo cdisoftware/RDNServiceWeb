@@ -24,8 +24,8 @@ public class CCiudadDptoEntity implements Serializable {
 
     @Id
     @JsonProperty("IdCiudad")
-    private Integer IdCiudad;
+    public String IdCiudad;
 
     @JsonProperty("NombreCiudad")
-    private String NombreCiudad;
+    public String NombreCiudad;
 }
