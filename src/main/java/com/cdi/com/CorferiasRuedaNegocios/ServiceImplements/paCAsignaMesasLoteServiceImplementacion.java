@@ -15,31 +15,31 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class paCAsignaMesasLoteServiceImplementacion implements paCAsignaMesasLoteService {
-    
-        @PersistenceContext
+
+    @PersistenceContext
     private EntityManager repositorio;
 
     @Autowired
     private LogConsolaService service;
 
     @Override
-    public String AsignaMesa(Integer bandera, Integer IdRueda) {
-    try {
-            StoredProcedureQuery permisos = repositorio.createNamedStoredProcedureQuery("paCAsignaMesasLote");
+    public String AsignaMesa(Integer Bandera, Integer IdRueda) {
+        try {
+            StoredProcedureQuery permisos = repositorio.createNamedStoredProcedureQuery("paCAsignaUbicacionCitaLote");
             permisos.registerStoredProcedureParameter("Bandera", Integer.class, ParameterMode.IN);
-            permisos.registerStoredProcedureParameter("IdRuedaNegocio", Integer.class, ParameterMode.IN);
-            permisos.setParameter("Bandera", bandera);
-            permisos.setParameter("IdRuedaNegocio", IdRueda);
-            return JSONObject.quote((String) permisos.getOutputParameterValue("Respuesta"));            
+            permisos.registerStoredProcedureParameter("IdRueda", Integer.class, ParameterMode.IN);
+            permisos.setParameter("Bandera", Bandera);
+            permisos.setParameter("IdRueda", IdRueda);
+            return JSONObject.quote((String) permisos.getOutputParameterValue("Respuesta"));
         } catch (Exception ex) {
             LogConsolaEntity entidadLog = new LogConsolaEntity();
             entidadLog.setCodigo(String.valueOf(ex.hashCode()));
             entidadLog.setMensaje(ex.getMessage());
-            entidadLog.setServicio("Servicio paCAdministraLinkRdn");
+            entidadLog.setServicio("Servicio paCAsignaUbicacionCitaLote");
             entidadLog.setTipo(1);
             service.InsertaLog(entidadLog);
             return "No fue posible ejecutar los datos, verifique el Log para validar la inconsistencia";
         }
     }
-    
+
 }

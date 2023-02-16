@@ -198,4 +198,16 @@ public class CVisualizaParticipanteEntity {
     @JsonProperty("Contrasena")
     public String Contrasena;
 
+    @JsonProperty("PuntajeFeria")
+    public String PuntajeFeria;
+
+    @JsonProperty("TamanoEmpresa")
+    public String TamanoEmpresa;
+    
+    @JsonProperty("EntidadInvita")
+    public String EntidadInvita;
+    
+    @JsonProperty("PerfilEmpresasInt")
+    public String PerfilEmpresasInt;
+
 }

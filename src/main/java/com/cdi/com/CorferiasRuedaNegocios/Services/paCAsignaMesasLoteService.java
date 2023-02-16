@@ -1,8 +1,6 @@
 package com.cdi.com.CorferiasRuedaNegocios.Services;
 
-import org.springframework.stereotype.Service;
-
-
 public interface paCAsignaMesasLoteService {
-    public String AsignaMesa(Integer bandera, Integer IdRueda);
+
+    public String AsignaMesa(Integer Bandera, Integer IdRueda);
 }

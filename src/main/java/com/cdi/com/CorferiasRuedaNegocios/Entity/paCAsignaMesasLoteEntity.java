@@ -14,8 +14,8 @@ import lombok.Data;
 @Data
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
-            name = "paCAsignaMesasLote",
-            procedureName = "paCAsignaMesasLote",
+            name = "paCAsignaUbicacionCitaLote",
+            procedureName = "paCAsignaUbicacionCitaLote",
             parameters = {
                 @StoredProcedureParameter(name = "Respuesta",
                         mode = ParameterMode.OUT,
@@ -27,6 +27,6 @@ public class paCAsignaMesasLoteEntity implements Serializable {
 
     @Id
     @JsonProperty("Respuesta")
-    private Integer Respuesta;
+    public Integer Respuesta;
 
 }

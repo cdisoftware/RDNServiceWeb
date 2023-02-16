@@ -18,55 +18,58 @@ import lombok.Data;
 public class PParticipantesRDNEntity {
 
     @JsonProperty("IdRuedaNegocio")
-    private Integer IdRuedaNegocio;
+    public Integer IdRuedaNegocio;
 
     @Id
     @JsonProperty("IdParticipante")
-    private Integer IdParticipante;
+    public Integer IdParticipante;
 
     @JsonProperty("NombreEmpresa")
-    private String NombreEmpresa;
+    public String NombreEmpresa;
 
     @JsonProperty("IdPais")
-    private Integer IdPais;
+    public Integer IdPais;
 
     @JsonProperty("IdDepartamento")
-    private Integer IdDepartamento;
+    public Integer IdDepartamento;
 
     @JsonProperty("IdCiudad")
-    private Integer IdCiudad;
+    public Integer IdCiudad;
 
     @JsonProperty("PaginaWeb")
-    private String PaginaWeb;
+    public String PaginaWeb;
 
     @JsonProperty("imagen")
-    private String imagen;
+    public String imagen;
 
     @JsonProperty("Descripcion")
-    private String Descripcion;
+    public String Descripcion;
 
     @JsonProperty("Observacion")
-    private String Observacion;
+    public String Observacion;
 
     @JsonProperty("Telefono")
-    private String Telefono;
+    public String Telefono;
 
     @JsonProperty("Direccion")
-    private String Direccion;
+    public String Direccion;
 
     @JsonProperty("Pais")
-    private String Pais;
+    public String Pais;
 
     @JsonProperty("Departamento")
-    private String Departamento;
+    public String Departamento;
 
     @JsonProperty("Ciudad")
-    private String Ciudad;
+    public String Ciudad;
 
     @JsonProperty("Nit")
-    private String Nit;
+    public String Nit;
 
     @JsonProperty("CuentaAgenda")
-    private Integer CuentaAgenda;
+    public Integer CuentaAgenda;
+
+    @JsonProperty("AprobacionCitas")
+    public Integer AprobacionCitas;
 
 }

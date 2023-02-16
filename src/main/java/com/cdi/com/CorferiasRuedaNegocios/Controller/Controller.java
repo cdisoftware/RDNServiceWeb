@@ -4048,8 +4048,10 @@ public class Controller {
         return servicePValidaTipoPermisoPartService.ConsultaPValidaTipoPermisoPart(IdParticipante, IdContacto, IdRueda, IdAccion);
     }
     
-    @GetMapping("/asignamesa/{bandera}/{idrueda}")
-    public String asignamesa(@PathVariable Integer bandera, @PathVariable Integer idrueda){
-        return paCAsignaMesasLoteService.AsignaMesa(bandera, idrueda);
+    @GetMapping("/asignamesa/{Bandera}/{IdRueda}")
+    public String asignamesa(
+        @PathVariable Integer Bandera, 
+        @PathVariable Integer IdRueda){
+        return paCAsignaMesasLoteService.AsignaMesa(Bandera, IdRueda);
     }
 }
