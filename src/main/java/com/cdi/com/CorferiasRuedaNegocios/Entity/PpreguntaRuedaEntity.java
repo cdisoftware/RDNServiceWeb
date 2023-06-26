@@ -51,4 +51,7 @@ public class PpreguntaRuedaEntity {
     @JsonProperty("Origen")
     public Integer Origen;
 
+    @JsonProperty("Orden")
+    public Integer Orden;
+
 }
