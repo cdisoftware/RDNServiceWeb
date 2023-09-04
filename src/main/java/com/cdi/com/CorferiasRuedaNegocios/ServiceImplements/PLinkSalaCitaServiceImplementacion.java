@@ -23,9 +23,11 @@ public class PLinkSalaCitaServiceImplementacion implements PLinkSalaCitaService 
     @Autowired
     private LogConsolaService service;
 
+ 
     @Override
     public List<PLinkSalaCitaEntity> ConsultaPLinkSalaCita(Integer bandera, Integer IdRueda, Integer IdAgenda) {
         try {
+
             StoredProcedureQuery consciudadpais = repositorio.createNamedStoredProcedureQuery("paPLinkSalaCita");
             consciudadpais.registerStoredProcedureParameter("bandera", Integer.class, ParameterMode.IN);
             consciudadpais.registerStoredProcedureParameter("IdRueda", Integer.class, ParameterMode.IN);
@@ -34,7 +36,7 @@ public class PLinkSalaCitaServiceImplementacion implements PLinkSalaCitaService 
             consciudadpais.setParameter("bandera", bandera);
             consciudadpais.setParameter("IdRueda", IdRueda);
             consciudadpais.setParameter("IdAgenda", IdAgenda);
-
+           
             return consciudadpais.getResultList();
         } catch (Exception ex) {
             LogConsolaEntity entidadLog = new LogConsolaEntity();
@@ -47,6 +49,7 @@ public class PLinkSalaCitaServiceImplementacion implements PLinkSalaCitaService 
             list.add(0, JSONObject.quote("No fue posible ejecutar los datos, verifique el Log para validar la inconsistencia"));
             return list;
         }
+
     }
 
 }
