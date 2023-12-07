@@ -20,6 +20,12 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @PropertySource("dev.properties")
 @Profile("dev")
 
+//@PropertySource("pruebas_PRB.properties")
+//@Profile("pruebas_PRB")
+
+//@PropertySource("trueques.properties")
+//@Profile("trueques")
+
 //@PropertySource("prod.properties")
 //@Profile("prod")
 
