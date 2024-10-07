@@ -17,8 +17,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
     FileStorageProperties.class
 })
 @Configuration
-@PropertySource("dev.properties")
-@Profile("dev")
+//@PropertySource("dev.properties")
+//@Profile("dev")
 
 //@PropertySource("pruebas_PRB.properties")
 //@Profile("pruebas_PRB")
@@ -26,8 +26,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 //@PropertySource("trueques.properties")
 //@Profile("trueques")
 
-//@PropertySource("prod.properties")
-//@Profile("prod")  
+@PropertySource("prod.properties")
+@Profile("prod")
 
  /*@PropertySource("corferias.properties")
 @Profile("corferias")*/
