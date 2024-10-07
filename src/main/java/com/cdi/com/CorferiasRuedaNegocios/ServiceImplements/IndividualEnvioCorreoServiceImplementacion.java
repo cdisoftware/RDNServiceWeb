@@ -140,7 +140,11 @@ public class IndividualEnvioCorreoServiceImplementacion implements IndividualEnv
             props.setProperty("mail.transport.protocol", "smtp"); // usa el protocolo pop3
             props.setProperty("mail.host", servicePath); // servidor pop3
             props.setProperty("mail.smtp.auth", "true");
-            props.put("mail.smtp.starttls.enable", "true");
+
+            //Linea problema: Could not convert socket to TLS
+            //props.put("mail.smtp.starttls.enable", "true");
+        
+
             // Crear objeto de instancia de sesión
             Session session = Session.getInstance(props);
             session.setDebug(true);

@@ -127,13 +127,16 @@ public class MasivoEnvioMailServiceImplementacion implements EnvioMailService {
             Properties props = new Properties();
             props.setProperty("mail.transport.protocol", "smtp"); // usa el protocolo pop3
             props.setProperty("mail.host", servicePath); // servidor pop3
-            props.setProperty("mail.smtp.auth", "true");
-            props.put("mail.smtp.starttls.enable", "true");
+            props.setProperty("mail.smtp.auth", "true");            
+            //Linea problema: No se pudo convertir el socket a TLS
+            //props.put("mail.smtp.starttls.enable", "true");
+            
             // Crear objeto de instancia de sesión
             Session session = Session.getInstance(props);
             session.setDebug(true);
             Transport ts = session.getTransport();
             ts.connect(servicePath, correoremitente, contrasena);
+            
             // Crear correo electrónico
             Message message = createMixedMail(session, mapMessage, correoremitente, bandera, Idioma, IdPlantilla);
             //enviar correo electrónico 
