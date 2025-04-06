@@ -15,6 +15,7 @@ import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,14 +23,20 @@ import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 import javax.mail.Address;
+import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
@@ -134,18 +141,17 @@ public class IndividualEnvioCorreoServiceImplementacion implements IndividualEnv
             for (int i = 0; i < remite.size(); i++) {
                 correoremitente = rem[i] = remite.get(i).getCorreoRemitente();
                 servicePath = rem[i] = remite.get(i).getServicePath();
-                contrasena = rem[i] = clsEncriptacion.Desencriptar(remite.get(i).getClave());
+                contrasena = clsEncriptacion.Desencriptar(remite.get(i).getClave());
             }
+
             Properties props = new Properties();
             props.setProperty("mail.transport.protocol", "smtp"); // usa el protocolo pop3
-            props.setProperty("mail.host", servicePath); // servidor pop3
             props.setProperty("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.ssl.trust", "*");
+            props.setProperty("mail.smtp.port", "587");
+            props.setProperty("mail.host", servicePath); // servidor pop3
 
-            //Linea problema: Could not convert socket to TLS
-            //props.put("mail.smtp.starttls.enable", "true");
-        
-
-            // Crear objeto de instancia de sesión
             Session session = Session.getInstance(props);
             session.setDebug(true);
             Transport ts = session.getTransport();
